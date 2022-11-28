@@ -31,7 +31,9 @@
             this.components = new System.ComponentModel.Container();
             this.panel1 = new System.Windows.Forms.Panel();
             this.contextMenuStrip1 = new System.Windows.Forms.ContextMenuStrip(this.components);
-            this.newTableToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.newEntityToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.newAttributeToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.newRelationshipToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.panel2 = new System.Windows.Forms.Panel();
             this.contextMenuStrip1.SuspendLayout();
             this.SuspendLayout();
@@ -52,16 +54,32 @@
             // 
             this.contextMenuStrip1.ImageScalingSize = new System.Drawing.Size(20, 20);
             this.contextMenuStrip1.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
-            this.newTableToolStripMenuItem});
+            this.newEntityToolStripMenuItem,
+            this.newAttributeToolStripMenuItem,
+            this.newRelationshipToolStripMenuItem});
             this.contextMenuStrip1.Name = "contextMenuStrip1";
-            this.contextMenuStrip1.Size = new System.Drawing.Size(211, 56);
+            this.contextMenuStrip1.Size = new System.Drawing.Size(195, 76);
             // 
-            // newTableToolStripMenuItem
+            // newEntityToolStripMenuItem
             // 
-            this.newTableToolStripMenuItem.Name = "newTableToolStripMenuItem";
-            this.newTableToolStripMenuItem.Size = new System.Drawing.Size(210, 24);
-            this.newTableToolStripMenuItem.Text = "New Table";
-            this.newTableToolStripMenuItem.Click += new System.EventHandler(this.newTableToolStripMenuItem_Click);
+            this.newEntityToolStripMenuItem.Name = "newEntityToolStripMenuItem";
+            this.newEntityToolStripMenuItem.Size = new System.Drawing.Size(194, 24);
+            this.newEntityToolStripMenuItem.Text = "New Entity";
+            this.newEntityToolStripMenuItem.Click += new System.EventHandler(this.newEntityToolStripMenuItem_Click);
+            // 
+            // newAttributeToolStripMenuItem
+            // 
+            this.newAttributeToolStripMenuItem.Name = "newAttributeToolStripMenuItem";
+            this.newAttributeToolStripMenuItem.Size = new System.Drawing.Size(194, 24);
+            this.newAttributeToolStripMenuItem.Text = "New Attribute";
+            this.newAttributeToolStripMenuItem.Click += new System.EventHandler(this.newAttributeToolStripMenuItem_Click);
+            // 
+            // newRelationshipToolStripMenuItem
+            // 
+            this.newRelationshipToolStripMenuItem.Name = "newRelationshipToolStripMenuItem";
+            this.newRelationshipToolStripMenuItem.Size = new System.Drawing.Size(194, 24);
+            this.newRelationshipToolStripMenuItem.Text = "New Relationship";
+            this.newRelationshipToolStripMenuItem.Click += new System.EventHandler(this.newRelationshipToolStripMenuItem_Click);
             // 
             // panel2
             // 
@@ -93,6 +111,8 @@
         private Panel panel1;
         private Panel panel2;
         private ContextMenuStrip contextMenuStrip1;
-        private ToolStripMenuItem newTableToolStripMenuItem;
+        private ToolStripMenuItem newEntityToolStripMenuItem;
+        private ToolStripMenuItem newAttributeToolStripMenuItem;
+        private ToolStripMenuItem newRelationshipToolStripMenuItem;
     }
 }

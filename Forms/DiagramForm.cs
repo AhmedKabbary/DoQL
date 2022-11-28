@@ -1,3 +1,5 @@
+using DoQL.Controls.ERD;
+
 namespace DoQL
 {
     public partial class DiagramForm : Form
@@ -5,15 +7,6 @@ namespace DoQL
         public DiagramForm()
         {
             InitializeComponent();
-        }
-
-        // context menu (TODO use Factory)
-
-        private void newTableToolStripMenuItem_Click(object sender, EventArgs e)
-        {
-            Control control = new Panel();
-            control.Location = this.PointToClient(contextMenuStrip1.Bounds.Location);
-            panel1.Controls.Add(control);
         }
 
         // dragging
@@ -38,15 +31,40 @@ namespace DoQL
         {
             if (selected)
             {
-                foreach (Control control in panel1.Controls)
+                panel1.SuspendLayout();
+                foreach (BaseControl control in panel1.Controls.OfType<BaseControl>())
                 {
                     control.SuspendLayout();
                     control.Left += e.X - point.X;
                     control.Top += e.Y - point.Y;
                     control.ResumeLayout();
                 }
+                panel1.ResumeLayout();
                 point = e.Location;
             }
+        }
+
+        // context menu (TODO use Factory)
+
+        private void newEntityToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            Control control = new EntityControl();
+            control.Location = this.PointToClient(contextMenuStrip1.Bounds.Location);
+            panel1.Controls.Add(control);
+        }
+
+        private void newAttributeToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            Control control = new AttributeControl();
+            control.Location = this.PointToClient(contextMenuStrip1.Bounds.Location);
+            panel1.Controls.Add(control);
+        }
+
+        private void newRelationshipToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            Control control = new RelationshipControl();
+            control.Location = this.PointToClient(contextMenuStrip1.Bounds.Location);
+            panel1.Controls.Add(control);
         }
     }
 }
