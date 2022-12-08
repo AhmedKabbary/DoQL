@@ -19,7 +19,7 @@ namespace DoQL.Controls.ERD
             _connectors = new List<ConnectorControl>();
         }
 
-        // relations
+        # region connectors
 
         private readonly List<ConnectorControl> _connectors;
 
@@ -44,6 +44,7 @@ namespace DoQL.Controls.ERD
                 {
                     point.Offset(this.Location);
                     var connector = new ConnectorControl();
+                    connector.BaseControl = this;
                     point.Offset(-connector.Width / 2, -connector.Height / 2);
                     connector.Location = point;
                     _connectors.Add(connector);
@@ -53,8 +54,16 @@ namespace DoQL.Controls.ERD
             }
         }
 
-        public void HideConnectors()
+        public void HideConnectors(bool force = false)
         {
+            if (!force)
+            {
+                foreach (ConnectorControl connector in _connectors)
+                {
+                    if (IsMouseOverControl(connector))
+                        return;
+                }
+            }
             foreach (ConnectorControl connector in _connectors)
             {
                 Parent.Controls.Remove(connector);
@@ -62,7 +71,11 @@ namespace DoQL.Controls.ERD
             _connectors.Clear();
         }
 
-        // dragging
+        private static bool IsMouseOverControl(Control control) => control.ClientRectangle.Contains(control.PointToClient(Cursor.Position));
+
+        #endregion
+
+        #region dragging
 
         Point point;
         bool selected;
@@ -86,7 +99,6 @@ namespace DoQL.Controls.ERD
         {
             if (selected)
             {
-                // move control itself
                 this.SuspendLayout();
                 this.Left += e.X - point.X;
                 this.Top += e.Y - point.Y;
@@ -94,5 +106,7 @@ namespace DoQL.Controls.ERD
             }
             base.OnMouseMove(e);
         }
+
+        #endregion
     }
 }
