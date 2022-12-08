@@ -10,10 +10,10 @@
 
     public enum Action
     {
+        NoAction,
         Restrict,
         Cascade,
         SetNull,
-        NoAction,
-        SetDefault,
+        SetDefault
     }
 }

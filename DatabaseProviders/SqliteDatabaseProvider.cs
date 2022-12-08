@@ -3,10 +3,14 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using DoQL.Interfaces;
+using DoQL.Models;
+using Action = DoQL.Models.Action;
+using Attribute = DoQL.Models.Attribute;
 
 namespace DoQL.DatabaseProviders
 {
-    public class SqliteDatabaseProvider : DatabaseProvider
+    public class SqliteDatabaseProvider : DatabaseProvider,ISQLExporter
     {
         public override List<string> GetDataTypes()
         {
@@ -71,6 +75,74 @@ namespace DoQL.DatabaseProviders
         public override bool ValideteDataType(string dataType)
         {
             return GetDataTypes().Contains(dataType);
+        }
+
+        public string Export(Database db)
+        {
+            StringBuilder sqlCommands = new StringBuilder();
+            sqlCommands.AppendLine($"CREATE DATABASE {db.Name};");
+            sqlCommands.AppendLine("");
+            foreach (Table t in db.Tables)
+            {
+                sqlCommands.AppendLine($"CREATE TABLE {t.Name}(");
+                foreach (Attribute a in t.Attributes)
+                {
+                    StringBuilder constraints = new StringBuilder();
+                    if (a.NotNull == true)
+                    {
+                        constraints.Append("NOT NULL ");
+                    }
+                    if (a.Primary == true)
+                    {
+                        constraints.Append("PRIMARY KEY ");
+                    }
+                    if (a.Unique == true)
+                    {
+                        constraints.Append("UNIQUE ");
+                    }
+                    if (a.AutoIncrement == true)
+                    {
+                        constraints.Append("AUTOINCREMENT ");
+                    }
+                    if (a.ForiegnReference != null)
+                    {
+                        StringBuilder foriegn = new StringBuilder("REFERENCES ");
+                        foreach (Table table in db.Tables)
+                        {
+                            if (table.Id == a.ForiegnReference.TableId)
+                            {
+                                foriegn.Append(table.Name + "(");
+                                foreach (Attribute attribute in table.Attributes)
+                                {
+                                    if (attribute.Id == a.ForiegnReference.AttributeId)
+                                    {
+                                        foriegn.Append(attribute.Name + ") ");
+                                    }
+
+                                }
+                            }
+                        }
+                        if (a.ForiegnReference.OnUpdateAction != Action.NoAction)
+                        {
+                            foriegn.Append($"ON UPDATE {a.ForiegnReference.OnUpdateAction} ");
+                        }
+                        if (a.ForiegnReference.OnDeleteAction != Action.NoAction)
+                        {
+                            foriegn.Append($"ON DELETE {a.ForiegnReference.OnDeleteAction} ");
+                        }
+                        constraints.Append(foriegn.ToString());
+                    }
+                    string comma = ",";
+                    if (t.Attributes.IndexOf(a) == t.Attributes.Count - 1)
+                    {
+                        comma = "";
+                    }
+                    sqlCommands.AppendLine($"  {a.Name} {a.DataType} {constraints}{comma}");
+                }
+                sqlCommands.AppendLine(");");
+                sqlCommands.AppendLine("");
+            }
+            return sqlCommands.ToString();
         }
     }
 }
