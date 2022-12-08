@@ -1,5 +1,6 @@
 using DoQL.Interfaces;
 using DoQL.Models;
+using System.IO.Compression;
 using System.Text.Json;
 
 namespace DoQL
@@ -7,7 +8,7 @@ namespace DoQL
     class DatabasesManager : IDatabasesManager
     {
 
-        private string dataBasesFolderpath = Path.Combine(Environment.GetFolderPath(Environment.SpecialFolder.ApplicationData), "DoQL");
+        private string dataBasesFolderPath = Path.Combine(Environment.GetFolderPath(Environment.SpecialFolder.ApplicationData), "DoQL");
         private static DatabasesManager instance = null;
         private DatabasesManager()
         { }
@@ -21,7 +22,7 @@ namespace DoQL
         }
         public void DeleteDatabase(string id)
         {
-            string folderToDeletePath = Path.Combine(dataBasesFolderpath, id);
+            string folderToDeletePath = Path.Combine(dataBasesFolderPath, id);
 
             if (Directory.Exists(folderToDeletePath))
             {
@@ -30,14 +31,22 @@ namespace DoQL
 
         }
 
-        public void ExportDatabase(string id)
+        public void ExportDatabase(string id, string destination)
         {
-            throw new NotImplementedException();
+            string folderToExportPath = Path.Combine(dataBasesFolderPath, id);
+            string zipFileDestination = Path.Combine(destination, $"{id}.zip");
+            if (Directory.Exists(folderToExportPath))
+
+                ZipFile.CreateFromDirectory(folderToExportPath, zipFileDestination);
+
         }
 
-        public Database ImportDatabase(string path)
+        public void ImportDatabase(string path)
         {
-            throw new NotImplementedException();
+            string importedFileName = Path.GetFileNameWithoutExtension(path);
+            string importedFolderPath = Path.Combine(dataBasesFolderPath, importedFileName);
+            if (!Directory.Exists(importedFolderPath))
+                ZipFile.ExtractToDirectory(path, importedFolderPath);
         }
 
         public Database LoadDatabase(string id)
@@ -45,7 +54,7 @@ namespace DoQL
             LoadedDataBaseInFormation loadedDatabaseInformation =
              new LoadedDataBaseInFormation();
             List<DoQL.Models.Table> loadedDataBaseTables = new List<DoQL.Models.Table> { };
-            string folderToLoadPath = Path.Combine(dataBasesFolderpath, id);
+            string folderToLoadPath = Path.Combine(dataBasesFolderPath, id);
             if (Directory.Exists(folderToLoadPath))
             {
                 string indexFile = Path.Combine(folderToLoadPath, "Index.json");
@@ -90,7 +99,7 @@ namespace DoQL
         public List<Database> LoadDatabases()
         {
             List<Database> loadedDatabases = new List<Database>();
-            string[] allFolders = Directory.GetDirectories(dataBasesFolderpath);
+            string[] allFolders = Directory.GetDirectories(dataBasesFolderPath);
 
 
             foreach (var folder in allFolders)
@@ -118,7 +127,7 @@ namespace DoQL
             infoFile.Add("Type", db.Type);
             infoFile.Add("Created", db.Created);
             infoFile.Add("LastModified", db.LastModified);
-            string folderpath = Path.Combine(dataBasesFolderpath, db.Id);
+            string folderpath = Path.Combine(dataBasesFolderPath, db.Id);
             string infoFilePath = Path.Combine(folderpath, "Index.json");
             string tablesFilePath = Path.Combine(folderpath, "Tables.json");
 
