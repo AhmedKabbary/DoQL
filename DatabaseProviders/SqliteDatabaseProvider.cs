@@ -88,22 +88,11 @@ namespace DoQL.DatabaseProviders
                 foreach (Attribute a in t.Attributes)
                 {
                     StringBuilder constraints = new StringBuilder();
-                    if (a.NotNull == true)
-                    {
-                        constraints.Append("NOT NULL ");
-                    }
-                    if (a.Primary == true)
-                    {
-                        constraints.Append("PRIMARY KEY ");
-                    }
-                    if (a.Unique == true)
-                    {
-                        constraints.Append("UNIQUE ");
-                    }
-                    if (a.AutoIncrement == true)
-                    {
-                        constraints.Append("AUTOINCREMENT ");
-                    }
+                    if (a.NotNull == true) { constraints.Append("NOT NULL "); }
+                    if (a.Unique == true) { constraints.Append("UNIQUE "); }
+                    if (a.AutoIncrement == true) { constraints.Append("AUTOINCREMENT "); }
+                    if (a.Primary == true) { constraints.Append("PRIMARY KEY "); }
+
                     if (a.ForiegnReference != null)
                     {
                         StringBuilder foriegn = new StringBuilder("REFERENCES ");
@@ -117,26 +106,24 @@ namespace DoQL.DatabaseProviders
                                     if (attribute.Id == a.ForiegnReference.AttributeId)
                                     {
                                         foriegn.Append(attribute.Name + ") ");
+                                        break;
                                     }
-
                                 }
+                                break;
                             }
                         }
+
                         if (a.ForiegnReference.OnUpdateAction != Action.NoAction)
                         {
-                            foriegn.Append($"ON UPDATE {a.ForiegnReference.OnUpdateAction} ");
+                            foriegn.Append($"ON UPDATE {ActionFactory.GetActionString(a.ForiegnReference.OnUpdateAction)} ");
                         }
                         if (a.ForiegnReference.OnDeleteAction != Action.NoAction)
                         {
-                            foriegn.Append($"ON DELETE {a.ForiegnReference.OnDeleteAction} ");
+                            foriegn.Append($"ON DELETE {ActionFactory.GetActionString(a.ForiegnReference.OnDeleteAction)} ");
                         }
                         constraints.Append(foriegn.ToString());
                     }
-                    string comma = ",";
-                    if (t.Attributes.IndexOf(a) == t.Attributes.Count - 1)
-                    {
-                        comma = "";
-                    }
+                    string comma = (t.Attributes.IndexOf(a) == t.Attributes.Count - 1) ? "" : ",";
                     sqlCommands.AppendLine($"  {a.Name} {a.DataType} {constraints}{comma}");
                 }
                 sqlCommands.AppendLine(");");
