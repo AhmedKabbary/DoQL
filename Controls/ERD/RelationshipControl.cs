@@ -77,14 +77,12 @@ namespace DoQL.Controls.ERD
                     .Where(c => c.IsValidConnection())
                     .Where(c => c.Control1.ConnectableControl == this || c.Control2.ConnectableControl == this);
 
+                Connection duplicateConnection = currentConnections.FirstOrDefault(c => c.Control1.ConnectableControl == entityControl || c.Control2.ConnectableControl == entityControl);
+                if (duplicateConnection != null)
+                    diagramPanel.Connections.Remove(duplicateConnection);
+
                 if (currentConnections.Count() == 2)
-                {
-                    Connection duplicateConnection = currentConnections.FirstOrDefault(c => c.Control1.ConnectableControl == entityControl || c.Control2.ConnectableControl == entityControl);
-                    if (duplicateConnection != null)
-                        diagramPanel.Connections.Remove(duplicateConnection);
-                    else
-                        diagramPanel.Connections.Remove(currentConnections.First());
-                }
+                    diagramPanel.Connections.Remove(currentConnections.First());
             }
         }
 
