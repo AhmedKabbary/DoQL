@@ -1,12 +1,6 @@
-﻿using DoQL.Models;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using Action = DoQL.Models.Action;
+﻿using Action = DoQL.Models.Action;
 
-namespace DoQL
+namespace DoQL.Utilities
 {
     class ActionFactory
     {

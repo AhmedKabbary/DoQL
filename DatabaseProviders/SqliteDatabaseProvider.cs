@@ -5,6 +5,7 @@ using System.Text;
 using System.Threading.Tasks;
 using DoQL.Interfaces;
 using DoQL.Models;
+using DoQL.Utilities;
 using Action = DoQL.Models.Action;
 using Attribute = DoQL.Models.Attribute;
 
