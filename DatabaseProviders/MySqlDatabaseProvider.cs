@@ -1,12 +1,16 @@
-﻿using System;
+﻿using DoQL.Interfaces;
+using DoQL.Models;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using Action = DoQL.Models.Action;
+using Attribute = DoQL.Models.Attribute;
 
 namespace DoQL.DatabaseProviders
 {
-    public class MySqlDatabaseProvider:DatabaseProvider
+    public class MySqlDatabaseProvider : DatabaseProvider,ISQLExporter
     {
         public override List<string> GetDataTypes()
         {
@@ -63,6 +67,75 @@ namespace DoQL.DatabaseProviders
         public override bool ValideteDataType(string dataType)
         {
             return GetDataTypes().Contains(dataType);
+        }
+
+        public string Export(Database db)
+        {
+            StringBuilder sqlCommands = new StringBuilder();
+            sqlCommands.AppendLine($"CREATE DATABASE {db.Name};");
+            sqlCommands.AppendLine("");
+            foreach (Table t in db.Tables)
+            {
+                sqlCommands.AppendLine($"CREATE TABLE {t.Name}(");
+                List<string> primaryKeys = new List<string>();
+                List<string> foreignKeys = new List<string>();
+                foreach (Attribute a in t.Attributes)
+                {
+                    StringBuilder constraints = new StringBuilder();
+                    if (a.NotNull == true) { constraints.Append("NOT NULL "); }
+                    if (a.Unique == true) { constraints.Append("UNIQUE "); }
+                    if (a.AutoIncrement == true) { constraints.Append("AUTO_INCREMENT "); }
+                    if (a.Primary == true) { primaryKeys.Add(a.Name); }
+
+                    if (a.ForiegnReference != null)
+                    {
+                        StringBuilder foriegn = new StringBuilder($"  FOREIGN KEY ({a.Name}) REFERENCES ");
+                        foreach (Table table in db.Tables)
+                        {
+                            if (table.Id == a.ForiegnReference.TableId)
+                            {
+                                foriegn.Append(table.Name);
+                                foreach (Attribute attribute in table.Attributes)
+                                {
+                                    if (attribute.Id == a.ForiegnReference.AttributeId)
+                                    {
+                                        foriegn.Append($"({attribute.Name}) ");
+                                        break;
+                                    }
+                                }
+                                break;
+                            }
+                        }
+
+                        if (a.ForiegnReference.OnUpdateAction != Action.NoAction)
+                        {
+                            foriegn.Append($"ON UPDATE {ActionFactory.GetActionString(a.ForiegnReference.OnUpdateAction)} ");
+                        }
+                        if (a.ForiegnReference.OnDeleteAction != Action.NoAction)
+                        {
+                            foriegn.Append($"ON DELETE {ActionFactory.GetActionString(a.ForiegnReference.OnDeleteAction)} ");
+                        }
+                        foreignKeys.Add(foriegn.ToString());
+                    }
+                    string comma = (t.Attributes.IndexOf(a) == t.Attributes.Count - 1 && primaryKeys.Count
+                        == 0 && foreignKeys.Count == 0) ? "" : ",";
+                    sqlCommands.AppendLine($"  {a.Name} {a.DataType} {constraints}{comma}");
+                }
+                string primaryComma = (foreignKeys.Count > 0) ? "," : "";
+                if (primaryKeys.Count > 0) { sqlCommands.AppendLine($"  PRIMARY KEY ({string.Join(", ", primaryKeys)}){primaryComma}"); }
+                if (foreignKeys.Count > 0)
+                {
+                    foreignKeys.Reverse();
+                    foreach (string key in foreignKeys)
+                    {
+                        string foreignComma = (foreignKeys.IndexOf(key) == foreignKeys.Count - 1) ? "" : ",";
+                        sqlCommands.AppendLine(key + foreignComma);
+                    }
+                }
+                sqlCommands.AppendLine(");");
+                sqlCommands.AppendLine("");
+            }
+            return sqlCommands.ToString();
         }
     }
 }
