@@ -6,7 +6,7 @@ namespace DoQL.Interfaces
     // Contains the following files:
     //      index.json  -> General info
     //      tables.json -> Tables info
-    //      erd.json    -> ER Digram related info
+    //      erd.json    -> ER Diagram related info
     interface IDatabasesManager
     {
         List<Database> LoadDatabases();
@@ -15,9 +15,9 @@ namespace DoQL.Interfaces
         void DeleteDatabase(string id);
 
         // Compress the database JSON files into a ZIP file
-        void ExportDatabase(string id);
+        void ExportDatabase(string id, string destination);
         
         // Import a ZIP file from a specific path
-        Database ImportDatabase(string path);
+        void ImportDatabase(string path);
     }
 }
