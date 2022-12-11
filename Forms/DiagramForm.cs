@@ -14,24 +14,50 @@ namespace DoQL
         private void newEntityToolStripMenuItem_Click(object sender, EventArgs e)
         {
             var control = new EntityControl();
-            control.Location = this.PointToClient(contextMenuStrip1.Bounds.Location);
+            control.Location = PointToClient(contextMenuStrip1.Bounds.Location);
             diagramPanel.Controls.Add(control);
         }
 
         private void newAttributeToolStripMenuItem_Click(object sender, EventArgs e)
         {
             var control = new AttributeControl();
-            control.Location = this.PointToClient(contextMenuStrip1.Bounds.Location);
+            control.Location = PointToClient(contextMenuStrip1.Bounds.Location);
             diagramPanel.Controls.Add(control);
         }
 
         private void newRelationshipToolStripMenuItem_Click(object sender, EventArgs e)
         {
             var control = new RelationshipControl();
-            control.Location = this.PointToClient(contextMenuStrip1.Bounds.Location);
+            control.Location = PointToClient(contextMenuStrip1.Bounds.Location);
             diagramPanel.Controls.Add(control);
         }
 
         #endregion
+
+        protected override void OnKeyDown(KeyEventArgs e)
+        {
+            if (e.Control)
+            {
+                switch (e.KeyCode)
+                {
+                    case Keys.E:
+                        var entityControl = new EntityControl();
+                        entityControl.Location = PointToClient(new Point(diagramPanel.Width / 2, diagramPanel.Height / 2));
+                        diagramPanel.Controls.Add(entityControl);
+                        break;
+                    case Keys.A:
+                        var attributeControl = new AttributeControl();
+                        attributeControl.Location = PointToClient(new Point(diagramPanel.Width / 2, diagramPanel.Height / 2));
+                        diagramPanel.Controls.Add(attributeControl);
+                        break;
+                    case Keys.R:
+                        var relationshipControl = new RelationshipControl();
+                        relationshipControl.Location = PointToClient(new Point(diagramPanel.Width / 2, diagramPanel.Height / 2));
+                        diagramPanel.Controls.Add(relationshipControl);
+                        break;
+                }
+            }
+            base.OnKeyDown(e);
+        }
     }
 }

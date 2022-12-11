@@ -57,12 +57,12 @@ namespace DoQL.Controls.ERD
 
         public ErdSymbol[] GetSupportedSymbols()
         {
-            return new[] { ErdSymbol.Entity };
+            return new[] { ErdSymbol.Entity, ErdSymbol.Relationship };
         }
 
         public void Connect(IConnectable connectableControl)
         {
-            if (connectableControl is EntityControl entityControl)
+            if (connectableControl is EntityControl || connectableControl is RelationshipControl)
             {
                 var diagramPanel = Parent as DiagramPanel;
 

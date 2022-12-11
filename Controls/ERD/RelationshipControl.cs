@@ -63,7 +63,7 @@ namespace DoQL.Controls.ERD
 
         public ErdSymbol[] GetSupportedSymbols()
         {
-            return new[] { ErdSymbol.Entity };
+            return new[] { ErdSymbol.Entity, ErdSymbol.Attribute };
         }
 
         public void Connect(IConnectable connectableControl)
@@ -75,7 +75,8 @@ namespace DoQL.Controls.ERD
 
                 IEnumerable<Connection> currentConnections = diagramPanel.Connections
                     .Where(c => c.IsValidConnection())
-                    .Where(c => c.Control1.ConnectableControl == this || c.Control2.ConnectableControl == this);
+                    .Where(c => c.Control1.ConnectableControl == this || c.Control2.ConnectableControl == this)
+                    .Where(c => c.Control1.ConnectableControl is EntityControl || c.Control2.ConnectableControl is EntityControl);
 
                 Connection duplicateConnection = currentConnections.FirstOrDefault(c => c.Control1.ConnectableControl == entityControl || c.Control2.ConnectableControl == entityControl);
                 if (duplicateConnection != null)
@@ -83,6 +84,11 @@ namespace DoQL.Controls.ERD
 
                 if (currentConnections.Count() == 2)
                     diagramPanel.Connections.Remove(currentConnections.First());
+            }
+
+            if (connectableControl is AttributeControl attributeControl)
+            {
+                attributeControl.Connect(this);
             }
         }
 
