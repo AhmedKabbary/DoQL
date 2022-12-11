@@ -1,13 +1,12 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+﻿using DoQL.Controls.ERD;
+using DoQL.Utilities;
 
 namespace DoQL.Interfaces
 {
-    interface IConnectable
+    public interface IConnectable
     {
-        List<Point> GetConnectablePoints();
+        Point[] GetConnectablePoints();
+        ErdSymbol[] GetSupportedSymbols();
+        void Connect(IConnectable connectableControl);
     }
 }

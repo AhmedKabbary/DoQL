@@ -1,4 +1,6 @@
-﻿namespace DoQL
+﻿using DoQL.Controls;
+
+namespace DoQL
 {
     partial class DiagramForm
     {
@@ -29,26 +31,22 @@
         private void InitializeComponent()
         {
             this.components = new System.ComponentModel.Container();
-            this.panel1 = new System.Windows.Forms.Panel();
+            this.diagramPanel = new DoQL.Controls.DiagramPanel();
             this.contextMenuStrip1 = new System.Windows.Forms.ContextMenuStrip(this.components);
             this.newEntityToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.newAttributeToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.newRelationshipToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.panel2 = new System.Windows.Forms.Panel();
+            this.sidePanel = new System.Windows.Forms.Panel();
             this.contextMenuStrip1.SuspendLayout();
             this.SuspendLayout();
             // 
-            // panel1
+            // diagramPanel
             // 
-            this.panel1.ContextMenuStrip = this.contextMenuStrip1;
-            this.panel1.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.panel1.Location = new System.Drawing.Point(0, 0);
-            this.panel1.Name = "panel1";
-            this.panel1.Size = new System.Drawing.Size(782, 453);
-            this.panel1.TabIndex = 0;
-            this.panel1.MouseDown += new System.Windows.Forms.MouseEventHandler(this.panel1_MouseDown);
-            this.panel1.MouseMove += new System.Windows.Forms.MouseEventHandler(this.panel1_MouseMove);
-            this.panel1.MouseUp += new System.Windows.Forms.MouseEventHandler(this.panel1_MouseUp);
+            this.diagramPanel.ContextMenuStrip = this.contextMenuStrip1;
+            this.diagramPanel.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.diagramPanel.Location = new System.Drawing.Point(0, 0);
+            this.diagramPanel.Name = "diagramPanel";
+            this.diagramPanel.TabIndex = 0;
             // 
             // contextMenuStrip1
             // 
@@ -81,22 +79,22 @@
             this.newRelationshipToolStripMenuItem.Text = "New Relationship";
             this.newRelationshipToolStripMenuItem.Click += new System.EventHandler(this.newRelationshipToolStripMenuItem_Click);
             // 
-            // panel2
+            // sidePanel
             // 
-            this.panel2.BackColor = System.Drawing.SystemColors.ControlLight;
-            this.panel2.Dock = System.Windows.Forms.DockStyle.Left;
-            this.panel2.Location = new System.Drawing.Point(0, 0);
-            this.panel2.Name = "panel2";
-            this.panel2.Size = new System.Drawing.Size(300, 453);
-            this.panel2.TabIndex = 1;
+            this.sidePanel.BackColor = System.Drawing.SystemColors.ControlLight;
+            this.sidePanel.Dock = System.Windows.Forms.DockStyle.Left;
+            this.sidePanel.Location = new System.Drawing.Point(0, 0);
+            this.sidePanel.Name = "sidePanel";
+            this.sidePanel.Size = new System.Drawing.Size(300, 453);
+            this.sidePanel.TabIndex = 1;
             // 
             // DiagramForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 20F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(782, 453);
-            this.Controls.Add(this.panel2);
-            this.Controls.Add(this.panel1);
+            this.Controls.Add(this.sidePanel);
+            this.Controls.Add(this.diagramPanel);
             this.DoubleBuffered = true;
             this.Name = "DiagramForm";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
@@ -108,8 +106,8 @@
 
         #endregion
 
-        private Panel panel1;
-        private Panel panel2;
+        private DiagramPanel diagramPanel;
+        private Panel sidePanel;
         private ContextMenuStrip contextMenuStrip1;
         private ToolStripMenuItem newEntityToolStripMenuItem;
         private ToolStripMenuItem newAttributeToolStripMenuItem;

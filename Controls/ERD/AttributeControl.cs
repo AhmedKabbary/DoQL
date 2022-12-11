@@ -1,14 +1,6 @@
-﻿using DoQL.Interfaces;
-using System;
-using System.Collections.Generic;
-using System.ComponentModel;
-using System.Data;
-using System.Drawing;
-using System.Drawing.Drawing2D;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using System.Windows.Forms;
+﻿using System.Drawing.Drawing2D;
+using DoQL.Interfaces;
+using DoQL.Utilities;
 
 namespace DoQL.Controls.ERD
 {
@@ -26,7 +18,7 @@ namespace DoQL.Controls.ERD
         {
             using (Graphics graphics = this.CreateGraphics())
             {
-                Size padding = new Size(48, 48);
+                var padding = new Size(48, 48);
                 strSize = graphics.MeasureString(this.Text, this.Font).ToSize();
                 this.Size = strSize + padding;
             }
@@ -42,22 +34,49 @@ namespace DoQL.Controls.ERD
 
         protected override void OnPaint(PaintEventArgs e)
         {
-            Point centerPoint = new Point(this.Width / 2 - strSize.Width / 2, this.Height / 2 - strSize.Height / 2);
+            var centerPoint = new Point(this.Width / 2 - strSize.Width / 2, this.Height / 2 - strSize.Height / 2);
             e.Graphics.DrawString(this.Text, this.Font, new SolidBrush(this.ForeColor), centerPoint);
             base.OnPaint(e);
         }
 
-        public List<Point> GetConnectablePoints()
+        #region connections
+
+        public Point[] GetConnectablePoints()
         {
-            var points = new List<Point>();
-            // left
-            points.Add(new Point(0, Height / 2));
-            // center
-            points.Add(new Point(Width / 2, 0));
-            points.Add(new Point(Width / 2, Height));
-            // right
-            points.Add(new Point(Width, Height / 2));
-            return points;
+            return new[]
+            {
+                // left
+                new Point(0, Height / 2),
+                // center
+                new Point(Width / 2, 0),
+                new Point(Width / 2, Height),
+                // right
+                new Point(Width, Height / 2)
+            };
         }
+
+        public ErdSymbol[] GetSupportedSymbols()
+        {
+            return new[] { ErdSymbol.Entity };
+        }
+
+        public void Connect(IConnectable connectableControl)
+        {
+            if (connectableControl is EntityControl entityControl)
+            {
+                var diagramPanel = Parent as DiagramPanel;
+
+                Connection currentConnection = diagramPanel.Connections
+                    .Where(c => c.IsValidConnection())
+                    .FirstOrDefault(c => c.Control1.ConnectableControl == this || c.Control2.ConnectableControl == this);
+
+                if (currentConnection != null)
+                {
+                    diagramPanel.Connections.Remove(currentConnection);
+                }
+            }
+        }
+
+        #endregion
     }
 }
