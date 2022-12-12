@@ -1,6 +1,6 @@
 ﻿using DoQL.Controls;
 
-namespace DoQL
+namespace DoQL.Forms
 {
     partial class DiagramForm
     {

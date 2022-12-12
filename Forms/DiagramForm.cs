@@ -1,7 +1,7 @@
 using DoQL.Controls.ERD;
 using DoQL.Models;
 
-namespace DoQL
+namespace DoQL.Forms
 {
     public partial class DiagramForm : Form
     {

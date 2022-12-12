@@ -1,3 +1,5 @@
+using DoQL.Forms;
+
 namespace DoQL
 {
     internal static class Program
