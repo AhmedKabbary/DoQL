@@ -1,6 +1,6 @@
 ﻿namespace DoQL.Models
 {
-    public class Attribute
+    public class Column
     {
         public string Id { get; set; }
         public string Name { get; set; }

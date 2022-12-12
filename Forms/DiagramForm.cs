@@ -1,12 +1,23 @@
 using DoQL.Controls.ERD;
+using DoQL.Models;
 
 namespace DoQL
 {
     public partial class DiagramForm : Form
     {
+        public readonly string Id;
+        public Database Database;
+
         public DiagramForm()
         {
+            // TODO get id from constructor
             InitializeComponent();
+        }
+
+        protected override void OnLoad(EventArgs e)
+        {
+            // load database by id from the StorageManager
+            base.OnLoad(e);
         }
 
         #region context menu

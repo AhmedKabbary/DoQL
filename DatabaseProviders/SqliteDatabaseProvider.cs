@@ -7,7 +7,7 @@ using DoQL.Interfaces;
 using DoQL.Models;
 using DoQL.Utilities;
 using Action = DoQL.Models.Action;
-using Attribute = DoQL.Models.Attribute;
+using Column = DoQL.Models.Column;
 
 namespace DoQL.DatabaseProviders
 {
@@ -88,7 +88,7 @@ namespace DoQL.DatabaseProviders
                 sqlCommands.AppendLine($"CREATE TABLE {t.Name}(");
                 List<string> primaryKeys = new List<string>();
                 List<string> foreignKeys = new List<string>();
-                foreach (Attribute a in t.Attributes)
+                foreach (Column a in t.Attributes)
                 {
                     StringBuilder constraints = new StringBuilder();
                     if (a.NotNull == true) { constraints.Append("NOT NULL "); }
@@ -104,9 +104,9 @@ namespace DoQL.DatabaseProviders
                             if (table.Id == a.ForiegnReference.TableId)
                             {
                                 foriegn.Append(table.Name);
-                                foreach (Attribute attribute in table.Attributes)
+                                foreach (Column attribute in table.Attributes)
                                 {
-                                    if (attribute.Id == a.ForiegnReference.AttributeId)
+                                    if (attribute.Id == a.ForiegnReference.ColumnId)
                                     {
                                         foriegn.Append($"({attribute.Name}) ");
                                         break;
