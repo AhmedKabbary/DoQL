@@ -123,6 +123,7 @@ namespace DoQL.Controls
         }
 
         #endregion
+
     }
 
     public class Connection

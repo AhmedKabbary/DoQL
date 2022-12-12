@@ -1,4 +1,6 @@
-﻿namespace DoQL.Models
+﻿using DoQL.Models.ERD;
+
+namespace DoQL.Models
 {
     public class Database
     {
