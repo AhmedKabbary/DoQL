@@ -10,13 +10,13 @@ namespace DoQL.Interfaces
     interface IDatabasesManager
     {
         List<Database> LoadDatabases();
-        Database LoadDatabase(string id);
+        Database LoadDatabase(string id, string password);
         void SaveDatabase(Database db);
         void DeleteDatabase(string id);
 
         // Compress the database JSON files into a ZIP file
         void ExportDatabase(string id, string destination);
-        
+
         // Import a ZIP file from a specific path
         void ImportDatabase(string path);
     }
