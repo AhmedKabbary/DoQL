@@ -31,15 +31,10 @@ namespace DoQL.Controls
         {
             if (_selected)
             {
-                SuspendLayout();
-                foreach (BaseControl control in Controls.OfType<BaseControl>())
+                foreach (IMovable movableControl in Controls.OfType<IMovable>())
                 {
-                    control.SuspendLayout();
-                    control.Left += e.X - _point.X;
-                    control.Top += e.Y - _point.Y;
-                    control.ResumeLayout();
+                    movableControl.Move(new Point(e.X - _point.X, e.Y - _point.Y));
                 }
-                ResumeLayout();
                 _point = e.Location;
                 RedrawCardinalities();
             }
@@ -100,7 +95,7 @@ namespace DoQL.Controls
 
         public void ShowConnectors(params ErdSymbol[] symbols)
         {
-            foreach (BaseControl control in Controls.OfType<BaseControl>().ToList())
+            foreach (var control in Controls.OfType<BaseControl>().ToList())
             {
                 if (symbols.Contains(ErdSymbol.Entity))
                     if (control is EntityControl)
@@ -118,7 +113,7 @@ namespace DoQL.Controls
 
         public void HideAllConnectors()
         {
-            foreach (BaseControl control in Controls.OfType<BaseControl>().ToList())
+            foreach (var control in Controls.OfType<BaseControl>().ToList())
                 control.HideConnectors();
         }
 

@@ -2,7 +2,7 @@
 
 namespace DoQL.Controls.ERD
 {
-    public partial class BaseControl : UserControl
+    public partial class BaseControl : UserControl, IMovable
     {
         public BaseControl()
         {
@@ -10,7 +10,7 @@ namespace DoQL.Controls.ERD
             _connectors = new List<ConnectorControl>();
         }
 
-        #region dragging
+        #region moving
 
         private Point _point;
         private bool _selected;
@@ -24,6 +24,16 @@ namespace DoQL.Controls.ERD
             base.OnMouseDown(e);
         }
 
+        protected override void OnMouseMove(MouseEventArgs e)
+        {
+            if (_selected)
+            {
+                Move(new Point(e.X - _point.X, e.Y - _point.Y));
+                (Parent as DiagramPanel).RedrawCardinalities();
+            }
+            base.OnMouseMove(e);
+        }
+
         protected override void OnMouseUp(MouseEventArgs e)
         {
             _selected = false;
@@ -31,17 +41,12 @@ namespace DoQL.Controls.ERD
             base.OnMouseUp(e);
         }
 
-        protected override void OnMouseMove(MouseEventArgs e)
+        public new void Move(Point offset)
         {
-            if (_selected)
-            {
-                SuspendLayout();
-                Left += e.X - _point.X;
-                Top += e.Y - _point.Y;
-                ResumeLayout();
-                (Parent as DiagramPanel).RedrawCardinalities();
-            }
-            base.OnMouseMove(e);
+            this.SuspendLayout();
+            this.Left += offset.X;
+            this.Top += offset.Y;
+            this.ResumeLayout();
         }
 
         #endregion
