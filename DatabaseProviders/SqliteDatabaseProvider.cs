@@ -1,13 +1,14 @@
-﻿using System;
+﻿using DoQL.Interfaces;
+using DoQL.Models;
+using DoQL.Utilities;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
-using DoQL.Interfaces;
-using DoQL.Models;
-using DoQL.Utilities;
-using Action = DoQL.Models.Action;
+using Action = DoQL.Models.Table.Action;
 using Column = DoQL.Models.Column;
+using ForiegnReference = DoQL.Models.Table.ForiegnReference;
 
 namespace DoQL.DatabaseProviders
 {
@@ -86,59 +87,54 @@ namespace DoQL.DatabaseProviders
             foreach (Table t in db.Tables)
             {
                 sqlCommands.AppendLine($"CREATE TABLE {t.Name}(");
-                List<string> primaryKeys = new List<string>();
+                List<Column> primaryKeys = t.Columns.Where(a => a.Primary == true).ToList();
                 List<string> foreignKeys = new List<string>();
-                foreach (Column a in t.Columns)
+                foreach (Column C in t.Columns)
                 {
                     StringBuilder constraints = new StringBuilder();
-                    if (a.NotNull == true) { constraints.Append("NOT NULL "); }
-                    if (a.Unique == true) { constraints.Append("UNIQUE "); }
-                    if (a.AutoIncrement == true) { constraints.Append("AUTOINCREMENT "); }
-                    if (a.Primary == true) { primaryKeys.Add(a.Name); }
+                    if (C.NotNull == true) { constraints.Append("NOT NULL "); }
+                    if (C.Unique == true) { constraints.Append("UNIQUE "); }
+                    if (C.AutoIncrement == true) { constraints.Append("AUTOINCREMENT "); }
 
-                    if (a.ForiegnReference != null)
+                    string comma = (t.Columns.IndexOf(C) == t.Columns.Count - 1 && primaryKeys.Count
+                        == 0 && t.ForiegnReferences.Count == 0) ? "" : ",";
+                    sqlCommands.AppendLine($"  {C.Name} {C.DataType} {constraints}{comma}");
+                }
+                string primaryComma = (t.ForiegnReferences.Count > 0) ? "," : "";
+                if (primaryKeys.Count > 0)
+                {
+                    List<string> primaryNames = (from primary in primaryKeys select primary.Name).ToList();
+                    sqlCommands.AppendLine($"  PRIMARY KEY ({string.Join(", ", primaryNames)}) {primaryComma}");
+                }
+                if (t.ForiegnReferences.Count > 0)
+                {
+                    foreach (ForiegnReference f in t.ForiegnReferences)
                     {
-                        StringBuilder foriegn = new StringBuilder($"  FOREIGN KEY ({a.Name}) REFERENCES ");
-                        foreach (Table table in db.Tables)
+                        Table tf = new Table();
+                        foreach (Table t0 in db.Tables)
                         {
-                            if (table.Id == a.ForiegnReference.TableId)
+                            if (t0.Id == f.TableId)
                             {
-                                foriegn.Append(table.Name);
-                                foreach (Column attribute in table.Columns)
-                                {
-                                    if (attribute.Id == a.ForiegnReference.ColumnId)
-                                    {
-                                        foriegn.Append($"({attribute.Name}) ");
-                                        break;
-                                    }
-                                }
-                                break;
+                                tf = t0;
                             }
                         }
+                        List<Column> foreignPrimaries = tf.Columns.Where(a => a.Primary == true).ToList();
+                        List<string> primariesNames = (from primary in foreignPrimaries select primary.Name).ToList();
 
-                        if (a.ForiegnReference.OnUpdateAction != Action.NoAction)
+                        List<string> foreignNames = (from foreign in primariesNames select $"{tf.Name}_{foreign}").ToList();
+                        string foreignComma = (t.ForiegnReferences.IndexOf(f) == t.ForiegnReferences.Count - 1) ? "" : ",";
+
+                        string onUpdate = "";
+                        string onDelete = "";
+                        if (f.OnUpdateAction != Action.NoAction)
                         {
-                            foriegn.Append($"ON UPDATE {ActionFactory.GetActionString(a.ForiegnReference.OnUpdateAction)} ");
+                            onUpdate = $"ON UPDATE {ActionFactory.GetActionString(f.OnUpdateAction)} ";
                         }
-                        if (a.ForiegnReference.OnDeleteAction != Action.NoAction)
+                        if (f.OnDeleteAction != Action.NoAction)
                         {
-                            foriegn.Append($"ON DELETE {ActionFactory.GetActionString(a.ForiegnReference.OnDeleteAction)} ");
+                            onDelete = $"ON DELETE {ActionFactory.GetActionString(f.OnDeleteAction)} ";
                         }
-                        foreignKeys.Add(foriegn.ToString());
-                    }
-                    string comma = (t.Columns.IndexOf(a) == t.Columns.Count - 1 && primaryKeys.Count
-                        == 0 && foreignKeys.Count == 0) ? "" : ",";
-                    sqlCommands.AppendLine($"  {a.Name} {a.DataType} {constraints}{comma}");
-                }
-                string primaryComma = (foreignKeys.Count > 0) ? "," : "";
-                if (primaryKeys.Count > 0) { sqlCommands.AppendLine($"  PRIMARY KEY ({string.Join(", ", primaryKeys)}){primaryComma}"); }
-                if (foreignKeys.Count > 0)
-                {
-                    foreignKeys.Reverse();
-                    foreach (string key in foreignKeys)
-                    {
-                        string foreignComma = (foreignKeys.IndexOf(key) == foreignKeys.Count - 1) ? "" : ",";
-                        sqlCommands.AppendLine(key + foreignComma);
+                        sqlCommands.AppendLine($"  FOREIGN KEY ({string.Join(", ", foreignNames)}) REFERENCES {tf.Name}({string.Join(", ", primariesNames)}) {onUpdate}{onDelete}{foreignComma}");
                     }
                 }
                 sqlCommands.AppendLine(");");
