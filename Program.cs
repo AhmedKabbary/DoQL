@@ -1,3 +1,5 @@
+using DoQL.Forms;
+
 namespace DoQL
 {
     internal static class Program
@@ -11,7 +13,7 @@ namespace DoQL
             // To customize application configuration such as set high DPI settings or default font,
             // see https://aka.ms/applicationconfiguration.
             ApplicationConfiguration.Initialize();
-            Application.Run(new DiagramForm());
+            Application.Run(new DiagramForm(""));
         }
     }
 }

@@ -5,19 +5,26 @@ namespace DoQL.Controls.ERD
 {
     public partial class EntityControl : BaseControl, IConnectable
     {
+        public string Id { get; init; }
+
         public EntityControl()
         {
             InitializeComponent();
-            this.Text = "Entity";
+            Text = "Entity";
+        }
+
+        protected override void OnLoad(EventArgs e)
+        {
+            base.OnLoad(e);
         }
 
         protected override void OnPaint(PaintEventArgs e)
         {
             var padding = new Size(48, 48);
-            Size strSize = e.Graphics.MeasureString(this.Text, this.Font).ToSize();
-            this.Size = strSize + padding;
-            var centerPoint = new Point(this.Width / 2 - strSize.Width / 2, this.Height / 2 - strSize.Height / 2);
-            e.Graphics.DrawString(this.Text, this.Font, new SolidBrush(this.ForeColor), centerPoint);
+            Size strSize = e.Graphics.MeasureString(Text, Font).ToSize();
+            Size = strSize + padding;
+            var centerPoint = new Point(Width / 2 - strSize.Width / 2, Height / 2 - strSize.Height / 2);
+            e.Graphics.DrawString(Text, Font, new SolidBrush(ForeColor), centerPoint);
             base.OnPaint(e);
         }
 

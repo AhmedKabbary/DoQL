@@ -88,7 +88,7 @@ namespace DoQL.DatabaseProviders
                 sqlCommands.AppendLine($"CREATE TABLE {t.Name}(");
                 List<string> primaryKeys = new List<string>();
                 List<string> foreignKeys = new List<string>();
-                foreach (Column a in t.Attributes)
+                foreach (Column a in t.Columns)
                 {
                     StringBuilder constraints = new StringBuilder();
                     if (a.NotNull == true) { constraints.Append("NOT NULL "); }
@@ -104,7 +104,7 @@ namespace DoQL.DatabaseProviders
                             if (table.Id == a.ForiegnReference.TableId)
                             {
                                 foriegn.Append(table.Name);
-                                foreach (Column attribute in table.Attributes)
+                                foreach (Column attribute in table.Columns)
                                 {
                                     if (attribute.Id == a.ForiegnReference.ColumnId)
                                     {
@@ -126,7 +126,7 @@ namespace DoQL.DatabaseProviders
                         }
                         foreignKeys.Add(foriegn.ToString());
                     }
-                    string comma = (t.Attributes.IndexOf(a) == t.Attributes.Count - 1 && primaryKeys.Count
+                    string comma = (t.Columns.IndexOf(a) == t.Columns.Count - 1 && primaryKeys.Count
                         == 0 && foreignKeys.Count == 0) ? "" : ",";
                     sqlCommands.AppendLine($"  {a.Name} {a.DataType} {constraints}{comma}");
                 }

@@ -1,22 +1,40 @@
 using DoQL.Controls.ERD;
+using DoQL.DatabaseProviders;
 using DoQL.Models;
+using DoQL.Models.ERD;
 
-namespace DoQL
+namespace DoQL.Forms
 {
     public partial class DiagramForm : Form
     {
         public readonly string Id;
         public Database Database;
+        public DatabaseProvider DatabaseProvider;
 
-        public DiagramForm()
+        public DiagramForm(string id)
         {
-            // TODO get id from constructor
+            Id = id;
             InitializeComponent();
         }
 
         protected override void OnLoad(EventArgs e)
         {
-            // load database by id from the StorageManager
+            Database = new Database {
+                Id = "id",
+                Name = "Clinic",
+                Type = DatabaseType.SQLite,
+                Created = DateTime.Now,
+                LastModified = DateTime.Now,
+                Tables = new List<Table>(),
+                Erd = new EntityRelationshipDiagram(),
+
+            };
+            DatabaseProvider = DatabaseProvidersFactory.GetDatabaseProvider(Database.Type);
+
+            // TODO
+            // load database by id from the DatabasesManager
+            // add controls on panel
+
             base.OnLoad(e);
         }
 

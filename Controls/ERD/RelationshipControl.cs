@@ -6,33 +6,35 @@ namespace DoQL.Controls.ERD
 {
     public partial class RelationshipControl : BaseControl, IConnectable
     {
+        public string Id { get; init; }
+
         public RelationshipControl()
         {
             InitializeComponent();
-            this.Text = "Has";
+            Text = "Has";
         }
 
         private Size strSize;
 
         protected override void OnLoad(EventArgs e)
         {
-            using (Graphics graphics = this.CreateGraphics())
+            using (Graphics graphics = CreateGraphics())
             {
                 var padding = new Size(64, 64);
-                strSize = graphics.MeasureString(this.Text, this.Font).ToSize();
-                this.Size = strSize + padding;
+                strSize = graphics.MeasureString(Text, Font).ToSize();
+                Size = strSize + padding;
             }
 
             using (var path = new GraphicsPath())
             {
                 path.AddPolygon(new Point[]
                 {
-                    new Point(0, this.Height/2),
-                    new Point(this.Width/2, 0),
-                    new Point(this.Width, this.Height/2),
-                    new Point(this.Width/2, this.Height),
+                    new Point(0, Height/2),
+                    new Point(Width/2, 0),
+                    new Point(Width, Height/2),
+                    new Point(Width/2, Height),
                 });
-                this.Region = new Region(path);
+                Region = new Region(path);
             }
 
             base.OnLoad(e);
@@ -40,8 +42,8 @@ namespace DoQL.Controls.ERD
 
         protected override void OnPaint(PaintEventArgs e)
         {
-            var centerPoint = new Point(this.Width / 2 - strSize.Width / 2, this.Height / 2 - strSize.Height / 2);
-            e.Graphics.DrawString(this.Text, this.Font, new SolidBrush(this.ForeColor), centerPoint);
+            var centerPoint = new Point(Width / 2 - strSize.Width / 2, Height / 2 - strSize.Height / 2);
+            e.Graphics.DrawString(Text, Font, new SolidBrush(ForeColor), centerPoint);
             base.OnPaint(e);
         }
 
