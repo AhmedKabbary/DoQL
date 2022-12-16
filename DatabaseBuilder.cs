@@ -1,9 +1,4 @@
 ﻿using DoQL.Models;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace DoQL
 {
@@ -11,21 +6,21 @@ namespace DoQL
     {
         private string _name;
         private DatabaseType _type;
+        private string _password = null;
 
         public void SetName(string name)
         {
-            this._name = name;
+            _name = name;
         }
 
         public void SetType(DatabaseType type)
         {
-            this._type = type;
+            _type = type;
         }
 
         public void SetPassword(string password)
         {
-            // TODO
-            throw new NotImplementedException();
+            _password = password;
         }
 
         public Database Build()
@@ -40,7 +35,7 @@ namespace DoQL
                 Type = _type,
                 Created = now,
                 LastModified = now,
-                Tables = new List<Table>(),
+                Password = _password
             };
         }
     }

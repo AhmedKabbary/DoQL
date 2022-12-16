@@ -38,7 +38,9 @@ namespace DoQL.Forms
             this.newAttributeToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.newRelationshipToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.sidePanel = new System.Windows.Forms.Panel();
+            this.button1 = new System.Windows.Forms.Button();
             this.contextMenuStrip1.SuspendLayout();
+            this.sidePanel.SuspendLayout();
             this.SuspendLayout();
             // 
             // diagramPanel
@@ -84,11 +86,22 @@ namespace DoQL.Forms
             // sidePanel
             // 
             this.sidePanel.BackColor = System.Drawing.SystemColors.ControlLight;
+            this.sidePanel.Controls.Add(this.button1);
             this.sidePanel.Dock = System.Windows.Forms.DockStyle.Left;
             this.sidePanel.Location = new System.Drawing.Point(0, 0);
             this.sidePanel.Name = "sidePanel";
             this.sidePanel.Size = new System.Drawing.Size(300, 453);
             this.sidePanel.TabIndex = 1;
+            // 
+            // button1
+            // 
+            this.button1.Location = new System.Drawing.Point(102, 60);
+            this.button1.Name = "button1";
+            this.button1.Size = new System.Drawing.Size(94, 29);
+            this.button1.TabIndex = 0;
+            this.button1.Text = "button1";
+            this.button1.UseVisualStyleBackColor = true;
+            this.button1.Click += new System.EventHandler(this.button1_Click);
             // 
             // DiagramForm
             // 
@@ -102,6 +115,7 @@ namespace DoQL.Forms
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "Diagram";
             this.contextMenuStrip1.ResumeLayout(false);
+            this.sidePanel.ResumeLayout(false);
             this.ResumeLayout(false);
 
         }
@@ -114,5 +128,6 @@ namespace DoQL.Forms
         private ToolStripMenuItem newEntityToolStripMenuItem;
         private ToolStripMenuItem newAttributeToolStripMenuItem;
         private ToolStripMenuItem newRelationshipToolStripMenuItem;
+        private Button button1;
     }
 }

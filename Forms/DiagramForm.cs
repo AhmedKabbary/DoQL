@@ -2,6 +2,8 @@ using DoQL.Controls.ERD;
 using DoQL.DatabaseProviders;
 using DoQL.Models;
 using DoQL.Models.ERD;
+using System.Text.Json;
+using Attribute = DoQL.Models.ERD.Attribute;
 
 namespace DoQL.Forms
 {
@@ -19,7 +21,8 @@ namespace DoQL.Forms
 
         protected override void OnLoad(EventArgs e)
         {
-            Database = new Database {
+            Database = new Database
+            {
                 Id = "id",
                 Name = "Clinic",
                 Type = DatabaseType.SQLite,
@@ -42,51 +45,72 @@ namespace DoQL.Forms
 
         private void newEntityToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            var control = new EntityControl();
-            control.Location = PointToClient(contextMenuStrip1.Bounds.Location);
+            string id = Guid.NewGuid().ToString();
+            Point location = contextMenuStrip1.Bounds.Location;
+
+            Database.Erd.Entities.Add(
+                new Entity
+                {
+                    Id = id,
+                    DisplayName = "Entity",
+                    TableName = "Entity",
+                    Position = location,
+                }
+            );
+
+            var control = new EntityControl() { Id = id };
+            control.Location = PointToClient(location);
             diagramPanel.Controls.Add(control);
         }
 
         private void newAttributeToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            var control = new AttributeControl();
-            control.Location = PointToClient(contextMenuStrip1.Bounds.Location);
+            string id = Guid.NewGuid().ToString();
+            Point location = contextMenuStrip1.Bounds.Location;
+
+            Database.Erd.Attributes.Add(
+                new Attribute
+                {
+                    Id = id,
+                    DisplayName = "Attribute",
+                    ColumnName = "Attribute",
+                    Position = location,
+                }
+            );
+
+            var control = new AttributeControl() { Id = id };
+            control.Location = PointToClient(location);
             diagramPanel.Controls.Add(control);
         }
 
         private void newRelationshipToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            var control = new RelationshipControl();
-            control.Location = PointToClient(contextMenuStrip1.Bounds.Location);
+            string id = Guid.NewGuid().ToString();
+            Point location = contextMenuStrip1.Bounds.Location;
+
+            Database.Erd.Relationships.Add(
+                new Relationship
+                {
+                    Id = id,
+                    DisplayName = "Has",
+                    TableName = "Has",
+                    Position = location,
+                }
+            );
+
+            var control = new RelationshipControl() { Id = id };
+            control.Location = PointToClient(location);
             diagramPanel.Controls.Add(control);
         }
 
         #endregion
 
-        protected override void OnKeyDown(KeyEventArgs e)
+        private void button1_Click(object sender, EventArgs e)
         {
-            if (e.Control)
-            {
-                switch (e.KeyCode)
-                {
-                    case Keys.E:
-                        var entityControl = new EntityControl();
-                        entityControl.Location = PointToClient(new Point(diagramPanel.Width / 2, diagramPanel.Height / 2));
-                        diagramPanel.Controls.Add(entityControl);
-                        break;
-                    case Keys.A:
-                        var attributeControl = new AttributeControl();
-                        attributeControl.Location = PointToClient(new Point(diagramPanel.Width / 2, diagramPanel.Height / 2));
-                        diagramPanel.Controls.Add(attributeControl);
-                        break;
-                    case Keys.R:
-                        var relationshipControl = new RelationshipControl();
-                        relationshipControl.Location = PointToClient(new Point(diagramPanel.Width / 2, diagramPanel.Height / 2));
-                        diagramPanel.Controls.Add(relationshipControl);
-                        break;
-                }
-            }
-            base.OnKeyDown(e);
+            var content = JsonSerializer.Serialize(Database);
+            using var stream = File.Create("debug.json");
+            using var writer = new StreamWriter(stream);
+            writer.Write(content);
         }
     }
 }

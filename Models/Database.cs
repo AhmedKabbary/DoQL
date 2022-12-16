@@ -13,7 +13,11 @@ namespace DoQL.Models
         public List<Table> Tables { get; set; }
         public EntityRelationshipDiagram Erd { get; set; }
 
-
+        public Database()
+        {
+            Tables = new List<Table>();
+            Erd = new EntityRelationshipDiagram();
+        }
 
         public void SyncErdToTables()
         {
