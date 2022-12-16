@@ -2,9 +2,15 @@
 {
     public class Entity
     {
-        public string EntityId { get; set; }
-        public string Name { get; set; }
+        public string Id { get; set; }
+        public string DisplayName { get; set; }
+        public string TableName { get; set; }
         public Point Position { get; set; }
-        public List<Attribute.Reference> Attributes { get; set; }
+        public List<Attribute.Reference> AttributesReferences { get; set; }
+
+        public Entity()
+        {
+            AttributesReferences = new List<Attribute.Reference>();
+        }
     }
 }

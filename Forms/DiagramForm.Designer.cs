@@ -31,6 +31,7 @@ namespace DoQL.Forms
         private void InitializeComponent()
         {
             this.components = new System.ComponentModel.Container();
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(DiagramForm));
             this.diagramPanel = new DoQL.Controls.DiagramPanel();
             this.contextMenuStrip1 = new System.Windows.Forms.ContextMenuStrip(this.components);
             this.newEntityToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
@@ -46,6 +47,7 @@ namespace DoQL.Forms
             this.diagramPanel.Dock = System.Windows.Forms.DockStyle.Fill;
             this.diagramPanel.Location = new System.Drawing.Point(0, 0);
             this.diagramPanel.Name = "diagramPanel";
+            this.diagramPanel.Size = new System.Drawing.Size(782, 453);
             this.diagramPanel.TabIndex = 0;
             // 
             // contextMenuStrip1
@@ -98,7 +100,7 @@ namespace DoQL.Forms
             this.DoubleBuffered = true;
             this.Name = "DiagramForm";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
-            this.Text = "Form1";
+            this.Text = "Diagram";
             this.contextMenuStrip1.ResumeLayout(false);
             this.ResumeLayout(false);
 

@@ -2,8 +2,15 @@
 {
     public class EntityRelationshipDiagram
     {
-        public List<Entity> Entities { get; set; }
-        public List<Attribute> Attributes { get; set; }
-        public List<Relationship> Relationships { get; set; }
+        public List<Entity> Entities { get; init; }
+        public List<Attribute> Attributes { get; init; }
+        public List<Relationship> Relationships { get; init; }
+
+        public EntityRelationshipDiagram()
+        {
+            Entities = new List<Entity>();
+            Attributes = new List<Attribute>();
+            Relationships = new List<Relationship>();
+        }
     }
 }
