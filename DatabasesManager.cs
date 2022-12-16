@@ -9,12 +9,8 @@ namespace DoQL
 {
     class DatabasesManager : IDatabasesManager
     {
-
-        private string _dataBasesFolderPath =
-         Path.Combine(Environment.GetFolderPath(Environment.SpecialFolder.ApplicationData), "DoQL");
         private static DatabasesManager _instance = null;
-        private DatabasesManager()
-        { }
+        private DatabasesManager() { }
         public static DatabasesManager GetInstance()
         {
             if (_instance == null)
@@ -23,6 +19,9 @@ namespace DoQL
             }
             return _instance;
         }
+
+        private string _dataBasesFolderPath = Path.Combine(Environment.GetFolderPath(Environment.SpecialFolder.ApplicationData), "DoQL");
+
         public List<Database> LoadDatabases()
         {
             List<Database> loadedDatabases = new List<Database>();
@@ -38,11 +37,12 @@ namespace DoQL
             }
             return loadedDatabases;
         }
+
         public Database LoadDatabase(string id, string Password = null)
         {
             LoadedDatabaseIndex loadedDatabaseIndex =
              new LoadedDatabaseIndex();
-            EntityRelationshipDiagram loadedDataBaseErd =
+            EntityRelationshipDiagram loadedDatabaseErd =
             new EntityRelationshipDiagram();
             string folderToLoadPath = Path.Combine(_dataBasesFolderPath, id);
             if (Directory.Exists(folderToLoadPath))
@@ -57,29 +57,20 @@ namespace DoQL
 
                 {
                     string readErdInfo = File.ReadAllText(erdFilePath);
-                    loadedDataBaseErd = JsonSerializer.Deserialize<EntityRelationshipDiagram>(readErdInfo)!;
+                    loadedDatabaseErd = JsonSerializer.Deserialize<EntityRelationshipDiagram>(readErdInfo)!;
 
                 }
 
                 else if (loadedDatabaseIndex.IsPasswordProtected)
                 {
                     if (Password == null)
-                        loadedDataBaseErd = null;
+                        loadedDatabaseErd = null;
 
                     else if (Password != null)
                     {
                         FileInfo erdInfoFile = new FileInfo(erdFilePath);
-                        try
-                        {
-                            string readEncryptedErdInfo = EncryptionUtils.Decrypt(erdInfoFile, Password);
-                            loadedDataBaseErd = JsonSerializer.Deserialize<EntityRelationshipDiagram>(readEncryptedErdInfo)!;
-
-                        }
-                        catch (Exception e)
-                        {
-                            //password is wrong 
-                        }
-
+                        string readEncryptedErdInfo = EncryptionUtils.Decrypt(erdInfoFile, Password);
+                        loadedDatabaseErd = JsonSerializer.Deserialize<EntityRelationshipDiagram>(readEncryptedErdInfo)!;
                     }
                 }
 
@@ -92,10 +83,11 @@ namespace DoQL
                 Type = loadedDatabaseIndex.Type,
                 Created = loadedDatabaseIndex.Created,
                 LastModified = loadedDatabaseIndex.LastModified,
-                Erd = loadedDataBaseErd,
+                Erd = loadedDatabaseErd,
             };
             return loadedDataBase;
         }
+
         public void SaveDatabase(Database db)
         {
             Dictionary<string, object> indexFile = new Dictionary<string, object>();
@@ -132,8 +124,6 @@ namespace DoQL
             }
         }
 
-
-
         public void DeleteDatabase(string id)
         {
             string folderToDeletePath = Path.Combine(_dataBasesFolderPath, id);
@@ -149,9 +139,9 @@ namespace DoQL
             string folderToExportPath = Path.Combine(_dataBasesFolderPath, id);
             string zipFileDestination = Path.Combine(destination, $"{id}.zip");
             if (Directory.Exists(folderToExportPath))
-
                 ZipFile.CreateFromDirectory(folderToExportPath, zipFileDestination);
         }
+
         public void ImportDatabase(string path)
         {
             string importedFileName = Path.GetFileNameWithoutExtension(path);
@@ -159,16 +149,16 @@ namespace DoQL
             if (!Directory.Exists(importedFolderPath))
                 ZipFile.ExtractToDirectory(path, importedFolderPath);
         }
-    }
 
-    public class LoadedDatabaseIndex
-    {
-        public string Name { get; set; }
-        public string Id { get; set; }
-        public bool IsPasswordProtected { get; set; }
-        public DatabaseType Type { get; set; }
-        public DateTime Created { get; set; }
-        public DateTime LastModified { get; set; }
+        private class LoadedDatabaseIndex
+        {
+            public string Name { get; set; }
+            public string Id { get; set; }
+            public bool IsPasswordProtected { get; set; }
+            public DatabaseType Type { get; set; }
+            public DateTime Created { get; set; }
+            public DateTime LastModified { get; set; }
+        }
     }
 }
 

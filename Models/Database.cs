@@ -6,10 +6,10 @@ namespace DoQL.Models
     {
         public string Id { get; set; }
         public string Name { get; set; }
-         public string Password { get; set; }
         public DatabaseType Type { get; set; }
         public DateTime Created { get; set; }
         public DateTime LastModified { get; set; }
+        public string Password { get; set; }
         public List<Table> Tables { get; set; }
         public EntityRelationshipDiagram Erd { get; set; }
 
@@ -130,6 +130,10 @@ namespace DoQL.Models
 
                         var firstTable = Tables.Find(e => e.Id == firstEntityId);
                         firstTable.Columns.AddRange(columns);
+                        firstTable.ForiegnReferences.Add(new Table.ForiegnReference
+                        {
+                            TableId = secondEntityId,
+                        });
                     }
                 }
             }
