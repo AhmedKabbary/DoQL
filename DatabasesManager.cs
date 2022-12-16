@@ -3,14 +3,15 @@ using DoQL.Models;
 using System.Text.Json;
 using System.IO.Compression;
 using DoQL.Utilities;
-
+using DoQL.Models.ERD;
 
 namespace DoQL
 {
     class DatabasesManager : IDatabasesManager
     {
 
-        private string _dataBasesFolderPath = Path.Combine(Environment.GetFolderPath(Environment.SpecialFolder.ApplicationData), "DoQL");
+        private string _dataBasesFolderPath =
+         Path.Combine(Environment.GetFolderPath(Environment.SpecialFolder.ApplicationData), "DoQL");
         private static DatabasesManager _instance = null;
         private DatabasesManager()
         { }
@@ -32,45 +33,46 @@ namespace DoQL
             {
                 string id = Path.GetFileName(folder);
                 Database db = LoadDatabase(id);
-                db.Tables = null;
+                db.Erd = null;
                 loadedDatabases.Add(db);
             }
             return loadedDatabases;
         }
         public Database LoadDatabase(string id, string Password = null)
         {
-            LoadedDataBaseIndex loadedDatabaseIndex =
-             new LoadedDataBaseIndex();
-            List<DoQL.Models.Table> loadedDataBaseTables = new List<DoQL.Models.Table> { };
+            LoadedDatabaseIndex loadedDatabaseIndex =
+             new LoadedDatabaseIndex();
+            EntityRelationshipDiagram loadedDataBaseErd =
+            new EntityRelationshipDiagram();
             string folderToLoadPath = Path.Combine(_dataBasesFolderPath, id);
             if (Directory.Exists(folderToLoadPath))
             {
                 string indexFilePath = Path.Combine(folderToLoadPath, "Index.json");
                 string readIndexInfo = File.ReadAllText(indexFilePath);
-                loadedDatabaseIndex = JsonSerializer.Deserialize<LoadedDataBaseIndex>(readIndexInfo);
+                loadedDatabaseIndex = JsonSerializer.Deserialize<LoadedDatabaseIndex>(readIndexInfo);
 
-                string tablesFilePath = Path.Combine(folderToLoadPath, "Tables.json");
+                string erdFilePath = Path.Combine(folderToLoadPath, "Erd.json");
 
                 if (!loadedDatabaseIndex.IsPasswordProtected)
 
                 {
-                    string readTableInfo = File.ReadAllText(tablesFilePath);
-                    loadedDataBaseTables = JsonSerializer.Deserialize<List<DoQL.Models.Table>>(readTableInfo)!;
+                    string readErdInfo = File.ReadAllText(erdFilePath);
+                    loadedDataBaseErd = JsonSerializer.Deserialize<EntityRelationshipDiagram>(readErdInfo)!;
 
                 }
 
                 else if (loadedDatabaseIndex.IsPasswordProtected)
                 {
                     if (Password == null)
-                        loadedDataBaseTables = null;
+                        loadedDataBaseErd = null;
 
                     else if (Password != null)
                     {
-                        FileInfo tablesInfoFile = new FileInfo(tablesFilePath);
+                        FileInfo erdInfoFile = new FileInfo(erdFilePath);
                         try
                         {
-                            string readEncryptedTableInfo = EncryptionUtils.Decrypt(tablesInfoFile, Password);
-                            loadedDataBaseTables = JsonSerializer.Deserialize<List<DoQL.Models.Table>>(readEncryptedTableInfo)!;
+                            string readEncryptedErdInfo = EncryptionUtils.Decrypt(erdInfoFile, Password);
+                            loadedDataBaseErd = JsonSerializer.Deserialize<EntityRelationshipDiagram>(readEncryptedErdInfo)!;
 
                         }
                         catch (Exception e)
@@ -90,7 +92,7 @@ namespace DoQL
                 Type = loadedDatabaseIndex.Type,
                 Created = loadedDatabaseIndex.Created,
                 LastModified = loadedDatabaseIndex.LastModified,
-                Tables = loadedDataBaseTables,
+                Erd = loadedDataBaseErd,
             };
             return loadedDataBase;
         }
@@ -111,22 +113,22 @@ namespace DoQL
 
             string folderpath = Path.Combine(_dataBasesFolderPath, db.Id);
             string infoFilePath = Path.Combine(folderpath, "Index.json");
-            string tablesFilePath = Path.Combine(folderpath, "Tables.json");
+            string erdFilePath = Path.Combine(folderpath, "Erd.json");
 
             Directory.CreateDirectory(folderpath);
-            using var info = new FileStream(infoFilePath, FileMode.OpenOrCreate, FileAccess.Write);
-            JsonSerializer.Serialize(info, indexFile);
-            using var tables = new FileStream(tablesFilePath, FileMode.OpenOrCreate, FileAccess.Write);
-            JsonSerializer.Serialize(tables, db.Tables);
-            tables.Dispose();
+            using var index = new FileStream(infoFilePath, FileMode.OpenOrCreate, FileAccess.Write);
+            JsonSerializer.Serialize(index, indexFile);
+            using var erd = new FileStream(erdFilePath, FileMode.OpenOrCreate, FileAccess.Write);
+            JsonSerializer.Serialize(erd, db.Erd);
+            erd.Dispose();
 
             if (db.Password != null)
             {
-                FileInfo tablesFileInfo = new FileInfo(tablesFilePath);
+                FileInfo erdFileInfo = new FileInfo(erdFilePath);
 
-                String tablesContent = File.ReadAllText(tablesFilePath);
-                File.WriteAllText(tablesFilePath, string.Empty);
-                EncryptionUtils.Encrypt(tablesFileInfo, tablesContent, db.Password);
+                String erdContent = File.ReadAllText(erdFilePath);
+                File.WriteAllText(erdFilePath, string.Empty);
+                EncryptionUtils.Encrypt(erdFileInfo, erdContent, db.Password);
             }
         }
 
@@ -159,7 +161,7 @@ namespace DoQL
         }
     }
 
-    public class LoadedDataBaseIndex
+    public class LoadedDatabaseIndex
     {
         public string Name { get; set; }
         public string Id { get; set; }
