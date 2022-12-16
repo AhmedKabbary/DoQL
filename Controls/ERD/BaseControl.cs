@@ -43,10 +43,10 @@ namespace DoQL.Controls.ERD
 
         public new void Move(Point offset)
         {
-            this.SuspendLayout();
-            this.Left += offset.X;
-            this.Top += offset.Y;
-            this.ResumeLayout();
+            SuspendLayout();
+            Left += offset.X;
+            Top += offset.Y;
+            ResumeLayout();
         }
 
         #endregion

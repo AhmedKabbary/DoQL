@@ -2,17 +2,24 @@
 {
     public class Relationship
     {
-        public string RelationshipId { get; set; }
-        public string Name { get; set; }
+        public string Id { get; set; }
+        public string DisplayName { get; set; }
+        public string TableName { get; set; }
         public Point Position { get; set; }
-        public List<EntityReference> Entity { get; set; }
+        public List<EntityReference> Entities { get; set; }
         public List<Attribute.Reference> Attributes { get; set; }
+
+        public Relationship()
+        {
+            Entities = new List<EntityReference>();
+            Attributes = new List<Attribute.Reference>();
+        }
 
         public class EntityReference
         {
             public string EntityId { get; set; }
-            public int EntityConnectorId { get; set; }
-            public int RelationshipConnectorId { get; set; }
+            public int EntityConnectorIndex { get; set; }
+            public int RelationshipConnectorIndex { get; set; }
             public Cardinality Cardinality { get; set; }
         }
 
@@ -21,5 +28,9 @@
             One,
             Many,
         }
+
+        public bool IsOneToOne() => Entities.All(e => e.Cardinality == Cardinality.One);
+        public bool IsOneToMany() => Entities.Any(e => e.Cardinality == Cardinality.One) && Entities.Any(e => e.Cardinality == Cardinality.Many);
+        public bool IsManyToMany() => Entities.All(e => e.Cardinality == Cardinality.Many);
     }
 }
