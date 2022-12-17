@@ -1,6 +1,7 @@
 ﻿using DoQL.Controls.Panels;
 using DoQL.Forms;
 using DoQL.Interfaces;
+using DoQL.Models;
 using DoQL.Models.ERD;
 using DoQL.Utilities;
 
@@ -29,6 +30,16 @@ namespace DoQL.Controls.ERD
             var centerPoint = new Point(Width / 2 - strSize.Width / 2, Height / 2 - strSize.Height / 2);
             e.Graphics.DrawString(Text, Font, new SolidBrush(ForeColor), centerPoint);
             base.OnPaint(e);
+        }
+
+        protected override void OnLocationChanged(EventArgs e)
+        {
+            if (IsHandleCreated)
+            {
+                Database db = (ParentForm as DiagramForm).Database;
+                db.Erd.Entities.Find(e => e.Id == Id).Position = Location;
+            }
+            base.OnLocationChanged(e);
         }
 
         #region connections
@@ -72,11 +83,21 @@ namespace DoQL.Controls.ERD
 
         public void Delete()
         {
+            // delete connections
+            DiagramPanel diagramPanel = (Parent as DiagramPanel);
+            var oldConnections = diagramPanel.Connections.Where(connection => connection.Control1.ConnectableControl == this || connection.Control2.ConnectableControl == this);
+            foreach (var oldConnection in oldConnections.ToList())
+            {
+                diagramPanel.RemoveConnection(oldConnection);
+            }
+
             DiagramForm diagramForm = (ParentForm as DiagramForm);
             Entity entity = diagramForm.Database.Erd.Entities.Find(e => e.Id == Id);
             diagramForm.Database.Erd.Entities.Remove(entity);
 
             Parent.Controls.Remove(this);
+
+            diagramPanel.RedrawCardinalities();
         }
 
         private void ShowEntityPanel(object sender, EventArgs e)
