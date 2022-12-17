@@ -30,20 +30,20 @@
         {
             this.listView1 = new System.Windows.Forms.ListView();
             this.label1 = new System.Windows.Forms.Label();
-            this.textBox1 = new System.Windows.Forms.TextBox();
+            this.attributeName = new System.Windows.Forms.TextBox();
             this.label3 = new System.Windows.Forms.Label();
             this.textBox3 = new System.Windows.Forms.TextBox();
             this.label2 = new System.Windows.Forms.Label();
             this.comboBox1 = new System.Windows.Forms.ComboBox();
             this.label8 = new System.Windows.Forms.Label();
-            this.label4 = new System.Windows.Forms.Label();
-            this.checkBox1 = new System.Windows.Forms.CheckBox();
-            this.label5 = new System.Windows.Forms.Label();
-            this.checkBox2 = new System.Windows.Forms.CheckBox();
-            this.label6 = new System.Windows.Forms.Label();
-            this.checkBox3 = new System.Windows.Forms.CheckBox();
-            this.label7 = new System.Windows.Forms.Label();
             this.checkBox4 = new System.Windows.Forms.CheckBox();
+            this.label7 = new System.Windows.Forms.Label();
+            this.checkBox3 = new System.Windows.Forms.CheckBox();
+            this.label6 = new System.Windows.Forms.Label();
+            this.checkBox2 = new System.Windows.Forms.CheckBox();
+            this.label4 = new System.Windows.Forms.Label();
+            this.label5 = new System.Windows.Forms.Label();
+            this.checkBox1 = new System.Windows.Forms.CheckBox();
             this.SuspendLayout();
             // 
             // listView1
@@ -73,14 +73,15 @@
             this.label1.TabIndex = 33;
             this.label1.Text = "Attribute name:";
             // 
-            // textBox1
+            // attributeName
             // 
-            this.textBox1.Font = new System.Drawing.Font("Tahoma", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
-            this.textBox1.Location = new System.Drawing.Point(33, 81);
-            this.textBox1.Margin = new System.Windows.Forms.Padding(7, 0, 0, 20);
-            this.textBox1.Name = "textBox1";
-            this.textBox1.Size = new System.Drawing.Size(275, 32);
-            this.textBox1.TabIndex = 34;
+            this.attributeName.Font = new System.Drawing.Font("Tahoma", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
+            this.attributeName.Location = new System.Drawing.Point(33, 81);
+            this.attributeName.Margin = new System.Windows.Forms.Padding(7, 0, 0, 20);
+            this.attributeName.Name = "attributeName";
+            this.attributeName.Size = new System.Drawing.Size(275, 32);
+            this.attributeName.TabIndex = 34;
+            this.attributeName.TextChanged += new System.EventHandler(this.ChangeAttributeName);
             // 
             // label3
             // 
@@ -132,24 +133,6 @@
             this.comboBox1.DisplayMember = "MySQL";
             this.comboBox1.Font = new System.Drawing.Font("Tahoma", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
             this.comboBox1.FormattingEnabled = true;
-            this.comboBox1.Items.AddRange(new object[] {
-            "CHAR ",
-            "VARCHAR ",
-            "INT",
-            "FLOAT",
-            "SMALLINT",
-            "DOUBLE",
-            "BIT",
-            "BLOB ",
-            "TEXT ",
-            "VARBINARY ",
-            "ENUM ",
-            "SET ",
-            "DATE ",
-            "DATETIME",
-            "TIMESTAMP",
-            "POINT ",
-            "MULTIPOINT  "});
             this.comboBox1.Location = new System.Drawing.Point(33, 297);
             this.comboBox1.Margin = new System.Windows.Forms.Padding(7, 0, 0, 20);
             this.comboBox1.Name = "comboBox1";
@@ -172,89 +155,89 @@
             this.label8.TabIndex = 46;
             this.label8.Text = "Conistraints:";
             // 
-            // label4
+            // checkBox4
             // 
-            this.label4.AutoSize = true;
-            this.label4.Font = new System.Drawing.Font("Tahoma", 10.2F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
-            this.label4.Location = new System.Drawing.Point(46, 400);
-            this.label4.Margin = new System.Windows.Forms.Padding(20, 0, 10, 10);
-            this.label4.Name = "label4";
-            this.label4.Size = new System.Drawing.Size(111, 21);
-            this.label4.TabIndex = 38;
-            this.label4.Text = "Primary key";
-            // 
-            // checkBox1
-            // 
-            this.checkBox1.AutoSize = true;
-            this.checkBox1.Location = new System.Drawing.Point(56, 431);
-            this.checkBox1.Margin = new System.Windows.Forms.Padding(30, 0, 10, 10);
-            this.checkBox1.Name = "checkBox1";
-            this.checkBox1.Size = new System.Drawing.Size(18, 17);
-            this.checkBox1.TabIndex = 39;
-            this.checkBox1.UseVisualStyleBackColor = true;
-            // 
-            // label5
-            // 
-            this.label5.AutoSize = true;
-            this.label5.Font = new System.Drawing.Font("Tahoma", 10.2F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
-            this.label5.Location = new System.Drawing.Point(46, 458);
-            this.label5.Margin = new System.Windows.Forms.Padding(20, 0, 10, 10);
-            this.label5.Name = "label5";
-            this.label5.Size = new System.Drawing.Size(78, 21);
-            this.label5.TabIndex = 40;
-            this.label5.Text = "Not null";
-            // 
-            // checkBox2
-            // 
-            this.checkBox2.AutoSize = true;
-            this.checkBox2.Location = new System.Drawing.Point(56, 489);
-            this.checkBox2.Margin = new System.Windows.Forms.Padding(30, 0, 10, 10);
-            this.checkBox2.Name = "checkBox2";
-            this.checkBox2.Size = new System.Drawing.Size(18, 17);
-            this.checkBox2.TabIndex = 42;
-            this.checkBox2.UseVisualStyleBackColor = true;
-            // 
-            // label6
-            // 
-            this.label6.AutoSize = true;
-            this.label6.Font = new System.Drawing.Font("Tahoma", 10.2F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
-            this.label6.Location = new System.Drawing.Point(46, 516);
-            this.label6.Margin = new System.Windows.Forms.Padding(20, 0, 10, 10);
-            this.label6.Name = "label6";
-            this.label6.Size = new System.Drawing.Size(71, 21);
-            this.label6.TabIndex = 41;
-            this.label6.Text = "Unique";
-            // 
-            // checkBox3
-            // 
-            this.checkBox3.AutoSize = true;
-            this.checkBox3.Location = new System.Drawing.Point(56, 547);
-            this.checkBox3.Margin = new System.Windows.Forms.Padding(30, 0, 10, 10);
-            this.checkBox3.Name = "checkBox3";
-            this.checkBox3.Size = new System.Drawing.Size(18, 17);
-            this.checkBox3.TabIndex = 43;
-            this.checkBox3.UseVisualStyleBackColor = true;
+            this.checkBox4.AutoSize = true;
+            this.checkBox4.Location = new System.Drawing.Point(30, 533);
+            this.checkBox4.Margin = new System.Windows.Forms.Padding(30, 0, 10, 10);
+            this.checkBox4.Name = "checkBox4";
+            this.checkBox4.Size = new System.Drawing.Size(18, 17);
+            this.checkBox4.TabIndex = 45;
+            this.checkBox4.UseVisualStyleBackColor = true;
             // 
             // label7
             // 
             this.label7.AutoSize = true;
             this.label7.Font = new System.Drawing.Font("Tahoma", 10.2F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
-            this.label7.Location = new System.Drawing.Point(46, 574);
+            this.label7.Location = new System.Drawing.Point(53, 529);
             this.label7.Margin = new System.Windows.Forms.Padding(20, 0, 10, 10);
             this.label7.Name = "label7";
             this.label7.Size = new System.Drawing.Size(140, 21);
             this.label7.TabIndex = 44;
             this.label7.Text = "AutoIncrement";
             // 
-            // checkBox4
+            // checkBox3
             // 
-            this.checkBox4.AutoSize = true;
-            this.checkBox4.Location = new System.Drawing.Point(56, 605);
-            this.checkBox4.Margin = new System.Windows.Forms.Padding(30, 0, 10, 10);
-            this.checkBox4.Name = "checkBox4";
-            this.checkBox4.Size = new System.Drawing.Size(18, 17);
-            this.checkBox4.TabIndex = 45;
-            this.checkBox4.UseVisualStyleBackColor = true;
+            this.checkBox3.AutoSize = true;
+            this.checkBox3.Location = new System.Drawing.Point(30, 491);
+            this.checkBox3.Margin = new System.Windows.Forms.Padding(30, 0, 10, 10);
+            this.checkBox3.Name = "checkBox3";
+            this.checkBox3.Size = new System.Drawing.Size(18, 17);
+            this.checkBox3.TabIndex = 43;
+            this.checkBox3.UseVisualStyleBackColor = true;
+            // 
+            // label6
+            // 
+            this.label6.AutoSize = true;
+            this.label6.Font = new System.Drawing.Font("Tahoma", 10.2F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
+            this.label6.Location = new System.Drawing.Point(53, 487);
+            this.label6.Margin = new System.Windows.Forms.Padding(20, 0, 10, 10);
+            this.label6.Name = "label6";
+            this.label6.Size = new System.Drawing.Size(71, 21);
+            this.label6.TabIndex = 41;
+            this.label6.Text = "Unique";
+            // 
+            // checkBox2
+            // 
+            this.checkBox2.AutoSize = true;
+            this.checkBox2.Location = new System.Drawing.Point(30, 445);
+            this.checkBox2.Margin = new System.Windows.Forms.Padding(30, 0, 10, 10);
+            this.checkBox2.Name = "checkBox2";
+            this.checkBox2.Size = new System.Drawing.Size(18, 17);
+            this.checkBox2.TabIndex = 42;
+            this.checkBox2.UseVisualStyleBackColor = true;
+            // 
+            // label4
+            // 
+            this.label4.AutoSize = true;
+            this.label4.Font = new System.Drawing.Font("Tahoma", 10.2F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
+            this.label4.Location = new System.Drawing.Point(53, 400);
+            this.label4.Margin = new System.Windows.Forms.Padding(20, 0, 10, 10);
+            this.label4.Name = "label4";
+            this.label4.Size = new System.Drawing.Size(111, 21);
+            this.label4.TabIndex = 38;
+            this.label4.Text = "Primary key";
+            // 
+            // label5
+            // 
+            this.label5.AutoSize = true;
+            this.label5.Font = new System.Drawing.Font("Tahoma", 10.2F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
+            this.label5.Location = new System.Drawing.Point(53, 445);
+            this.label5.Margin = new System.Windows.Forms.Padding(20, 0, 10, 10);
+            this.label5.Name = "label5";
+            this.label5.Size = new System.Drawing.Size(78, 21);
+            this.label5.TabIndex = 40;
+            this.label5.Text = "Not null";
+            // 
+            // checkBox1
+            // 
+            this.checkBox1.AutoSize = true;
+            this.checkBox1.Location = new System.Drawing.Point(30, 404);
+            this.checkBox1.Margin = new System.Windows.Forms.Padding(30, 0, 10, 10);
+            this.checkBox1.Name = "checkBox1";
+            this.checkBox1.Size = new System.Drawing.Size(18, 17);
+            this.checkBox1.TabIndex = 39;
+            this.checkBox1.UseVisualStyleBackColor = true;
             // 
             // AttributePanel
             // 
@@ -262,7 +245,7 @@
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.SystemColors.ControlLight;
             this.Controls.Add(this.label1);
-            this.Controls.Add(this.textBox1);
+            this.Controls.Add(this.attributeName);
             this.Controls.Add(this.label3);
             this.Controls.Add(this.textBox3);
             this.Controls.Add(this.label2);
@@ -289,19 +272,19 @@
 
         private ListView listView1;
         private Label label1;
-        private TextBox textBox1;
+        private TextBox attributeName;
         private Label label3;
         private TextBox textBox3;
         private Label label2;
         private ComboBox comboBox1;
         private Label label8;
-        private Label label4;
-        private CheckBox checkBox1;
-        private Label label5;
-        private CheckBox checkBox2;
-        private Label label6;
-        private CheckBox checkBox3;
-        private Label label7;
         private CheckBox checkBox4;
+        private Label label7;
+        private CheckBox checkBox3;
+        private Label label6;
+        private CheckBox checkBox2;
+        private Label label4;
+        private Label label5;
+        private CheckBox checkBox1;
     }
 }
