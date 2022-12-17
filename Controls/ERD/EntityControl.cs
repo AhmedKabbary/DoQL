@@ -1,4 +1,5 @@
-﻿using DoQL.Forms;
+﻿using DoQL.Controls.Panels;
+using DoQL.Forms;
 using DoQL.Interfaces;
 using DoQL.Models;
 using DoQL.Models.ERD;
@@ -97,6 +98,18 @@ namespace DoQL.Controls.ERD
             Parent.Controls.Remove(this);
 
             diagramPanel.RedrawCardinalities();
+        }
+
+        private void ShowEntityPanel(object sender, EventArgs e)
+        {
+            (ParentForm as DiagramForm).SidePanel.Controls.Clear();
+            EntityPanel entityPanel = new EntityPanel() { Id = Id };
+            entityPanel.AutoScroll = true;
+            entityPanel.Dock = System.Windows.Forms.DockStyle.Fill;
+            entityPanel.Margin = new System.Windows.Forms.Padding(0);
+            entityPanel.Size = new System.Drawing.Size(345, 518);
+            entityPanel.TabIndex = 1;
+            (ParentForm as DiagramForm).SidePanel.Controls.Add(entityPanel);
         }
     }
 }

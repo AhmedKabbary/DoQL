@@ -1,5 +1,6 @@
 using DoQL.Controls;
 using DoQL.Controls.ERD;
+using DoQL.Controls.Panels;
 using DoQL.DatabaseProviders;
 using DoQL.Models;
 using DoQL.Models.ERD;
@@ -119,6 +120,24 @@ namespace DoQL.Forms
         private void button1_Click(object sender, EventArgs e)
         {
             DatabasesManager.GetInstance().SaveDatabase(Database);
+        }
+
+        public Panel SidePanel
+        {
+            get => sidePanel;
+        }
+
+        private void ShowDatabasePanel(object sender, EventArgs e)
+        {
+            sidePanel.Controls.Clear();
+            DatabasePanel databasePanel = new DatabasePanel() {database = Database};
+            databasePanel.AutoScroll = true;
+            databasePanel.Dock = System.Windows.Forms.DockStyle.Fill;
+            databasePanel.Margin = new System.Windows.Forms.Padding(0);
+            databasePanel.Size = new System.Drawing.Size(345, 518);
+            databasePanel.TabIndex = 1;
+            sidePanel.Controls.Add(databasePanel);
+
         }
     }
 }

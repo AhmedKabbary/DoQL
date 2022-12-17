@@ -1,4 +1,5 @@
 ﻿using System.Drawing.Drawing2D;
+using DoQL.Controls.Panels;
 using DoQL.Forms;
 using DoQL.Interfaces;
 using DoQL.Models;
@@ -127,6 +128,18 @@ namespace DoQL.Controls.ERD
             Parent.Controls.Remove(this);
 
             diagramPanel.RedrawCardinalities();
+        }
+
+        private void ShowRelationshipPanel(object sender, EventArgs e)
+        {
+            (ParentForm as DiagramForm).SidePanel.Controls.Clear();
+            RelationshipPanel relationshipPanel = new RelationshipPanel() { Id = Id };
+            relationshipPanel.AutoScroll = true;
+            relationshipPanel.Dock = System.Windows.Forms.DockStyle.Fill;
+            relationshipPanel.Margin = new System.Windows.Forms.Padding(0);
+            relationshipPanel.Size = new System.Drawing.Size(345, 518);
+            relationshipPanel.TabIndex = 1;
+            (ParentForm as DiagramForm).SidePanel.Controls.Add(relationshipPanel);
         }
     }
 }

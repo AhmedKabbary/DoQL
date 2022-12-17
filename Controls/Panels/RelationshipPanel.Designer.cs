@@ -31,16 +31,16 @@
             this.listView1 = new System.Windows.Forms.ListView();
             this.label1 = new System.Windows.Forms.Label();
             this.textBox1 = new System.Windows.Forms.TextBox();
-            this.TblNameLbl = new System.Windows.Forms.Label();
-            this.TableName = new System.Windows.Forms.TextBox();
             this.label6 = new System.Windows.Forms.Label();
             this.comboBox3 = new System.Windows.Forms.ComboBox();
             this.label7 = new System.Windows.Forms.Label();
             this.comboBox4 = new System.Windows.Forms.ComboBox();
             this.label3 = new System.Windows.Forms.Label();
             this.flowLayoutPanel1 = new System.Windows.Forms.FlowLayoutPanel();
-            this.attachedAttribute1 = new DoQL.Controls.Panels.AttachedAttribute();
-            this.attachedAttribute2 = new DoQL.Controls.Panels.AttachedAttribute();
+            this.attachedAttribute1 = new DoQL.Controls.AttachedAttribute();
+            this.attachedAttribute2 = new DoQL.Controls.AttachedAttribute();
+            this.TblNameLbl = new System.Windows.Forms.Label();
+            this.TableName = new System.Windows.Forms.TextBox();
             this.flowLayoutPanel1.SuspendLayout();
             this.SuspendLayout();
             // 
@@ -79,31 +79,6 @@
             this.textBox1.Name = "textBox1";
             this.textBox1.Size = new System.Drawing.Size(275, 32);
             this.textBox1.TabIndex = 63;
-            // 
-            // TblNameLbl
-            // 
-            this.TblNameLbl.AutoSize = true;
-            this.TblNameLbl.BackColor = System.Drawing.SystemColors.ControlLight;
-            this.TblNameLbl.CausesValidation = false;
-            this.TblNameLbl.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.TblNameLbl.Font = new System.Drawing.Font("Tahoma", 13.8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
-            this.TblNameLbl.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(17)))), ((int)(((byte)(45)))), ((int)(((byte)(78)))));
-            this.TblNameLbl.Location = new System.Drawing.Point(54, 671);
-            this.TblNameLbl.Margin = new System.Windows.Forms.Padding(0, 3, 0, 20);
-            this.TblNameLbl.Name = "TblNameLbl";
-            this.TblNameLbl.Padding = new System.Windows.Forms.Padding(2, 2, 3, 3);
-            this.TblNameLbl.Size = new System.Drawing.Size(161, 33);
-            this.TblNameLbl.TabIndex = 65;
-            this.TblNameLbl.Text = "Table name:";
-            // 
-            // TableName
-            // 
-            this.TableName.Font = new System.Drawing.Font("Tahoma", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
-            this.TableName.Location = new System.Drawing.Point(61, 724);
-            this.TableName.Margin = new System.Windows.Forms.Padding(7, 0, 0, 20);
-            this.TableName.Name = "TableName";
-            this.TableName.Size = new System.Drawing.Size(275, 32);
-            this.TableName.TabIndex = 66;
             // 
             // label6
             // 
@@ -200,10 +175,14 @@
             this.flowLayoutPanel1.BackColor = System.Drawing.SystemColors.ControlLight;
             this.flowLayoutPanel1.Controls.Add(this.attachedAttribute1);
             this.flowLayoutPanel1.Controls.Add(this.attachedAttribute2);
+            this.flowLayoutPanel1.Controls.Add(this.TblNameLbl);
+            this.flowLayoutPanel1.Controls.Add(this.TableName);
+            this.flowLayoutPanel1.FlowDirection = System.Windows.Forms.FlowDirection.TopDown;
             this.flowLayoutPanel1.Location = new System.Drawing.Point(47, 420);
             this.flowLayoutPanel1.Name = "flowLayoutPanel1";
-            this.flowLayoutPanel1.Size = new System.Drawing.Size(289, 245);
+            this.flowLayoutPanel1.Size = new System.Drawing.Size(289, 352);
             this.flowLayoutPanel1.TabIndex = 78;
+            this.flowLayoutPanel1.ControlRemoved += new System.Windows.Forms.ControlEventHandler(this.HideTable);
             // 
             // attachedAttribute1
             // 
@@ -221,6 +200,33 @@
             this.attachedAttribute2.Size = new System.Drawing.Size(254, 118);
             this.attachedAttribute2.TabIndex = 79;
             // 
+            // TblNameLbl
+            // 
+            this.TblNameLbl.AutoSize = true;
+            this.TblNameLbl.BackColor = System.Drawing.SystemColors.ControlLight;
+            this.TblNameLbl.CausesValidation = false;
+            this.TblNameLbl.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.TblNameLbl.Font = new System.Drawing.Font("Tahoma", 13.8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
+            this.TblNameLbl.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(17)))), ((int)(((byte)(45)))), ((int)(((byte)(78)))));
+            this.TblNameLbl.Location = new System.Drawing.Point(0, 247);
+            this.TblNameLbl.Margin = new System.Windows.Forms.Padding(0, 3, 0, 20);
+            this.TblNameLbl.Name = "TblNameLbl";
+            this.TblNameLbl.Padding = new System.Windows.Forms.Padding(2, 2, 3, 3);
+            this.TblNameLbl.Size = new System.Drawing.Size(161, 33);
+            this.TblNameLbl.TabIndex = 80;
+            this.TblNameLbl.Text = "Table name:";
+            this.TblNameLbl.Visible = false;
+            // 
+            // TableName
+            // 
+            this.TableName.Font = new System.Drawing.Font("Tahoma", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
+            this.TableName.Location = new System.Drawing.Point(7, 300);
+            this.TableName.Margin = new System.Windows.Forms.Padding(7, 0, 0, 20);
+            this.TableName.Name = "TableName";
+            this.TableName.Size = new System.Drawing.Size(275, 32);
+            this.TableName.TabIndex = 81;
+            this.TableName.Visible = false;
+            // 
             // RelationshipPanel
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 20F);
@@ -229,8 +235,6 @@
             this.Controls.Add(this.label3);
             this.Controls.Add(this.label1);
             this.Controls.Add(this.textBox1);
-            this.Controls.Add(this.TblNameLbl);
-            this.Controls.Add(this.TableName);
             this.Controls.Add(this.label6);
             this.Controls.Add(this.comboBox3);
             this.Controls.Add(this.label7);
@@ -239,6 +243,7 @@
             this.Name = "RelationshipPanel";
             this.Size = new System.Drawing.Size(348, 793);
             this.flowLayoutPanel1.ResumeLayout(false);
+            this.flowLayoutPanel1.PerformLayout();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -249,8 +254,6 @@
         private ListView listView1;
         private Label label1;
         private TextBox textBox1;
-        private Label TblNameLbl;
-        private TextBox TableName;
         private Label label6;
         private ComboBox comboBox3;
         private Label label7;
@@ -259,5 +262,7 @@
         private FlowLayoutPanel flowLayoutPanel1;
         private AttachedAttribute attachedAttribute1;
         private AttachedAttribute attachedAttribute2;
+        private Label TblNameLbl;
+        private TextBox TableName;
     }
 }
