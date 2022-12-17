@@ -112,11 +112,6 @@ namespace DoQL.Forms
 
         #endregion
 
-        public void SaveConnectionsIntoERD()
-        {
-
-        }
-
         private void button1_Click(object sender, EventArgs e)
         {
             DatabasesManager.GetInstance().SaveDatabase(Database);

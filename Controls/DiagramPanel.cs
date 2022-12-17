@@ -96,6 +96,7 @@ namespace DoQL.Controls
                     });
                 }
             }
+            base.OnLoad(e);
         }
 
         #region dragging
