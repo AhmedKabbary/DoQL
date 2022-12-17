@@ -52,7 +52,7 @@ namespace DoQL.Forms
         private void newEntityToolStripMenuItem_Click(object sender, EventArgs e)
         {
             string id = Guid.NewGuid().ToString();
-            Point location = contextMenuStrip1.Bounds.Location;
+            Point location = diagramPanel.PointToClient(contextMenuStrip1.Bounds.Location);
 
             Database.Erd.Entities.Add(
                 new Entity
@@ -65,14 +65,14 @@ namespace DoQL.Forms
             );
 
             var control = new EntityControl() { Id = id };
-            control.Location = diagramPanel.PointToClient(location);
+            control.Location = location;
             diagramPanel.Controls.Add(control);
         }
 
         private void newAttributeToolStripMenuItem_Click(object sender, EventArgs e)
         {
             string id = Guid.NewGuid().ToString();
-            Point location = contextMenuStrip1.Bounds.Location;
+            Point location = diagramPanel.PointToClient(contextMenuStrip1.Bounds.Location);
 
             Database.Erd.Attributes.Add(
                 new Attribute
@@ -85,14 +85,14 @@ namespace DoQL.Forms
             );
 
             var control = new AttributeControl() { Id = id };
-            control.Location = diagramPanel.PointToClient(location);
+            control.Location = location;
             diagramPanel.Controls.Add(control);
         }
 
         private void newRelationshipToolStripMenuItem_Click(object sender, EventArgs e)
         {
             string id = Guid.NewGuid().ToString();
-            Point location = contextMenuStrip1.Bounds.Location;
+            Point location = diagramPanel.PointToClient(contextMenuStrip1.Bounds.Location);
 
             Database.Erd.Relationships.Add(
                 new Relationship
@@ -105,7 +105,7 @@ namespace DoQL.Forms
             );
 
             var control = new RelationshipControl() { Id = id };
-            control.Location = diagramPanel.PointToClient(location);
+            control.Location = location;
             diagramPanel.Controls.Add(control);
         }
 

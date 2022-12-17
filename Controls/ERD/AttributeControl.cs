@@ -1,6 +1,7 @@
 ﻿using System.Drawing.Drawing2D;
 using DoQL.Forms;
 using DoQL.Interfaces;
+using DoQL.Models;
 using DoQL.Utilities;
 using Attribute = DoQL.Models.ERD.Attribute;
 
@@ -41,6 +42,16 @@ namespace DoQL.Controls.ERD
             var centerPoint = new Point(Width / 2 - strSize.Width / 2, Height / 2 - strSize.Height / 2);
             e.Graphics.DrawString(Text, Font, new SolidBrush(ForeColor), centerPoint);
             base.OnPaint(e);
+        }
+
+        protected override void OnLocationChanged(EventArgs e)
+        {
+            if (IsHandleCreated)
+            {
+                Database db = (ParentForm as DiagramForm).Database;
+                db.Erd.Attributes.Find(a => a.Id == Id).Position = new Point(Left, Top);
+            }
+            base.OnLocationChanged(e);
         }
 
         #region connections
