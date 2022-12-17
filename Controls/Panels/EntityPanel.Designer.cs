@@ -30,9 +30,9 @@
         {
             this.listView1 = new System.Windows.Forms.ListView();
             this.label1 = new System.Windows.Forms.Label();
-            this.textBox1 = new System.Windows.Forms.TextBox();
+            this.entityName = new System.Windows.Forms.TextBox();
             this.label3 = new System.Windows.Forms.Label();
-            this.textBox3 = new System.Windows.Forms.TextBox();
+            this.tableName = new System.Windows.Forms.TextBox();
             this.SuspendLayout();
             // 
             // listView1
@@ -49,7 +49,7 @@
             // label1
             // 
             this.label1.AutoSize = true;
-            this.label1.BackColor = System.Drawing.Color.Transparent;
+            this.label1.BackColor = System.Drawing.SystemColors.ControlLight;
             this.label1.CausesValidation = false;
             this.label1.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.label1.Font = new System.Drawing.Font("Tahoma", 13.8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
@@ -62,19 +62,20 @@
             this.label1.TabIndex = 10;
             this.label1.Text = "Entity name:";
             // 
-            // textBox1
+            // entityName
             // 
-            this.textBox1.Font = new System.Drawing.Font("Tahoma", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
-            this.textBox1.Location = new System.Drawing.Point(33, 83);
-            this.textBox1.Margin = new System.Windows.Forms.Padding(7, 0, 0, 20);
-            this.textBox1.Name = "textBox1";
-            this.textBox1.Size = new System.Drawing.Size(275, 32);
-            this.textBox1.TabIndex = 11;
+            this.entityName.Font = new System.Drawing.Font("Tahoma", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
+            this.entityName.Location = new System.Drawing.Point(33, 83);
+            this.entityName.Margin = new System.Windows.Forms.Padding(7, 0, 0, 20);
+            this.entityName.Name = "entityName";
+            this.entityName.Size = new System.Drawing.Size(275, 32);
+            this.entityName.TabIndex = 11;
+            this.entityName.TextChanged += new System.EventHandler(this.ChangeEntityName);
             // 
             // label3
             // 
             this.label3.AutoSize = true;
-            this.label3.BackColor = System.Drawing.Color.Transparent;
+            this.label3.BackColor = System.Drawing.SystemColors.ControlLight;
             this.label3.CausesValidation = false;
             this.label3.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.label3.Font = new System.Drawing.Font("Tahoma", 13.8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
@@ -87,23 +88,24 @@
             this.label3.TabIndex = 12;
             this.label3.Text = "Table name:";
             // 
-            // textBox3
+            // tableName
             // 
-            this.textBox3.Font = new System.Drawing.Font("Tahoma", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
-            this.textBox3.Location = new System.Drawing.Point(33, 191);
-            this.textBox3.Margin = new System.Windows.Forms.Padding(7, 0, 0, 20);
-            this.textBox3.Name = "textBox3";
-            this.textBox3.Size = new System.Drawing.Size(275, 32);
-            this.textBox3.TabIndex = 13;
+            this.tableName.Font = new System.Drawing.Font("Tahoma", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
+            this.tableName.Location = new System.Drawing.Point(33, 191);
+            this.tableName.Margin = new System.Windows.Forms.Padding(7, 0, 0, 20);
+            this.tableName.Name = "tableName";
+            this.tableName.Size = new System.Drawing.Size(275, 32);
+            this.tableName.TabIndex = 13;
+            this.tableName.TextChanged += new System.EventHandler(this.ChangeTableName);
             // 
             // EntityPanel
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 20F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.Controls.Add(this.label1);
-            this.Controls.Add(this.textBox1);
+            this.Controls.Add(this.entityName);
             this.Controls.Add(this.label3);
-            this.Controls.Add(this.textBox3);
+            this.Controls.Add(this.tableName);
             this.Controls.Add(this.listView1);
             this.Margin = new System.Windows.Forms.Padding(0);
             this.Name = "EntityPanel";
@@ -117,8 +119,8 @@
 
         private ListView listView1;
         private Label label1;
-        private TextBox textBox1;
+        private TextBox entityName;
         private Label label3;
-        private TextBox textBox3;
+        private TextBox tableName;
     }
 }

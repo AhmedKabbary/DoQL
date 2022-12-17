@@ -48,7 +48,7 @@ namespace DoQL.Forms
             this.diagramPanel.Dock = System.Windows.Forms.DockStyle.Fill;
             this.diagramPanel.Location = new System.Drawing.Point(0, 0);
             this.diagramPanel.Name = "diagramPanel";
-            this.diagramPanel.Size = new System.Drawing.Size(896, 604);
+            this.diagramPanel.Size = new System.Drawing.Size(1182, 753);
             this.diagramPanel.TabIndex = 0;
             this.diagramPanel.Click += new System.EventHandler(this.ShowDatabasePanel);
             // 
@@ -89,16 +89,17 @@ namespace DoQL.Forms
             this.sidePanel.Dock = System.Windows.Forms.DockStyle.Left;
             this.sidePanel.Location = new System.Drawing.Point(0, 0);
             this.sidePanel.Name = "sidePanel";
-            this.sidePanel.Size = new System.Drawing.Size(345, 604);
+            this.sidePanel.Size = new System.Drawing.Size(345, 753);
             this.sidePanel.TabIndex = 1;
             // 
             // button1
             // 
-            this.button1.Location = new System.Drawing.Point(779, 540);
+            this.button1.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
+            this.button1.Location = new System.Drawing.Point(1065, 689);
             this.button1.Name = "button1";
             this.button1.Size = new System.Drawing.Size(94, 29);
             this.button1.TabIndex = 0;
-            this.button1.Text = "button1";
+            this.button1.Text = "save";
             this.button1.UseVisualStyleBackColor = true;
             this.button1.Click += new System.EventHandler(this.button1_Click);
             // 
@@ -106,13 +107,14 @@ namespace DoQL.Forms
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 20F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(896, 604);
+            this.ClientSize = new System.Drawing.Size(1182, 753);
             this.Controls.Add(this.button1);
             this.Controls.Add(this.sidePanel);
             this.Controls.Add(this.diagramPanel);
             this.Name = "DiagramForm";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "Diagram";
+            this.WindowState = System.Windows.Forms.FormWindowState.Maximized;
             this.Load += new System.EventHandler(this.ShowDatabasePanel);
             this.contextMenuStrip1.ResumeLayout(false);
             this.ResumeLayout(false);

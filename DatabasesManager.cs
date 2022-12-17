@@ -121,7 +121,6 @@ namespace DoQL
                 FileInfo erdFileInfo = new FileInfo(erdFilePath);
 
                 String erdContent = File.ReadAllText(erdFilePath);
-                File.WriteAllText(erdFilePath, string.Empty);
                 EncryptionUtils.Encrypt(erdFileInfo, erdContent, db.Password);
             }
         }
@@ -139,7 +138,7 @@ namespace DoQL
         public void ExportDatabase(string id, string destination)
         {
             string folderToExportPath = Path.Combine(_dataBasesFolderPath, id);
-            string zipFileDestination = Path.Combine(destination, $"{id}.zip");
+            string zipFileDestination = Path.Combine(destination, $"{id}.doql");
             if (Directory.Exists(folderToExportPath))
                 ZipFile.CreateFromDirectory(folderToExportPath, zipFileDestination);
         }
