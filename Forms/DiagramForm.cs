@@ -125,7 +125,7 @@ namespace DoQL.Forms
         private void ShowDatabasePanel(object sender, EventArgs e)
         {
             sidePanel.Controls.Clear();
-            DatabasePanel databasePanel = new DatabasePanel() {database = Database};
+            DatabasePanel databasePanel = new DatabasePanel() {Database = Database};
             databasePanel.AutoScroll = true;
             databasePanel.Dock = System.Windows.Forms.DockStyle.Fill;
             databasePanel.Margin = new System.Windows.Forms.Padding(0);

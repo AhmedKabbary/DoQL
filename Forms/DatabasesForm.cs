@@ -15,7 +15,7 @@ namespace DoQL.Forms
             LoadDatabases();
         }
 
-        private void LoadDatabases()
+        public void LoadDatabases()
         {
             List<Database> databases = DatabasesManager.GetInstance().LoadDatabases();
             flowLayoutPanel1.Controls.Clear();
@@ -36,6 +36,19 @@ namespace DoQL.Forms
                 LoadDatabases();
             }
 
+        }
+
+        private void btnImport_Click(object sender, EventArgs e)
+        {
+            DialogResult result = openFileDialog1.ShowDialog();
+            if (result == DialogResult.OK)
+            {
+                if (openFileDialog1.CheckFileExists)
+                {
+                    DatabasesManager.GetInstance().ImportDatabase(openFileDialog1.FileName);
+                    LoadDatabases();
+                }
+            }
         }
     }
 }
