@@ -12,6 +12,8 @@ namespace DoQL.Controls.Panels
 {
     public partial class EntityPanel : UserControl
     {
+        public string Id { get; init; }
+
         public EntityPanel()
         {
             InitializeComponent();

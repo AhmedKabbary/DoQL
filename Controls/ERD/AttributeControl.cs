@@ -1,6 +1,8 @@
 ﻿using System.Drawing.Drawing2D;
+using DoQL.Controls.Panels;
 using DoQL.Forms;
 using DoQL.Interfaces;
+using DoQL.Models;
 using DoQL.Utilities;
 using Attribute = DoQL.Models.ERD.Attribute;
 
@@ -90,6 +92,18 @@ namespace DoQL.Controls.ERD
             diagramForm.Database.Erd.Attributes.Remove(attribute);
 
             Parent.Controls.Remove(this);
+        }
+
+        private void showAttributePanel(object sender, EventArgs e)
+        {
+            (ParentForm as DiagramForm).SidePanel.Controls.Clear();
+            AttributePanel attributePanel = new AttributePanel() { Id = Id };
+            attributePanel.AutoScroll = true;
+            attributePanel.Dock = System.Windows.Forms.DockStyle.Fill;
+            attributePanel.Margin = new System.Windows.Forms.Padding(0);
+            attributePanel.Size = new System.Drawing.Size(345, 518);
+            attributePanel.TabIndex = 1;
+            (ParentForm as DiagramForm).SidePanel.Controls.Add(attributePanel);
         }
     }
 }

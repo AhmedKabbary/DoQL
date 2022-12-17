@@ -12,29 +12,37 @@ namespace DoQL.Controls.Panels
 {
     public partial class RelationshipPanel : UserControl
     {
+        public string Id { get; init; }
+
         public RelationshipPanel()
         {
             InitializeComponent();
         }
-        /*public void CalculateCardinality()
-        {
-            foreach (var item in Controls)
-            {
-                if (item is AttachedAttribute attachedAttribute)
-                {
-                    if (attachedAttribute.GetCardinality() == "M")
-                    {
-                        TblNameLbl.Visible = true;
-                        TableName.Visible = true;
-                    }
-                    else
-                    {
-                        TblNameLbl.Visible = false;
-                        TableName.Visible = false;
-                    }
-                }
 
+        private void HideTable(object sender, ControlEventArgs e)
+        {
+            TblNameLbl.Visible = false;
+            TableName.Visible = false;
+        }
+
+        public void CalculateCardinality()
+        {
+            var cardinalities = new List<string>();
+            var flowPanel = Controls.OfType<FlowLayoutPanel>().First();
+            foreach (var attachedAttribute in flowLayoutPanel1.Controls.OfType<AttachedAttribute>())
+            {
+                cardinalities.Add(attachedAttribute.GetCardinality());
             }
-        }*/
+            if (cardinalities.Count == 2 && cardinalities.All(c => c == "M"))
+            {
+                TblNameLbl.Visible = true;
+                TableName.Visible = true;
+            }
+            else
+            {
+                TblNameLbl.Visible = false;
+                TableName.Visible = false;
+            }
+        }
     }
 }

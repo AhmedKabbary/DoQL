@@ -38,6 +38,7 @@
             this.ForeColor = System.Drawing.SystemColors.ControlLightLight;
             this.Name = "RelationshipControl";
             this.Size = new System.Drawing.Size(169, 172);
+            this.Click += new System.EventHandler(this.ShowRelationshipPanel);
             this.ResumeLayout(false);
 
         }

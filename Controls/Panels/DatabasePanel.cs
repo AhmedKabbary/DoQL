@@ -1,4 +1,5 @@
-﻿using System;
+﻿using DoQL.Models;
+using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
@@ -12,6 +13,8 @@ namespace DoQL.Controls.Panels
 {
     public partial class DatabasePanel : UserControl
     {
+        public Database database { get; init; }
+
         public DatabasePanel()
         {
             InitializeComponent();
