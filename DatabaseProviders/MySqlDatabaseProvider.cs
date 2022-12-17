@@ -74,10 +74,6 @@ namespace DoQL.DatabaseProviders
         public string Export(Database db)
         {
             StringBuilder sqlCommands = new StringBuilder();
-            sqlCommands.AppendLine($"CREATE DATABASE {db.Name};");
-            sqlCommands.AppendLine("");
-            sqlCommands.AppendLine($"USE {db.Name};");
-            sqlCommands.AppendLine("");
             foreach (Table t in db.Tables)
             {
                 sqlCommands.AppendLine($"CREATE TABLE {t.Name}(");
