@@ -113,6 +113,7 @@ namespace DoQL.Forms
             this.Name = "DiagramForm";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "Diagram";
+            this.Load += new System.EventHandler(this.ShowDatabasePanel);
             this.contextMenuStrip1.ResumeLayout(false);
             this.ResumeLayout(false);
 
