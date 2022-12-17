@@ -1,10 +1,12 @@
 ﻿using System.Drawing.Drawing2D;
+using DoQL.Forms;
 using DoQL.Interfaces;
 using DoQL.Utilities;
+using Attribute = DoQL.Models.ERD.Attribute;
 
 namespace DoQL.Controls.ERD
 {
-    public partial class AttributeControl : BaseControl, IConnectable
+    public partial class AttributeControl : BaseControl, IConnectable, IDeletable
     {
         public string Id { get; init; }
 
@@ -74,11 +76,20 @@ namespace DoQL.Controls.ERD
 
                 if (currentConnection != null)
                 {
-                    diagramPanel.Connections.Remove(currentConnection);
+                    diagramPanel.RemoveConnection(currentConnection);
                 }
             }
         }
 
         #endregion
+
+        public void Delete()
+        {
+            DiagramForm diagramForm = (ParentForm as DiagramForm);
+            Attribute attribute = diagramForm.Database.Erd.Attributes.Find(a => a.Id == Id);
+            diagramForm.Database.Erd.Attributes.Remove(attribute);
+
+            Parent.Controls.Remove(this);
+        }
     }
 }

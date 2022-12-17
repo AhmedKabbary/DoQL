@@ -1,9 +1,11 @@
-﻿using DoQL.Interfaces;
+﻿using DoQL.Forms;
+using DoQL.Interfaces;
+using DoQL.Models.ERD;
 using DoQL.Utilities;
 
 namespace DoQL.Controls.ERD
 {
-    public partial class EntityControl : BaseControl, IConnectable
+    public partial class EntityControl : BaseControl, IConnectable, IDeletable
     {
         public string Id { get; init; }
 
@@ -66,5 +68,14 @@ namespace DoQL.Controls.ERD
         }
 
         #endregion
+
+        public void Delete()
+        {
+            DiagramForm diagramForm = (ParentForm as DiagramForm);
+            Entity entity = diagramForm.Database.Erd.Entities.Find(e => e.Id == Id);
+            diagramForm.Database.Erd.Entities.Remove(entity);
+
+            Parent.Controls.Remove(this);
+        }
     }
 }

@@ -106,5 +106,15 @@ namespace DoQL.Controls.ERD
         private static bool IsMouseOverControl(Control control) => control.ClientRectangle.Contains(control.PointToClient(Cursor.Position));
 
         #endregion
+
+        #region context menu
+
+        private void deleteToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            if (this is IDeletable deletableControl)
+                deletableControl.Delete();
+        }
+
+        #endregion
     }
 }

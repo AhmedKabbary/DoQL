@@ -30,7 +30,7 @@
         {
             this.label1 = new System.Windows.Forms.Label();
             this.button1 = new System.Windows.Forms.Button();
-            this.button2 = new System.Windows.Forms.Button();
+            this.btnNew = new System.Windows.Forms.Button();
             this.flowLayoutPanel1 = new System.Windows.Forms.FlowLayoutPanel();
             this.SuspendLayout();
             // 
@@ -60,18 +60,19 @@
             this.button1.Text = "Import";
             this.button1.UseVisualStyleBackColor = true;
             // 
-            // button2
+            // btnNew
             // 
-            this.button2.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(17)))), ((int)(((byte)(45)))), ((int)(((byte)(78)))));
-            this.button2.FlatAppearance.BorderSize = 0;
-            this.button2.Font = new System.Drawing.Font("Segoe UI", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
-            this.button2.ForeColor = System.Drawing.Color.White;
-            this.button2.Location = new System.Drawing.Point(664, 32);
-            this.button2.Name = "button2";
-            this.button2.Size = new System.Drawing.Size(96, 42);
-            this.button2.TabIndex = 11;
-            this.button2.Text = "New";
-            this.button2.UseVisualStyleBackColor = false;
+            this.btnNew.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(17)))), ((int)(((byte)(45)))), ((int)(((byte)(78)))));
+            this.btnNew.FlatAppearance.BorderSize = 0;
+            this.btnNew.Font = new System.Drawing.Font("Segoe UI", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
+            this.btnNew.ForeColor = System.Drawing.Color.White;
+            this.btnNew.Location = new System.Drawing.Point(664, 32);
+            this.btnNew.Name = "btnNew";
+            this.btnNew.Size = new System.Drawing.Size(96, 42);
+            this.btnNew.TabIndex = 11;
+            this.btnNew.Text = "New";
+            this.btnNew.UseVisualStyleBackColor = false;
+            this.btnNew.Click += new System.EventHandler(this.btnNew_Click);
             // 
             // flowLayoutPanel1
             // 
@@ -86,10 +87,11 @@
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(836, 506);
             this.Controls.Add(this.flowLayoutPanel1);
-            this.Controls.Add(this.button2);
+            this.Controls.Add(this.btnNew);
             this.Controls.Add(this.button1);
             this.Controls.Add(this.label1);
             this.Name = "DatabasesForm";
+            this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "DatabasesForm";
             this.Load += new System.EventHandler(this.DatabasesForm_Load);
             this.ResumeLayout(false);
@@ -101,7 +103,7 @@
 
         private Label label1;
         private Button button1;
-        private Button button2;
+        private Button btnNew;
         private FlowLayoutPanel flowLayoutPanel1;
     }
 }

@@ -1,6 +1,9 @@
 ﻿using System.Drawing.Drawing2D;
 using DoQL.Controls.ERD;
+using DoQL.Forms;
 using DoQL.Interfaces;
+using DoQL.Models.ERD;
+using Attribute = DoQL.Models.ERD.Attribute;
 
 namespace DoQL.Controls
 {
@@ -95,8 +98,87 @@ namespace DoQL.Controls
             {
                 if (!_activeConnection.IsValidConnection())
                 {
-                    (Parent as DiagramPanel).Connections.Remove(_activeConnection);
+                    (Parent as DiagramPanel).RemoveConnection(_activeConnection);
                     _activeConnection = null;
+                }
+                else
+                {
+                    // TODO add connection to ERD
+                    DiagramForm diagramForm = (ParentForm as DiagramForm);
+                    bool isEntity = _activeConnection.Control1.ConnectableControl is EntityControl || _activeConnection.Control2.ConnectableControl is EntityControl;
+                    bool isAttribute = _activeConnection.Control1.ConnectableControl is AttributeControl || _activeConnection.Control2.ConnectableControl is AttributeControl;
+                    bool isRelationship = _activeConnection.Control1.ConnectableControl is RelationshipControl || _activeConnection.Control2.ConnectableControl is RelationshipControl;
+
+                    if (isEntity && isRelationship)
+                    {
+                        Connection.ControlConnector rc;
+                        Connection.ControlConnector ec;
+                        if (_activeConnection.Control1.ConnectableControl is RelationshipControl)
+                        {
+                            rc = _activeConnection.Control1;
+                            ec = _activeConnection.Control2;
+                        }
+                        else
+                        {
+                            rc = _activeConnection.Control2;
+                            ec = _activeConnection.Control1;
+                        }
+
+                        Relationship relationship = diagramForm.Database.Erd.Relationships.Find(r => r.Id == (rc.ConnectableControl as RelationshipControl).Id);
+                        relationship.Entities.Add(new Relationship.EntityReference
+                        {
+                            EntityId = (ec.ConnectableControl as EntityControl).Id,
+                            EntityConnectorIndex = ec.ConnectorId,
+                            RelationshipConnectorIndex = rc.ConnectorId,
+                        });
+                    }
+                    if (isEntity && isAttribute)
+                    {
+                        Connection.ControlConnector ac;
+                        Connection.ControlConnector ec;
+                        if (_activeConnection.Control1.ConnectableControl is AttributeControl)
+                        {
+                            ac = _activeConnection.Control1;
+                            ec = _activeConnection.Control2;
+                        }
+                        else
+                        {
+                            ac = _activeConnection.Control2;
+                            ec = _activeConnection.Control1;
+                        }
+
+                        Entity entity = diagramForm.Database.Erd.Entities.Find(e => e.Id == (ec.ConnectableControl as EntityControl).Id);
+                        entity.AttributesReferences.Add(new Attribute.Reference
+                        {
+                            AttributeId = (ac.ConnectableControl as AttributeControl).Id,
+                            AttributeConnectorIndex = ac.ConnectorId,
+                            ParentConnectorIndex = ec.ConnectorId,
+                        });
+                    }
+                    if (isRelationship && isAttribute)
+                    {
+                        Connection.ControlConnector ac;
+                        Connection.ControlConnector rc;
+                        if (_activeConnection.Control1.ConnectableControl is AttributeControl)
+                        {
+                            ac = _activeConnection.Control1;
+                            rc = _activeConnection.Control2;
+                        }
+                        else
+                        {
+                            ac = _activeConnection.Control2;
+                            rc = _activeConnection.Control1;
+                        }
+
+
+                        Relationship relationship = diagramForm.Database.Erd.Relationships.Find(r => r.Id == (rc.ConnectableControl as RelationshipControl).Id);
+                        relationship.Attributes.Add(new Attribute.Reference
+                        {
+                            AttributeId = (ac.ConnectableControl as AttributeControl).Id,
+                            AttributeConnectorIndex = ac.ConnectorId,
+                            ParentConnectorIndex = rc.ConnectorId,
+                        });
+                    }
                 }
             }
 

@@ -1,10 +1,12 @@
 ﻿using System.Drawing.Drawing2D;
+using DoQL.Forms;
 using DoQL.Interfaces;
+using DoQL.Models.ERD;
 using DoQL.Utilities;
 
 namespace DoQL.Controls.ERD
 {
-    public partial class RelationshipControl : BaseControl, IConnectable
+    public partial class RelationshipControl : BaseControl, IConnectable, IDeletable
     {
         public string Id { get; init; }
 
@@ -80,12 +82,13 @@ namespace DoQL.Controls.ERD
                     .Where(c => c.Control1.ConnectableControl == this || c.Control2.ConnectableControl == this)
                     .Where(c => c.Control1.ConnectableControl is EntityControl || c.Control2.ConnectableControl is EntityControl);
 
+                // in case it connects with the same entity again
                 Connection duplicateConnection = currentConnections.FirstOrDefault(c => c.Control1.ConnectableControl == entityControl || c.Control2.ConnectableControl == entityControl);
                 if (duplicateConnection != null)
-                    diagramPanel.Connections.Remove(duplicateConnection);
+                    diagramPanel.RemoveConnection(duplicateConnection);
 
                 if (currentConnections.Count() == 2)
-                    diagramPanel.Connections.Remove(currentConnections.First());
+                    diagramPanel.RemoveConnection(currentConnections.First());
             }
 
             if (connectableControl is AttributeControl attributeControl)
@@ -95,5 +98,14 @@ namespace DoQL.Controls.ERD
         }
 
         #endregion
+
+        public void Delete()
+        {
+            DiagramForm diagramForm = (ParentForm as DiagramForm);
+            Relationship relationship = diagramForm.Database.Erd.Relationships.Find(r => r.Id == Id);
+            diagramForm.Database.Erd.Relationships.Remove(relationship);
+
+            Parent.Controls.Remove(this);
+        }
     }
 }

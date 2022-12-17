@@ -12,14 +12,30 @@ namespace DoQL.Forms
 
         private void DatabasesForm_Load(object sender, EventArgs e)
         {
-            List<Database> list1 = new List<Database>();
+            LoadDatabases();
+        }
+
+        private void LoadDatabases()
+        {
+            List<Database> databases = DatabasesManager.GetInstance().LoadDatabases();
             flowLayoutPanel1.Controls.Clear();
-            foreach (Database i in list1)
+            foreach (Database database in databases)
             {
                 DatabaseCard userControl = new DatabaseCard();
-                userControl.Database = i;
+                userControl.Database = database;
                 flowLayoutPanel1.Controls.Add(userControl);
             }
+        }
+
+        private void btnNew_Click(object sender, EventArgs e)
+        {
+            NewDatabaseForm newDatabaseForm = new NewDatabaseForm();
+            DialogResult result = newDatabaseForm.ShowDialog();
+            if (result == DialogResult.OK)
+            {
+                LoadDatabases();
+            }
+
         }
     }
 }

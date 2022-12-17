@@ -10,6 +10,7 @@ namespace DoQL.Models
         public DateTime Created { get; set; }
         public DateTime LastModified { get; set; }
         public string Password { get; set; }
+        public bool IsPasswordProtected { get; set; }
         public List<Table> Tables { get; set; }
         public EntityRelationshipDiagram Erd { get; set; }
 

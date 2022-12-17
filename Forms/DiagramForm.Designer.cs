@@ -49,7 +49,7 @@ namespace DoQL.Forms
             this.diagramPanel.Dock = System.Windows.Forms.DockStyle.Fill;
             this.diagramPanel.Location = new System.Drawing.Point(0, 0);
             this.diagramPanel.Name = "diagramPanel";
-            this.diagramPanel.Size = new System.Drawing.Size(782, 453);
+            this.diagramPanel.Size = new System.Drawing.Size(1182, 753);
             this.diagramPanel.TabIndex = 0;
             // 
             // contextMenuStrip1
@@ -90,7 +90,7 @@ namespace DoQL.Forms
             this.sidePanel.Dock = System.Windows.Forms.DockStyle.Left;
             this.sidePanel.Location = new System.Drawing.Point(0, 0);
             this.sidePanel.Name = "sidePanel";
-            this.sidePanel.Size = new System.Drawing.Size(300, 453);
+            this.sidePanel.Size = new System.Drawing.Size(300, 753);
             this.sidePanel.TabIndex = 1;
             // 
             // button1
@@ -107,10 +107,9 @@ namespace DoQL.Forms
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 20F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(782, 453);
+            this.ClientSize = new System.Drawing.Size(1182, 753);
             this.Controls.Add(this.sidePanel);
             this.Controls.Add(this.diagramPanel);
-            this.DoubleBuffered = true;
             this.Name = "DiagramForm";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "Diagram";

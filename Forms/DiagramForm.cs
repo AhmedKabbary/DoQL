@@ -1,8 +1,8 @@
+using DoQL.Controls;
 using DoQL.Controls.ERD;
 using DoQL.DatabaseProviders;
 using DoQL.Models;
 using DoQL.Models.ERD;
-using System.Text.Json;
 using Attribute = DoQL.Models.ERD.Attribute;
 
 namespace DoQL.Forms
@@ -17,27 +17,33 @@ namespace DoQL.Forms
         {
             Id = id;
             InitializeComponent();
+
+            Database = DatabasesManager.GetInstance().LoadDatabase(Id);
+            if (Database.IsPasswordProtected)
+            {
+                EnterPasswordForm enterPasswordForm = new EnterPasswordForm();
+                DialogResult result = enterPasswordForm.ShowDialog();
+                if (result == DialogResult.OK)
+                {
+                    try
+                    {
+                        Database = DatabasesManager.GetInstance().LoadDatabase(Id, enterPasswordForm.Password);
+                    }
+                    catch (Exception)
+                    {
+                        MessageBox.Show("Incorrect password");
+                        Close();
+                    }
+                }
+                else Close();
+            }
+
+            DatabaseProvider = DatabaseProvidersFactory.GetDatabaseProvider(Database.Type);
+            Text = Database.Name;
         }
 
         protected override void OnLoad(EventArgs e)
         {
-            Database = new Database
-            {
-                Id = "id",
-                Name = "Clinic",
-                Type = DatabaseType.SQLite,
-                Created = DateTime.Now,
-                LastModified = DateTime.Now,
-                Tables = new List<Table>(),
-                Erd = new EntityRelationshipDiagram(),
-
-            };
-            DatabaseProvider = DatabaseProvidersFactory.GetDatabaseProvider(Database.Type);
-
-            // TODO
-            // load database by id from the DatabasesManager
-            // add controls on panel
-
             base.OnLoad(e);
         }
 
@@ -59,7 +65,7 @@ namespace DoQL.Forms
             );
 
             var control = new EntityControl() { Id = id };
-            control.Location = PointToClient(location);
+            control.Location = diagramPanel.PointToClient(location);
             diagramPanel.Controls.Add(control);
         }
 
@@ -79,7 +85,7 @@ namespace DoQL.Forms
             );
 
             var control = new AttributeControl() { Id = id };
-            control.Location = PointToClient(location);
+            control.Location = diagramPanel.PointToClient(location);
             diagramPanel.Controls.Add(control);
         }
 
@@ -99,18 +105,20 @@ namespace DoQL.Forms
             );
 
             var control = new RelationshipControl() { Id = id };
-            control.Location = PointToClient(location);
+            control.Location = diagramPanel.PointToClient(location);
             diagramPanel.Controls.Add(control);
         }
 
         #endregion
 
+        public void SaveConnectionsIntoERD()
+        {
+
+        }
+
         private void button1_Click(object sender, EventArgs e)
         {
-            var content = JsonSerializer.Serialize(Database);
-            using var stream = File.Create("debug.json");
-            using var writer = new StreamWriter(stream);
-            writer.Write(content);
+            DatabasesManager.GetInstance().SaveDatabase(Database);
         }
     }
 }

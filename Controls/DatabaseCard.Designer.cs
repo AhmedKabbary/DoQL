@@ -82,9 +82,11 @@
             this.Controls.Add(this.label4);
             this.Controls.Add(this.DatabaseType);
             this.Controls.Add(this.DatabaseName);
+            this.Cursor = System.Windows.Forms.Cursors.Hand;
             this.Name = "DatabaseCard";
             this.Size = new System.Drawing.Size(232, 162);
             this.Load += new System.EventHandler(this.DatabaseCard_Load);
+            this.Click += new System.EventHandler(this.OpenDiagram);
             this.ResumeLayout(false);
             this.PerformLayout();
 

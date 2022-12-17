@@ -10,7 +10,9 @@ namespace DoQL
     class DatabasesManager : IDatabasesManager
     {
         private static DatabasesManager _instance = null;
-        private DatabasesManager() { }
+        private DatabasesManager() {
+            Directory.CreateDirectory(_dataBasesFolderPath);
+        }
         public static DatabasesManager GetInstance()
         {
             if (_instance == null)
@@ -40,10 +42,9 @@ namespace DoQL
 
         public Database LoadDatabase(string id, string Password = null)
         {
-            LoadedDatabaseIndex loadedDatabaseIndex =
-             new LoadedDatabaseIndex();
-            EntityRelationshipDiagram loadedDatabaseErd =
-            new EntityRelationshipDiagram();
+            LoadedDatabaseIndex loadedDatabaseIndex = new LoadedDatabaseIndex();
+            EntityRelationshipDiagram loadedDatabaseErd =  new EntityRelationshipDiagram();
+
             string folderToLoadPath = Path.Combine(_dataBasesFolderPath, id);
             if (Directory.Exists(folderToLoadPath))
             {
@@ -83,6 +84,7 @@ namespace DoQL
                 Type = loadedDatabaseIndex.Type,
                 Created = loadedDatabaseIndex.Created,
                 LastModified = loadedDatabaseIndex.LastModified,
+                IsPasswordProtected = loadedDatabaseIndex.IsPasswordProtected,
                 Erd = loadedDatabaseErd,
             };
             return loadedDataBase;
@@ -108,9 +110,9 @@ namespace DoQL
             string erdFilePath = Path.Combine(folderpath, "Erd.json");
 
             Directory.CreateDirectory(folderpath);
-            using var index = new FileStream(infoFilePath, FileMode.OpenOrCreate, FileAccess.Write);
+            using var index = new FileStream(infoFilePath, FileMode.Create, FileAccess.Write);
             JsonSerializer.Serialize(index, indexFile);
-            using var erd = new FileStream(erdFilePath, FileMode.OpenOrCreate, FileAccess.Write);
+            using var erd = new FileStream(erdFilePath, FileMode.Create, FileAccess.Write);
             JsonSerializer.Serialize(erd, db.Erd);
             erd.Dispose();
 

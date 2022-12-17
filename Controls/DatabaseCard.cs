@@ -17,7 +17,7 @@ namespace DoQL.Controls
             set
             {
                 _id = value.Id;
-                DatabaseName.Text = value.Id;
+                DatabaseName.Text = value.Name;
                 DatabaseType.Text = value.Type.ToString();
                 LastModified.Text = value.LastModified.ToString();
             }
