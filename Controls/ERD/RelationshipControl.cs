@@ -55,7 +55,7 @@ namespace DoQL.Controls.ERD
             if (IsHandleCreated)
             {
                 Database db = (ParentForm as DiagramForm).Database;
-                db.Erd.Relationships.Find(r => r.Id == Id).Position = new Point(Left, Top);
+                db.Erd.Relationships.Find(r => r.Id == Id).Position = Location;
             }
             base.OnLocationChanged(e);
         }
@@ -112,11 +112,21 @@ namespace DoQL.Controls.ERD
 
         public void Delete()
         {
+            // delete connections
+            DiagramPanel diagramPanel = (Parent as DiagramPanel);
+            var oldConnections = diagramPanel.Connections.Where(connection => connection.Control1.ConnectableControl == this || connection.Control2.ConnectableControl == this);
+            foreach (var oldConnection in oldConnections.ToList())
+            {
+                diagramPanel.RemoveConnection(oldConnection);
+            }
+
             DiagramForm diagramForm = (ParentForm as DiagramForm);
             Relationship relationship = diagramForm.Database.Erd.Relationships.Find(r => r.Id == Id);
             diagramForm.Database.Erd.Relationships.Remove(relationship);
 
             Parent.Controls.Remove(this);
+
+            diagramPanel.RedrawCardinalities();
         }
     }
 }
