@@ -33,7 +33,7 @@
             // AttributeControl
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(9F, 23F);
-            this.BackColor = System.Drawing.SystemColors.Info;
+            this.BackColor = System.Drawing.SystemColors.ControlLightLight;
             this.Font = new System.Drawing.Font("Segoe UI", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
             this.Name = "AttributeControl";
             this.Click += new System.EventHandler(this.showAttributePanel);

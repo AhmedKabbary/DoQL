@@ -42,7 +42,7 @@
             // 
             // listView1
             // 
-            this.listView1.BackColor = System.Drawing.SystemColors.ControlLight;
+            this.listView1.BackColor = System.Drawing.Color.Snow;
             this.listView1.BorderStyle = System.Windows.Forms.BorderStyle.None;
             this.listView1.Dock = System.Windows.Forms.DockStyle.Fill;
             this.listView1.Location = new System.Drawing.Point(0, 0);
@@ -54,7 +54,7 @@
             // label1
             // 
             this.label1.AutoSize = true;
-            this.label1.BackColor = System.Drawing.SystemColors.ControlLight;
+            this.label1.BackColor = System.Drawing.Color.Snow;
             this.label1.CausesValidation = false;
             this.label1.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.label1.Font = new System.Drawing.Font("Tahoma", 13.8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
@@ -80,7 +80,7 @@
             // label3
             // 
             this.label3.AutoSize = true;
-            this.label3.BackColor = System.Drawing.SystemColors.ControlLight;
+            this.label3.BackColor = System.Drawing.Color.Snow;
             this.label3.CausesValidation = false;
             this.label3.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.label3.Font = new System.Drawing.Font("Tahoma", 13.8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
@@ -97,7 +97,7 @@
             // 
             this.databaseType.AutoCompleteMode = System.Windows.Forms.AutoCompleteMode.SuggestAppend;
             this.databaseType.AutoCompleteSource = System.Windows.Forms.AutoCompleteSource.ListItems;
-            this.databaseType.BackColor = System.Drawing.Color.WhiteSmoke;
+            this.databaseType.BackColor = System.Drawing.Color.Snow;
             this.databaseType.Cursor = System.Windows.Forms.Cursors.Hand;
             this.databaseType.Font = new System.Drawing.Font("Tahoma", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
             this.databaseType.FormattingEnabled = true;
@@ -115,7 +115,7 @@
             // passwordLable
             // 
             this.passwordLable.AutoSize = true;
-            this.passwordLable.BackColor = System.Drawing.SystemColors.ControlLight;
+            this.passwordLable.BackColor = System.Drawing.Color.Snow;
             this.passwordLable.CausesValidation = false;
             this.passwordLable.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.passwordLable.Font = new System.Drawing.Font("Tahoma", 13.8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);

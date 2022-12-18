@@ -82,9 +82,9 @@
             this.sqlRadioBtn.Font = new System.Drawing.Font("Tahoma", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
             this.sqlRadioBtn.Location = new System.Drawing.Point(27, 156);
             this.sqlRadioBtn.Name = "sqlRadioBtn";
-            this.sqlRadioBtn.Size = new System.Drawing.Size(159, 28);
+            this.sqlRadioBtn.Size = new System.Drawing.Size(168, 28);
             this.sqlRadioBtn.TabIndex = 3;
-            this.sqlRadioBtn.Text = "SQL command";
+            this.sqlRadioBtn.Text = "SQL commands";
             this.sqlRadioBtn.UseVisualStyleBackColor = true;
             // 
             // ExportForm

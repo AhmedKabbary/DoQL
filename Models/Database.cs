@@ -70,6 +70,21 @@ namespace DoQL.Models
                         var firstEntityId = relationship.Entities[0].EntityId;
                         var secondEntityId = relationship.Entities[1].EntityId;
 
+                        //
+                        var secondEntity = Erd.Entities.Find(e => e.Id == secondEntityId);
+                        var secondEntityAttachedAttributes = Erd.Attributes.Where(a => secondEntity.AttributesReferences.Any(b => b.AttributeId == a.Id));
+                        columns.AddRange(secondEntityAttachedAttributes.Select(a => new Column
+                        {
+                            Id = a.Id,
+                            Name = secondEntity.TableName + "_" + a.ColumnName,
+                            DataType = a.DataType,
+                            NotNull = a.NotNull,
+                            Primary = false,
+                            Unique = a.Unique,
+                            AutoIncrement = false,
+                        }));
+                        //
+
                         var firstTable = Tables.Find(e => e.Id == firstEntityId);
                         firstTable.Columns.AddRange(columns);
                         firstTable.ForiegnReferences.Add(new ForiegnReference
@@ -99,6 +114,36 @@ namespace DoQL.Models
                         // add the two attached entities as foreign
                         var firstEntityId = relationship.Entities[0].EntityId;
                         var secondEntityId = relationship.Entities[1].EntityId;
+
+                        //
+                        var firstEntity = Erd.Entities.Find(e => e.Id == firstEntityId);
+                        var secondEntity = Erd.Entities.Find(e => e.Id == secondEntityId);
+
+                        var firstEntityAttachedAttributes = Erd.Attributes.Where(a => firstEntity.AttributesReferences.Any(b => b.AttributeId == a.Id));
+                        var secondEntityAttachedAttributes = Erd.Attributes.Where(a => secondEntity.AttributesReferences.Any(b => b.AttributeId == a.Id));
+
+                        columns.AddRange(firstEntityAttachedAttributes.Select(a => new Column
+                        {
+                            Id = a.Id,
+                            Name = firstEntity.TableName + "_" + a.ColumnName,
+                            DataType = a.DataType,
+                            NotNull = a.NotNull,
+                            Primary = false,
+                            Unique = a.Unique,
+                            AutoIncrement = false,
+                        }));
+
+                        columns.AddRange(secondEntityAttachedAttributes.Select(a => new Column
+                        {
+                            Id = a.Id,
+                            Name = secondEntity.TableName + "_" + a.ColumnName,
+                            DataType = a.DataType,
+                            NotNull = a.NotNull,
+                            Primary = false,
+                            Unique = a.Unique,
+                            AutoIncrement = false,
+                        }));
+                        //
 
                         Tables.Add(new Table
                         {
@@ -140,6 +185,21 @@ namespace DoQL.Models
                         // add foreign reference to the N side
                         var firstEntityId = relationship.Entities.Find(e => e.Cardinality == Relationship.Cardinality.Many).EntityId;
                         var secondEntityId = relationship.Entities.Find(e => e.Cardinality == Relationship.Cardinality.One).EntityId;
+
+                        //
+                        var secondEntity = Erd.Entities.Find(e => e.Id == secondEntityId);
+                        var secondEntityAttachedAttributes = Erd.Attributes.Where(a => secondEntity.AttributesReferences.Any(b => b.AttributeId == a.Id));
+                        columns.AddRange(secondEntityAttachedAttributes.Select(a => new Column
+                        {
+                            Id = a.Id,
+                            Name = secondEntity.TableName + "_" + a.ColumnName,
+                            DataType = a.DataType,
+                            NotNull = a.NotNull,
+                            Primary = false,
+                            Unique = a.Unique,
+                            AutoIncrement = false,
+                        }));
+                        //
 
                         var firstTable = Tables.Find(e => e.Id == firstEntityId);
                         firstTable.Columns.AddRange(columns);

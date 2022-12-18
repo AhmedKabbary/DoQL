@@ -37,6 +37,7 @@
             // AttchdName
             // 
             this.AttchdName.AutoSize = true;
+            this.AttchdName.BackColor = System.Drawing.Color.Transparent;
             this.AttchdName.Font = new System.Drawing.Font("Tahoma", 10.2F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
             this.AttchdName.ForeColor = System.Drawing.Color.Black;
             this.AttchdName.Location = new System.Drawing.Point(20, 5);
@@ -96,7 +97,7 @@
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 20F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.BackColor = System.Drawing.SystemColors.ControlLight;
+            this.BackColor = System.Drawing.Color.Snow;
             this.Controls.Add(this.label4);
             this.Controls.Add(this.comboBox1);
             this.Controls.Add(this.AttchdName);
