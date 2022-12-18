@@ -1,5 +1,4 @@
 ﻿using DoQL.Models;
-using DoQL.DatabaseProviders;
 
 namespace DoQL.Forms
 {
@@ -32,13 +31,6 @@ namespace DoQL.Forms
 
         private void btnSave_Click(object sender, EventArgs e)
         {
-            DatabaseProvider databaseProvider = DatabaseProvidersFactory.GetDatabaseProvider(databaseType);
-            if (!databaseProvider.ValidateTableName(txtName.Text))
-            {
-                MessageBox.Show("Invalid table name");
-                return;
-            }
-
             Builder.SetName(txtName.Text);
             Builder.SetType(databaseType);
             Builder.SetPassword(txtPassword.Text == string.Empty ? null : txtPassword.Text);
