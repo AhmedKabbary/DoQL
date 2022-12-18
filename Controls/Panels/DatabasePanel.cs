@@ -21,9 +21,6 @@ namespace DoQL.Controls.Panels
             if (Database.IsPasswordProtected == false)
             {
                 passwordButton.Text = "Set password";
-                passwordButton.Visible = false;
-                passwordLable.Visible = false;
-                databasePassword.Visible = false;
             }
             else
                 passwordButton.Text = "Change password";
