@@ -29,7 +29,7 @@ namespace DoQL.Controls.ERD
             if (_selected)
             {
                 Move(new Point(e.X - _point.X, e.Y - _point.Y));
-                (Parent as DiagramPanel).RedrawCardinalities();
+                (Parent as DiagramPanel).RedrawConnections();
             }
             base.OnMouseMove(e);
         }

@@ -61,7 +61,7 @@ namespace DoQL.Controls
             if (_activeConnection != null)
             {
                 _activeConnection.Control2.Position = MapPointToParent(e.Location);
-                (Parent as DiagramPanel).RedrawCardinalities();
+                (Parent as DiagramPanel).RedrawConnections();
             }
 
             // drop effect on other connectors when hovered
@@ -91,6 +91,10 @@ namespace DoQL.Controls
                 _activeHoveredConnector.ConnectableControl.Connect(ConnectableControl);
                 _activeConnection.Control2.ConnectableControl = _activeHoveredConnector.ConnectableControl;
                 _activeConnection.Control2.ConnectorId = _activeHoveredConnector.Index;
+
+                // to make relationship panel get the add event on a valid connection
+                (Parent as DiagramPanel).Connections.Remove(_activeConnection);
+                (Parent as DiagramPanel).Connections.Add(_activeConnection);
             }
 
             // remove the connection line if not connected with another connector
@@ -182,7 +186,7 @@ namespace DoQL.Controls
                 }
             }
 
-            (Parent as DiagramPanel).RedrawCardinalities();
+            (Parent as DiagramPanel).RedrawConnections();
             (Parent as DiagramPanel).HideAllConnectors();
             base.OnMouseUp(e);
         }

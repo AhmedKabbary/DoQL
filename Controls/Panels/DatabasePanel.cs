@@ -73,7 +73,7 @@ namespace DoQL.Controls.Panels
             var form = (ParentForm as DiagramForm);
             if (form.DatabaseProvider is ISQLExporter exporter)
             {
-                form.Database.SyncErdToTables();
+                form.Database.SyncErdWithTables();
                 string commands = exporter.Export(form.Database);
                 var result = saveFileDialog1.ShowDialog();
                 if (result == DialogResult.OK)

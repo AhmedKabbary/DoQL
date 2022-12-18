@@ -122,7 +122,7 @@ namespace DoQL.Controls
                     movableControl.Move(new Point(e.X - _point.X, e.Y - _point.Y));
                 }
                 _point = e.Location;
-                RedrawCardinalities();
+                RedrawConnections();
             }
             base.OnMouseMove(e);
         }
@@ -140,7 +140,7 @@ namespace DoQL.Controls
 
         public ObservableCollection<Connection> Connections { get; set; }
 
-        public void RedrawCardinalities() => Invalidate();
+        public void RedrawConnections() => Invalidate();
 
         protected override void OnPaint(PaintEventArgs e)
         {

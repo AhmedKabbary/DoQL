@@ -20,7 +20,9 @@ namespace DoQL.Models
             Erd = new EntityRelationshipDiagram();
         }
 
-        public void SyncErdToTables()
+
+
+        public void SyncErdWithTables()
         {
             Tables.Clear();
             foreach (var entity in Erd.Entities)
@@ -73,6 +75,8 @@ namespace DoQL.Models
                         firstTable.ForiegnReferences.Add(new ForiegnReference
                         {
                             TableId = secondEntityId,
+                            OnUpdateAction = relationship.UpdateAction,
+                            OnDeleteAction = relationship.DeleteAction,
                         });
                     }
                     else if (relationship.IsManyToMany())
@@ -103,8 +107,16 @@ namespace DoQL.Models
                             Columns = columns,
                             ForiegnReferences = new List<ForiegnReference>
                             {
-                                new ForiegnReference {TableId = firstEntityId},
-                                new ForiegnReference {TableId = secondEntityId},
+                                new ForiegnReference {
+                                    TableId = firstEntityId,
+                                    OnUpdateAction = relationship.UpdateAction,
+                                    OnDeleteAction = relationship.DeleteAction,
+                                },
+                                new ForiegnReference {
+                                    TableId = secondEntityId,
+                                    OnUpdateAction = relationship.UpdateAction,
+                                    OnDeleteAction = relationship.DeleteAction,
+                                },
                             }
                         });
                     }
@@ -134,6 +146,8 @@ namespace DoQL.Models
                         firstTable.ForiegnReferences.Add(new ForiegnReference
                         {
                             TableId = secondEntityId,
+                            OnUpdateAction = relationship.UpdateAction,
+                            OnDeleteAction = relationship.DeleteAction,
                         });
                     }
                 }

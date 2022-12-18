@@ -1,6 +1,6 @@
 ﻿namespace DoQL.Controls
 {
-    partial class AttachedAttribute
+    partial class AttachedEntityControl
     {
         /// <summary> 
         /// Required designer variable.
@@ -83,15 +83,16 @@
             this.comboBox1.FormattingEnabled = true;
             this.comboBox1.Items.AddRange(new object[] {
             "1",
-            "M"});
+            "N"});
             this.comboBox1.Location = new System.Drawing.Point(31, 81);
             this.comboBox1.Margin = new System.Windows.Forms.Padding(20, 3, 3, 15);
             this.comboBox1.Name = "comboBox1";
             this.comboBox1.Size = new System.Drawing.Size(89, 28);
             this.comboBox1.TabIndex = 32;
+            this.comboBox1.Text = "1";
             this.comboBox1.SelectedIndexChanged += new System.EventHandler(this.comboBox1_SelectedIndexChanged);
             // 
-            // AttachedAttribute
+            // AttachedEntityControl
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 20F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
@@ -100,7 +101,7 @@
             this.Controls.Add(this.comboBox1);
             this.Controls.Add(this.AttchdName);
             this.Controls.Add(this.DeleteAttchd);
-            this.Name = "AttachedAttribute";
+            this.Name = "AttachedEntityControl";
             this.Size = new System.Drawing.Size(203, 116);
             this.ResumeLayout(false);
             this.PerformLayout();

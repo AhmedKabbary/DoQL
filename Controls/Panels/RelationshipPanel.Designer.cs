@@ -37,8 +37,6 @@
             this.deleteAction = new System.Windows.Forms.ComboBox();
             this.label3 = new System.Windows.Forms.Label();
             this.flowLayoutPanel1 = new System.Windows.Forms.FlowLayoutPanel();
-            this.attachedAttribute1 = new DoQL.Controls.AttachedAttribute();
-            this.attachedAttribute2 = new DoQL.Controls.AttachedAttribute();
             this.TblNameLbl = new System.Windows.Forms.Label();
             this.TableName = new System.Windows.Forms.TextBox();
             this.flowLayoutPanel1.SuspendLayout();
@@ -176,8 +174,6 @@
             // flowLayoutPanel1
             // 
             this.flowLayoutPanel1.BackColor = System.Drawing.SystemColors.ControlLight;
-            this.flowLayoutPanel1.Controls.Add(this.attachedAttribute1);
-            this.flowLayoutPanel1.Controls.Add(this.attachedAttribute2);
             this.flowLayoutPanel1.Controls.Add(this.TblNameLbl);
             this.flowLayoutPanel1.Controls.Add(this.TableName);
             this.flowLayoutPanel1.FlowDirection = System.Windows.Forms.FlowDirection.TopDown;
@@ -185,23 +181,7 @@
             this.flowLayoutPanel1.Name = "flowLayoutPanel1";
             this.flowLayoutPanel1.Size = new System.Drawing.Size(289, 352);
             this.flowLayoutPanel1.TabIndex = 78;
-            this.flowLayoutPanel1.ControlRemoved += new System.Windows.Forms.ControlEventHandler(this.HideTable);
-            // 
-            // attachedAttribute1
-            // 
-            this.attachedAttribute1.BackColor = System.Drawing.SystemColors.ControlLight;
-            this.attachedAttribute1.Location = new System.Drawing.Point(3, 3);
-            this.attachedAttribute1.Name = "attachedAttribute1";
-            this.attachedAttribute1.Size = new System.Drawing.Size(254, 114);
-            this.attachedAttribute1.TabIndex = 0;
-            // 
-            // attachedAttribute2
-            // 
-            this.attachedAttribute2.BackColor = System.Drawing.SystemColors.ControlLight;
-            this.attachedAttribute2.Location = new System.Drawing.Point(3, 123);
-            this.attachedAttribute2.Name = "attachedAttribute2";
-            this.attachedAttribute2.Size = new System.Drawing.Size(254, 118);
-            this.attachedAttribute2.TabIndex = 79;
+            this.flowLayoutPanel1.ControlRemoved += new System.Windows.Forms.ControlEventHandler(this.HideTableNameControls);
             // 
             // TblNameLbl
             // 
@@ -211,7 +191,7 @@
             this.TblNameLbl.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.TblNameLbl.Font = new System.Drawing.Font("Tahoma", 13.8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
             this.TblNameLbl.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(17)))), ((int)(((byte)(45)))), ((int)(((byte)(78)))));
-            this.TblNameLbl.Location = new System.Drawing.Point(0, 247);
+            this.TblNameLbl.Location = new System.Drawing.Point(0, 3);
             this.TblNameLbl.Margin = new System.Windows.Forms.Padding(0, 3, 0, 20);
             this.TblNameLbl.Name = "TblNameLbl";
             this.TblNameLbl.Padding = new System.Windows.Forms.Padding(2, 2, 3, 3);
@@ -223,7 +203,7 @@
             // TableName
             // 
             this.TableName.Font = new System.Drawing.Font("Tahoma", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
-            this.TableName.Location = new System.Drawing.Point(7, 300);
+            this.TableName.Location = new System.Drawing.Point(7, 56);
             this.TableName.Margin = new System.Windows.Forms.Padding(7, 0, 0, 20);
             this.TableName.Name = "TableName";
             this.TableName.Size = new System.Drawing.Size(275, 32);
@@ -264,8 +244,6 @@
         private ComboBox deleteAction;
         private Label label3;
         private FlowLayoutPanel flowLayoutPanel1;
-        private AttachedAttribute attachedAttribute1;
-        private AttachedAttribute attachedAttribute2;
         private Label TblNameLbl;
         private TextBox TableName;
     }

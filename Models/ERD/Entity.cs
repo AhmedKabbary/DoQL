@@ -3,8 +3,8 @@
     public class Entity
     {
         public string Id { get; set; }
-        public string DisplayName { get; set; }
-        public string TableName { get; set; }
+        public string DisplayName { get; set; } = string.Empty;
+        public string TableName { get; set; } = string.Empty;
         public Point Position { get; set; }
         public List<Attribute.Reference> AttributesReferences { get; set; }
 

@@ -119,7 +119,12 @@ namespace DoQL.Forms
 
         #endregion
 
-        #region side panel
+        #region panels
+
+        public DiagramPanel DiagramPanel
+        {
+            get => diagramPanel;
+        }
 
         public Panel SidePanel
         {

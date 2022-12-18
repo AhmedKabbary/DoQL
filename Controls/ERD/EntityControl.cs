@@ -102,7 +102,7 @@ namespace DoQL.Controls.ERD
 
             Parent.Controls.Remove(this);
 
-            diagramPanel.RedrawCardinalities();
+            diagramPanel.RedrawConnections();
         }
 
         private void ShowEntityPanel(object sender, EventArgs e)
