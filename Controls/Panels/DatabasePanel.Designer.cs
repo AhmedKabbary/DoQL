@@ -157,12 +157,14 @@
             // btnExport
             // 
             this.btnExport.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
-            this.btnExport.BackColor = System.Drawing.Color.RoyalBlue;
+            this.btnExport.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(0)))), ((int)(((byte)(64)))));
             this.btnExport.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.btnExport.Font = new System.Drawing.Font("Segoe UI", 10.2F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
             this.btnExport.ForeColor = System.Drawing.Color.White;
-            this.btnExport.Location = new System.Drawing.Point(271, 454);
+            this.btnExport.Location = new System.Drawing.Point(261, 439);
             this.btnExport.Name = "btnExport";
-            this.btnExport.Size = new System.Drawing.Size(94, 29);
+            this.btnExport.Padding = new System.Windows.Forms.Padding(2);
+            this.btnExport.Size = new System.Drawing.Size(100, 40);
             this.btnExport.TabIndex = 16;
             this.btnExport.Text = "Export";
             this.btnExport.UseVisualStyleBackColor = false;
