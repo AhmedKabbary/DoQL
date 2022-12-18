@@ -33,7 +33,7 @@
             this.databaseName = new System.Windows.Forms.TextBox();
             this.label3 = new System.Windows.Forms.Label();
             this.databaseType = new System.Windows.Forms.ComboBox();
-            this.label2 = new System.Windows.Forms.Label();
+            this.passwordLable = new System.Windows.Forms.Label();
             this.databasePassword = new System.Windows.Forms.TextBox();
             this.passwordButton = new System.Windows.Forms.Button();
             this.btnExport = new System.Windows.Forms.Button();
@@ -112,21 +112,21 @@
             this.databaseType.TabIndex = 11;
             this.databaseType.SelectedIndexChanged += new System.EventHandler(this.ChangeDatabaseType);
             // 
-            // label2
+            // passwordLable
             // 
-            this.label2.AutoSize = true;
-            this.label2.BackColor = System.Drawing.SystemColors.ControlLight;
-            this.label2.CausesValidation = false;
-            this.label2.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.label2.Font = new System.Drawing.Font("Tahoma", 13.8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
-            this.label2.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(17)))), ((int)(((byte)(45)))), ((int)(((byte)(78)))));
-            this.label2.Location = new System.Drawing.Point(24, 251);
-            this.label2.Margin = new System.Windows.Forms.Padding(0, 3, 0, 20);
-            this.label2.Name = "label2";
-            this.label2.Padding = new System.Windows.Forms.Padding(2, 2, 3, 3);
-            this.label2.Size = new System.Drawing.Size(136, 33);
-            this.label2.TabIndex = 13;
-            this.label2.Text = "Password:";
+            this.passwordLable.AutoSize = true;
+            this.passwordLable.BackColor = System.Drawing.SystemColors.ControlLight;
+            this.passwordLable.CausesValidation = false;
+            this.passwordLable.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.passwordLable.Font = new System.Drawing.Font("Tahoma", 13.8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
+            this.passwordLable.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(17)))), ((int)(((byte)(45)))), ((int)(((byte)(78)))));
+            this.passwordLable.Location = new System.Drawing.Point(24, 251);
+            this.passwordLable.Margin = new System.Windows.Forms.Padding(0, 3, 0, 20);
+            this.passwordLable.Name = "passwordLable";
+            this.passwordLable.Padding = new System.Windows.Forms.Padding(2, 2, 3, 3);
+            this.passwordLable.Size = new System.Drawing.Size(136, 33);
+            this.passwordLable.TabIndex = 13;
+            this.passwordLable.Text = "Password:";
             // 
             // databasePassword
             // 
@@ -177,7 +177,7 @@
             this.Controls.Add(this.databaseName);
             this.Controls.Add(this.label3);
             this.Controls.Add(this.databaseType);
-            this.Controls.Add(this.label2);
+            this.Controls.Add(this.passwordLable);
             this.Controls.Add(this.databasePassword);
             this.Controls.Add(this.passwordButton);
             this.Controls.Add(this.listView1);
@@ -196,7 +196,7 @@
         private TextBox databaseName;
         private Label label3;
         private ComboBox databaseType;
-        private Label label2;
+        private Label passwordLable;
         private TextBox databasePassword;
         private Button passwordButton;
         private Button btnExport;

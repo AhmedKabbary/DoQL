@@ -32,18 +32,18 @@
             this.label1 = new System.Windows.Forms.Label();
             this.attributeName = new System.Windows.Forms.TextBox();
             this.label3 = new System.Windows.Forms.Label();
-            this.textBox3 = new System.Windows.Forms.TextBox();
+            this.columnName = new System.Windows.Forms.TextBox();
             this.label2 = new System.Windows.Forms.Label();
-            this.comboBox1 = new System.Windows.Forms.ComboBox();
+            this.attributeDatatype = new System.Windows.Forms.ComboBox();
             this.label8 = new System.Windows.Forms.Label();
-            this.checkBox4 = new System.Windows.Forms.CheckBox();
+            this.autoincreamentCheckBox = new System.Windows.Forms.CheckBox();
             this.label7 = new System.Windows.Forms.Label();
-            this.checkBox3 = new System.Windows.Forms.CheckBox();
+            this.uniqueCheckBox = new System.Windows.Forms.CheckBox();
             this.label6 = new System.Windows.Forms.Label();
-            this.checkBox2 = new System.Windows.Forms.CheckBox();
+            this.notNullCheckBox = new System.Windows.Forms.CheckBox();
             this.label4 = new System.Windows.Forms.Label();
             this.label5 = new System.Windows.Forms.Label();
-            this.checkBox1 = new System.Windows.Forms.CheckBox();
+            this.primaryChechBox = new System.Windows.Forms.CheckBox();
             this.SuspendLayout();
             // 
             // listView1
@@ -99,14 +99,15 @@
             this.label3.TabIndex = 35;
             this.label3.Text = "Column name:";
             // 
-            // textBox3
+            // columnName
             // 
-            this.textBox3.Font = new System.Drawing.Font("Tahoma", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
-            this.textBox3.Location = new System.Drawing.Point(33, 189);
-            this.textBox3.Margin = new System.Windows.Forms.Padding(7, 0, 0, 20);
-            this.textBox3.Name = "textBox3";
-            this.textBox3.Size = new System.Drawing.Size(275, 32);
-            this.textBox3.TabIndex = 36;
+            this.columnName.Font = new System.Drawing.Font("Tahoma", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
+            this.columnName.Location = new System.Drawing.Point(33, 189);
+            this.columnName.Margin = new System.Windows.Forms.Padding(7, 0, 0, 20);
+            this.columnName.Name = "columnName";
+            this.columnName.Size = new System.Drawing.Size(275, 32);
+            this.columnName.TabIndex = 36;
+            this.columnName.TextChanged += new System.EventHandler(this.columnName_TextChanged);
             // 
             // label2
             // 
@@ -124,20 +125,21 @@
             this.label2.TabIndex = 37;
             this.label2.Text = "Datatype:";
             // 
-            // comboBox1
+            // attributeDatatype
             // 
-            this.comboBox1.AutoCompleteMode = System.Windows.Forms.AutoCompleteMode.SuggestAppend;
-            this.comboBox1.AutoCompleteSource = System.Windows.Forms.AutoCompleteSource.ListItems;
-            this.comboBox1.BackColor = System.Drawing.Color.WhiteSmoke;
-            this.comboBox1.Cursor = System.Windows.Forms.Cursors.Hand;
-            this.comboBox1.DisplayMember = "MySQL";
-            this.comboBox1.Font = new System.Drawing.Font("Tahoma", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
-            this.comboBox1.FormattingEnabled = true;
-            this.comboBox1.Location = new System.Drawing.Point(33, 297);
-            this.comboBox1.Margin = new System.Windows.Forms.Padding(7, 0, 0, 20);
-            this.comboBox1.Name = "comboBox1";
-            this.comboBox1.Size = new System.Drawing.Size(275, 32);
-            this.comboBox1.TabIndex = 32;
+            this.attributeDatatype.AutoCompleteMode = System.Windows.Forms.AutoCompleteMode.SuggestAppend;
+            this.attributeDatatype.AutoCompleteSource = System.Windows.Forms.AutoCompleteSource.ListItems;
+            this.attributeDatatype.BackColor = System.Drawing.Color.WhiteSmoke;
+            this.attributeDatatype.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.attributeDatatype.DisplayMember = "MySQL";
+            this.attributeDatatype.Font = new System.Drawing.Font("Tahoma", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
+            this.attributeDatatype.FormattingEnabled = true;
+            this.attributeDatatype.Location = new System.Drawing.Point(33, 297);
+            this.attributeDatatype.Margin = new System.Windows.Forms.Padding(7, 0, 0, 20);
+            this.attributeDatatype.Name = "attributeDatatype";
+            this.attributeDatatype.Size = new System.Drawing.Size(275, 32);
+            this.attributeDatatype.TabIndex = 32;
+            this.attributeDatatype.SelectedIndexChanged += new System.EventHandler(this.attributeDatatype_SelectedIndexChanged);
             // 
             // label8
             // 
@@ -155,15 +157,16 @@
             this.label8.TabIndex = 46;
             this.label8.Text = "Conistraints:";
             // 
-            // checkBox4
+            // autoincreamentCheckBox
             // 
-            this.checkBox4.AutoSize = true;
-            this.checkBox4.Location = new System.Drawing.Point(30, 533);
-            this.checkBox4.Margin = new System.Windows.Forms.Padding(30, 0, 10, 10);
-            this.checkBox4.Name = "checkBox4";
-            this.checkBox4.Size = new System.Drawing.Size(18, 17);
-            this.checkBox4.TabIndex = 45;
-            this.checkBox4.UseVisualStyleBackColor = true;
+            this.autoincreamentCheckBox.AutoSize = true;
+            this.autoincreamentCheckBox.Location = new System.Drawing.Point(30, 533);
+            this.autoincreamentCheckBox.Margin = new System.Windows.Forms.Padding(30, 0, 10, 10);
+            this.autoincreamentCheckBox.Name = "autoincreamentCheckBox";
+            this.autoincreamentCheckBox.Size = new System.Drawing.Size(18, 17);
+            this.autoincreamentCheckBox.TabIndex = 45;
+            this.autoincreamentCheckBox.UseVisualStyleBackColor = true;
+            this.autoincreamentCheckBox.CheckedChanged += new System.EventHandler(this.autoincreamentCheckBox_CheckedChanged);
             // 
             // label7
             // 
@@ -176,15 +179,16 @@
             this.label7.TabIndex = 44;
             this.label7.Text = "AutoIncrement";
             // 
-            // checkBox3
+            // uniqueCheckBox
             // 
-            this.checkBox3.AutoSize = true;
-            this.checkBox3.Location = new System.Drawing.Point(30, 491);
-            this.checkBox3.Margin = new System.Windows.Forms.Padding(30, 0, 10, 10);
-            this.checkBox3.Name = "checkBox3";
-            this.checkBox3.Size = new System.Drawing.Size(18, 17);
-            this.checkBox3.TabIndex = 43;
-            this.checkBox3.UseVisualStyleBackColor = true;
+            this.uniqueCheckBox.AutoSize = true;
+            this.uniqueCheckBox.Location = new System.Drawing.Point(30, 491);
+            this.uniqueCheckBox.Margin = new System.Windows.Forms.Padding(30, 0, 10, 10);
+            this.uniqueCheckBox.Name = "uniqueCheckBox";
+            this.uniqueCheckBox.Size = new System.Drawing.Size(18, 17);
+            this.uniqueCheckBox.TabIndex = 43;
+            this.uniqueCheckBox.UseVisualStyleBackColor = true;
+            this.uniqueCheckBox.CheckedChanged += new System.EventHandler(this.uniqueCheckBox_CheckedChanged);
             // 
             // label6
             // 
@@ -197,15 +201,16 @@
             this.label6.TabIndex = 41;
             this.label6.Text = "Unique";
             // 
-            // checkBox2
+            // notNullCheckBox
             // 
-            this.checkBox2.AutoSize = true;
-            this.checkBox2.Location = new System.Drawing.Point(30, 445);
-            this.checkBox2.Margin = new System.Windows.Forms.Padding(30, 0, 10, 10);
-            this.checkBox2.Name = "checkBox2";
-            this.checkBox2.Size = new System.Drawing.Size(18, 17);
-            this.checkBox2.TabIndex = 42;
-            this.checkBox2.UseVisualStyleBackColor = true;
+            this.notNullCheckBox.AutoSize = true;
+            this.notNullCheckBox.Location = new System.Drawing.Point(30, 445);
+            this.notNullCheckBox.Margin = new System.Windows.Forms.Padding(30, 0, 10, 10);
+            this.notNullCheckBox.Name = "notNullCheckBox";
+            this.notNullCheckBox.Size = new System.Drawing.Size(18, 17);
+            this.notNullCheckBox.TabIndex = 42;
+            this.notNullCheckBox.UseVisualStyleBackColor = true;
+            this.notNullCheckBox.CheckedChanged += new System.EventHandler(this.notNullCheckBox_CheckedChanged);
             // 
             // label4
             // 
@@ -229,15 +234,16 @@
             this.label5.TabIndex = 40;
             this.label5.Text = "Not null";
             // 
-            // checkBox1
+            // primaryChechBox
             // 
-            this.checkBox1.AutoSize = true;
-            this.checkBox1.Location = new System.Drawing.Point(30, 404);
-            this.checkBox1.Margin = new System.Windows.Forms.Padding(30, 0, 10, 10);
-            this.checkBox1.Name = "checkBox1";
-            this.checkBox1.Size = new System.Drawing.Size(18, 17);
-            this.checkBox1.TabIndex = 39;
-            this.checkBox1.UseVisualStyleBackColor = true;
+            this.primaryChechBox.AutoSize = true;
+            this.primaryChechBox.Location = new System.Drawing.Point(30, 404);
+            this.primaryChechBox.Margin = new System.Windows.Forms.Padding(30, 0, 10, 10);
+            this.primaryChechBox.Name = "primaryChechBox";
+            this.primaryChechBox.Size = new System.Drawing.Size(18, 17);
+            this.primaryChechBox.TabIndex = 39;
+            this.primaryChechBox.UseVisualStyleBackColor = true;
+            this.primaryChechBox.CheckedChanged += new System.EventHandler(this.primaryChechBox_CheckedChanged);
             // 
             // AttributePanel
             // 
@@ -247,18 +253,18 @@
             this.Controls.Add(this.label1);
             this.Controls.Add(this.attributeName);
             this.Controls.Add(this.label3);
-            this.Controls.Add(this.textBox3);
+            this.Controls.Add(this.columnName);
             this.Controls.Add(this.label2);
-            this.Controls.Add(this.comboBox1);
+            this.Controls.Add(this.attributeDatatype);
             this.Controls.Add(this.label8);
             this.Controls.Add(this.label4);
-            this.Controls.Add(this.checkBox1);
+            this.Controls.Add(this.primaryChechBox);
             this.Controls.Add(this.label5);
-            this.Controls.Add(this.checkBox2);
+            this.Controls.Add(this.notNullCheckBox);
             this.Controls.Add(this.label6);
-            this.Controls.Add(this.checkBox3);
+            this.Controls.Add(this.uniqueCheckBox);
             this.Controls.Add(this.label7);
-            this.Controls.Add(this.checkBox4);
+            this.Controls.Add(this.autoincreamentCheckBox);
             this.Controls.Add(this.listView1);
             this.Margin = new System.Windows.Forms.Padding(0);
             this.Name = "AttributePanel";
@@ -274,17 +280,17 @@
         private Label label1;
         private TextBox attributeName;
         private Label label3;
-        private TextBox textBox3;
+        private TextBox columnName;
         private Label label2;
-        private ComboBox comboBox1;
+        private ComboBox attributeDatatype;
         private Label label8;
-        private CheckBox checkBox4;
+        private CheckBox autoincreamentCheckBox;
         private Label label7;
-        private CheckBox checkBox3;
+        private CheckBox uniqueCheckBox;
         private Label label6;
-        private CheckBox checkBox2;
+        private CheckBox notNullCheckBox;
         private Label label4;
         private Label label5;
-        private CheckBox checkBox1;
+        private CheckBox primaryChechBox;
     }
 }
