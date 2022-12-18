@@ -12,6 +12,7 @@ namespace DoQL.Forms
     public partial class DiagramForm : Form
     {
         public readonly string Id;
+
         public Database Database;
         public DatabaseProvider DatabaseProvider;
 
@@ -30,6 +31,7 @@ namespace DoQL.Forms
                     try
                     {
                         Database = DatabasesManager.GetInstance().LoadDatabase(Id, enterPasswordForm.Password);
+                        Database.Password = enterPasswordForm.Password;
                     }
                     catch (Exception)
                     {
@@ -136,9 +138,9 @@ namespace DoQL.Forms
             sidePanel.Controls.Clear();
             DatabasePanel databasePanel = new DatabasePanel() {Database = Database};
             databasePanel.AutoScroll = true;
-            databasePanel.Dock = System.Windows.Forms.DockStyle.Fill;
-            databasePanel.Margin = new System.Windows.Forms.Padding(0);
-            databasePanel.Size = new System.Drawing.Size(345, 518);
+            databasePanel.Dock = DockStyle.Fill;
+            databasePanel.Margin = new Padding(0);
+            databasePanel.Size = new Size(345, 518);
             databasePanel.TabIndex = 1;
             sidePanel.Controls.Add(databasePanel);
 
