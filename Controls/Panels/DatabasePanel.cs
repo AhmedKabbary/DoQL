@@ -71,19 +71,8 @@ namespace DoQL.Controls.Panels
         private void btnExport_Click(object sender, EventArgs e)
         {
             var form = (ParentForm as DiagramForm);
-            if (form.DatabaseProvider is ISQLExporter exporter)
-            {
-                form.Database.SyncErdWithTables();
-                string commands = exporter.Export(form.Database);
-                var result = saveFileDialog1.ShowDialog();
-                if (result == DialogResult.OK)
-                {
-                    using var stream = File.Create(saveFileDialog1.FileName);
-                    using var streamWriter = new StreamWriter(stream);
-                    streamWriter.Write(commands);
-                    MessageBox.Show("Exported successfully");
-                }
-            }
+            var exportForm = new ExportForm() { Database = form.Database };
+            exportForm.Show();
         }
     }
 }
