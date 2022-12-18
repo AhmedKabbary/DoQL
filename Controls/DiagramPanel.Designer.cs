@@ -28,7 +28,14 @@
         /// </summary>
         private void InitializeComponent()
         {
-            components = new System.ComponentModel.Container();
+            this.SuspendLayout();
+            // 
+            // DiagramPanel
+            // 
+            this.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(238)))), ((int)(((byte)(238)))), ((int)(((byte)(255)))));
+            this.Name = "DiagramPanel";
+            this.ResumeLayout(false);
+
         }
 
         #endregion

@@ -59,21 +59,17 @@ namespace DoQL.Controls.Panels
         private void primaryChechBox_CheckedChanged(object sender, EventArgs e)
         {
             _attribute.Primary = primaryChechBox.Checked;
-            _attribute.NotNull = primaryChechBox.Checked;
-            _attribute.Unique = primaryChechBox.Checked;
             if (primaryChechBox.Checked)
             {
-                notNullCheckBox.Checked = true;
+                notNullCheckBox.Checked = false;
                 notNullCheckBox.Enabled = false;
                 uniqueCheckBox.Enabled = false;
-                uniqueCheckBox.Checked = true;
+                uniqueCheckBox.Checked = false;
             }
             else
             {
-                notNullCheckBox.Checked = false;
                 notNullCheckBox.Enabled = true;
                 uniqueCheckBox.Enabled = true;
-                uniqueCheckBox.Checked = false;
             }
         }
 

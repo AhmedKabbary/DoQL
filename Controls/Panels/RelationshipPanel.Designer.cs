@@ -44,7 +44,7 @@
             // 
             // listView1
             // 
-            this.listView1.BackColor = System.Drawing.SystemColors.ControlLight;
+            this.listView1.BackColor = System.Drawing.Color.Snow;
             this.listView1.BorderStyle = System.Windows.Forms.BorderStyle.None;
             this.listView1.Dock = System.Windows.Forms.DockStyle.Fill;
             this.listView1.Location = new System.Drawing.Point(0, 0);
@@ -56,7 +56,7 @@
             // label1
             // 
             this.label1.AutoSize = true;
-            this.label1.BackColor = System.Drawing.SystemColors.ControlLight;
+            this.label1.BackColor = System.Drawing.Color.Snow;
             this.label1.CausesValidation = false;
             this.label1.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.label1.Font = new System.Drawing.Font("Tahoma", 13.8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
@@ -82,7 +82,7 @@
             // label6
             // 
             this.label6.AutoSize = true;
-            this.label6.BackColor = System.Drawing.SystemColors.ControlLight;
+            this.label6.BackColor = System.Drawing.Color.Snow;
             this.label6.CausesValidation = false;
             this.label6.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.label6.Font = new System.Drawing.Font("Tahoma", 13.8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
@@ -99,7 +99,7 @@
             // 
             this.updateAction.AutoCompleteMode = System.Windows.Forms.AutoCompleteMode.SuggestAppend;
             this.updateAction.AutoCompleteSource = System.Windows.Forms.AutoCompleteSource.ListItems;
-            this.updateAction.BackColor = System.Drawing.Color.WhiteSmoke;
+            this.updateAction.BackColor = System.Drawing.Color.Snow;
             this.updateAction.Cursor = System.Windows.Forms.Cursors.Hand;
             this.updateAction.DisplayMember = "MySQL";
             this.updateAction.Font = new System.Drawing.Font("Tahoma", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
@@ -120,7 +120,7 @@
             // label7
             // 
             this.label7.AutoSize = true;
-            this.label7.BackColor = System.Drawing.SystemColors.ControlLight;
+            this.label7.BackColor = System.Drawing.Color.Snow;
             this.label7.CausesValidation = false;
             this.label7.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.label7.Font = new System.Drawing.Font("Tahoma", 13.8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
@@ -137,7 +137,7 @@
             // 
             this.deleteAction.AutoCompleteMode = System.Windows.Forms.AutoCompleteMode.SuggestAppend;
             this.deleteAction.AutoCompleteSource = System.Windows.Forms.AutoCompleteSource.ListItems;
-            this.deleteAction.BackColor = System.Drawing.Color.WhiteSmoke;
+            this.deleteAction.BackColor = System.Drawing.Color.Snow;
             this.deleteAction.Cursor = System.Windows.Forms.Cursors.Hand;
             this.deleteAction.DisplayMember = "MySQL";
             this.deleteAction.Font = new System.Drawing.Font("Tahoma", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
@@ -158,7 +158,7 @@
             // label3
             // 
             this.label3.AutoSize = true;
-            this.label3.BackColor = System.Drawing.SystemColors.ControlLight;
+            this.label3.BackColor = System.Drawing.Color.Snow;
             this.label3.CausesValidation = false;
             this.label3.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.label3.Font = new System.Drawing.Font("Tahoma", 13.8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
@@ -173,7 +173,7 @@
             // 
             // flowLayoutPanel1
             // 
-            this.flowLayoutPanel1.BackColor = System.Drawing.SystemColors.ControlLight;
+            this.flowLayoutPanel1.BackColor = System.Drawing.Color.Snow;
             this.flowLayoutPanel1.Controls.Add(this.TblNameLbl);
             this.flowLayoutPanel1.Controls.Add(this.TableName);
             this.flowLayoutPanel1.FlowDirection = System.Windows.Forms.FlowDirection.TopDown;
@@ -186,7 +186,7 @@
             // TblNameLbl
             // 
             this.TblNameLbl.AutoSize = true;
-            this.TblNameLbl.BackColor = System.Drawing.SystemColors.ControlLight;
+            this.TblNameLbl.BackColor = System.Drawing.Color.Snow;
             this.TblNameLbl.CausesValidation = false;
             this.TblNameLbl.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.TblNameLbl.Font = new System.Drawing.Font("Tahoma", 13.8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);

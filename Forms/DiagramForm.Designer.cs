@@ -43,6 +43,7 @@ namespace DoQL.Forms
             // 
             // diagramPanel
             // 
+            this.diagramPanel.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(238)))), ((int)(((byte)(238)))), ((int)(((byte)(255)))));
             this.diagramPanel.ContextMenuStrip = this.contextMenuStrip1;
             this.diagramPanel.Dock = System.Windows.Forms.DockStyle.Fill;
             this.diagramPanel.Location = new System.Drawing.Point(0, 0);
@@ -84,7 +85,7 @@ namespace DoQL.Forms
             // 
             // sidePanel
             // 
-            this.sidePanel.BackColor = System.Drawing.SystemColors.ControlLight;
+            this.sidePanel.BackColor = System.Drawing.Color.Snow;
             this.sidePanel.Dock = System.Windows.Forms.DockStyle.Left;
             this.sidePanel.Location = new System.Drawing.Point(0, 0);
             this.sidePanel.Name = "sidePanel";
