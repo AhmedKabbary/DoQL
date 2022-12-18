@@ -9,13 +9,14 @@ namespace DoQL.Controls.Panels
     public partial class RelationshipPanel : UserControl
     {
         public string Id { get; init; }
-        private Relationship _relationship { get; set; }
+        public RelationshipControl RelationshipControl { get; init; }
 
         public RelationshipPanel()
         {
             InitializeComponent();
         }
 
+        private Relationship _relationship;
         private DiagramForm _diagramForm;
 
         protected override void OnLoad(EventArgs e)
@@ -149,6 +150,7 @@ namespace DoQL.Controls.Panels
         private void relationshipName_TextChanged(object sender, EventArgs e)
         {
             _relationship.DisplayName = relationshipName.Text;
+            RelationshipControl.SetDisplayName(relationshipName.Text);
         }
 
         private void updateAction_SelectedIndexChanged(object sender, EventArgs e)

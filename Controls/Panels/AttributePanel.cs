@@ -1,4 +1,5 @@
-﻿using DoQL.Forms;
+﻿using DoQL.Controls.ERD;
+using DoQL.Forms;
 using Attribute = DoQL.Models.ERD.Attribute;
 
 namespace DoQL.Controls.Panels
@@ -6,6 +7,8 @@ namespace DoQL.Controls.Panels
     public partial class AttributePanel : UserControl
     {
         public string Id { get; init; }
+        public AttributeControl AttributeControl { get; init; }
+
         public AttributePanel()
         {
             InitializeComponent();
@@ -37,6 +40,7 @@ namespace DoQL.Controls.Panels
         private void ChangeAttributeName(object sender, EventArgs e)
         {
             _attribute.DisplayName = attributeName.Text;
+            AttributeControl.SetDisplayName(attributeName.Text);
         }
 
         private void columnName_TextChanged(object sender, EventArgs e)

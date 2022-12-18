@@ -116,5 +116,11 @@ namespace DoQL.Controls.ERD
         }
 
         #endregion
+
+        protected override void OnSizeChanged(EventArgs e)
+        {
+            (Parent as DiagramPanel).RedrawConnections();
+            base.OnSizeChanged(e);
+        }
     }
 }

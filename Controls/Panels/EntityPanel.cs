@@ -1,4 +1,5 @@
-﻿using DoQL.Forms;
+﻿using DoQL.Controls.ERD;
+using DoQL.Forms;
 using DoQL.Models.ERD;
 
 namespace DoQL.Controls.Panels
@@ -6,6 +7,7 @@ namespace DoQL.Controls.Panels
     public partial class EntityPanel : UserControl
     {
         public string Id { get; init; }
+        public EntityControl EntityControl { get; init; }
 
         public EntityPanel()
         {
@@ -25,6 +27,7 @@ namespace DoQL.Controls.Panels
         private void ChangeEntityName(object sender, EventArgs e)
         {
             _entity.DisplayName = entityName.Text;
+            EntityControl.SetDisplayName(entityName.Text);
         }
 
         private void ChangeTableName(object sender, EventArgs e)

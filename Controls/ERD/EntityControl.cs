@@ -10,30 +10,35 @@ namespace DoQL.Controls.ERD
     public partial class EntityControl : BaseControl, IConnectable, IDeletable
     {
         public string Id { get; init; }
+        public string DisplayName { get; set; } = "Entity";
 
         public EntityControl()
         {
             InitializeComponent();
-            Text = "Entity";
         }
 
         private Size strSize;
 
         protected override void OnLoad(EventArgs e)
         {
+            AdjustSize();
+            base.OnLoad(e);
+        }
+
+        private void AdjustSize()
+        {
             using (Graphics graphics = CreateGraphics())
             {
                 var padding = new Size(48, 48);
-                strSize = graphics.MeasureString(Text, Font).ToSize();
+                strSize = graphics.MeasureString(DisplayName, Font).ToSize();
                 Size = strSize + padding;
             }
-            base.OnLoad(e);
         }
 
         protected override void OnPaint(PaintEventArgs e)
         {
             var centerPoint = new Point(Width / 2 - strSize.Width / 2, Height / 2 - strSize.Height / 2);
-            e.Graphics.DrawString(Text, Font, new SolidBrush(ForeColor), centerPoint);
+            e.Graphics.DrawString(DisplayName, Font, new SolidBrush(ForeColor), centerPoint);
             base.OnPaint(e);
         }
 
@@ -45,6 +50,16 @@ namespace DoQL.Controls.ERD
                 db.Erd.Entities.Find(e => e.Id == Id).Position = Location;
             }
             base.OnLocationChanged(e);
+        }
+
+        public void SetDisplayName(string name)
+        {
+            if (name != "")
+            {
+                DisplayName = name;
+                AdjustSize();
+                Invalidate();
+            }
         }
 
         #region connections
@@ -108,11 +123,15 @@ namespace DoQL.Controls.ERD
         private void ShowEntityPanel(object sender, EventArgs e)
         {
             (ParentForm as DiagramForm).SidePanel.Controls.Clear();
-            EntityPanel entityPanel = new EntityPanel() { Id = Id };
+            EntityPanel entityPanel = new EntityPanel()
+            {
+                Id = Id,
+                EntityControl = this,
+            };
             entityPanel.AutoScroll = true;
-            entityPanel.Dock = System.Windows.Forms.DockStyle.Fill;
-            entityPanel.Margin = new System.Windows.Forms.Padding(0);
-            entityPanel.Size = new System.Drawing.Size(345, 518);
+            entityPanel.Dock = DockStyle.Fill;
+            entityPanel.Margin = new Padding(0);
+            entityPanel.Size = new Size(345, 518);
             entityPanel.TabIndex = 1;
             (ParentForm as DiagramForm).SidePanel.Controls.Add(entityPanel);
         }

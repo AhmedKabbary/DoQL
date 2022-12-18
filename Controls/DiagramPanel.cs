@@ -25,14 +25,22 @@ namespace DoQL.Controls
             // load ERD data on the panel
             foreach (var attribute in database.Erd.Attributes)
             {
-                var control = new AttributeControl() { Id = attribute.Id };
+                var control = new AttributeControl()
+                {
+                    Id = attribute.Id,
+                    DisplayName = attribute.DisplayName
+                };
                 control.Location = attribute.Position;
                 diagramPanel.Controls.Add(control);
             }
 
             foreach (var entity in database.Erd.Entities)
             {
-                var control = new EntityControl() { Id = entity.Id };
+                var control = new EntityControl()
+                {
+                    Id = entity.Id,
+                    DisplayName = entity.DisplayName,
+                };
                 control.Location = entity.Position;
                 diagramPanel.Controls.Add(control);
 
@@ -57,7 +65,11 @@ namespace DoQL.Controls
 
             foreach (var relationship in database.Erd.Relationships)
             {
-                var control = new RelationshipControl() { Id = relationship.Id };
+                var control = new RelationshipControl()
+                {
+                    Id = relationship.Id,
+                    DisplayName = relationship.DisplayName,
+                };
                 control.Location = relationship.Position;
                 diagramPanel.Controls.Add(control);
 

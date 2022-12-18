@@ -11,21 +11,27 @@ namespace DoQL.Controls.ERD
     public partial class RelationshipControl : BaseControl, IConnectable, IDeletable
     {
         public string Id { get; init; }
+        public string DisplayName { get; set; } = "Has";
 
         public RelationshipControl()
         {
             InitializeComponent();
-            Text = "Has";
         }
 
         private Size strSize;
 
         protected override void OnLoad(EventArgs e)
         {
+            AdjustSize();
+            base.OnLoad(e);
+        }
+
+        private void AdjustSize()
+        {
             using (Graphics graphics = CreateGraphics())
             {
                 var padding = new Size(64, 64);
-                strSize = graphics.MeasureString(Text, Font).ToSize();
+                strSize = graphics.MeasureString(DisplayName, Font).ToSize();
                 Size = strSize + padding;
             }
 
@@ -40,14 +46,12 @@ namespace DoQL.Controls.ERD
                 });
                 Region = new Region(path);
             }
-
-            base.OnLoad(e);
         }
 
         protected override void OnPaint(PaintEventArgs e)
         {
             var centerPoint = new Point(Width / 2 - strSize.Width / 2, Height / 2 - strSize.Height / 2);
-            e.Graphics.DrawString(Text, Font, new SolidBrush(ForeColor), centerPoint);
+            e.Graphics.DrawString(DisplayName, Font, new SolidBrush(ForeColor), centerPoint);
             base.OnPaint(e);
         }
 
@@ -59,6 +63,16 @@ namespace DoQL.Controls.ERD
                 db.Erd.Relationships.Find(r => r.Id == Id).Position = Location;
             }
             base.OnLocationChanged(e);
+        }
+
+        public void SetDisplayName(string name)
+        {
+            if (name != "")
+            {
+                DisplayName = name;
+                AdjustSize();
+                Invalidate();
+            }
         }
 
         #region connections
@@ -133,11 +147,15 @@ namespace DoQL.Controls.ERD
         private void ShowRelationshipPanel(object sender, EventArgs e)
         {
             (ParentForm as DiagramForm).SidePanel.Controls.Clear();
-            RelationshipPanel relationshipPanel = new RelationshipPanel() { Id = Id };
+            RelationshipPanel relationshipPanel = new RelationshipPanel()
+            {
+                Id = Id,
+                RelationshipControl = this,
+            };
             relationshipPanel.AutoScroll = true;
-            relationshipPanel.Dock = System.Windows.Forms.DockStyle.Fill;
-            relationshipPanel.Margin = new System.Windows.Forms.Padding(0);
-            relationshipPanel.Size = new System.Drawing.Size(345, 518);
+            relationshipPanel.Dock = DockStyle.Fill;
+            relationshipPanel.Margin = new Padding(0);
+            relationshipPanel.Size = new Size(345, 518);
             relationshipPanel.TabIndex = 1;
             (ParentForm as DiagramForm).SidePanel.Controls.Add(relationshipPanel);
         }
