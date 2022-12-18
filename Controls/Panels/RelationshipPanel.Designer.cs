@@ -61,7 +61,7 @@
             this.label1.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.label1.Font = new System.Drawing.Font("Tahoma", 13.8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
             this.label1.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(17)))), ((int)(((byte)(45)))), ((int)(((byte)(78)))));
-            this.label1.Location = new System.Drawing.Point(47, 50);
+            this.label1.Location = new System.Drawing.Point(24, 50);
             this.label1.Margin = new System.Windows.Forms.Padding(0, 3, 0, 20);
             this.label1.Name = "label1";
             this.label1.Padding = new System.Windows.Forms.Padding(2, 2, 3, 3);
@@ -72,7 +72,7 @@
             // relationshipName
             // 
             this.relationshipName.Font = new System.Drawing.Font("Tahoma", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
-            this.relationshipName.Location = new System.Drawing.Point(54, 103);
+            this.relationshipName.Location = new System.Drawing.Point(31, 103);
             this.relationshipName.Margin = new System.Windows.Forms.Padding(7, 0, 0, 20);
             this.relationshipName.Name = "relationshipName";
             this.relationshipName.Size = new System.Drawing.Size(275, 32);
@@ -87,7 +87,7 @@
             this.label6.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.label6.Font = new System.Drawing.Font("Tahoma", 13.8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
             this.label6.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(17)))), ((int)(((byte)(45)))), ((int)(((byte)(78)))));
-            this.label6.Location = new System.Drawing.Point(47, 158);
+            this.label6.Location = new System.Drawing.Point(24, 158);
             this.label6.Margin = new System.Windows.Forms.Padding(0, 3, 0, 20);
             this.label6.Name = "label6";
             this.label6.Padding = new System.Windows.Forms.Padding(2, 2, 3, 3);
@@ -110,7 +110,7 @@
             "Cascade",
             "SetNull",
             "SetDefault"});
-            this.updateAction.Location = new System.Drawing.Point(54, 211);
+            this.updateAction.Location = new System.Drawing.Point(31, 211);
             this.updateAction.Margin = new System.Windows.Forms.Padding(7, 0, 0, 20);
             this.updateAction.Name = "updateAction";
             this.updateAction.Size = new System.Drawing.Size(275, 32);
@@ -125,7 +125,7 @@
             this.label7.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.label7.Font = new System.Drawing.Font("Tahoma", 13.8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
             this.label7.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(17)))), ((int)(((byte)(45)))), ((int)(((byte)(78)))));
-            this.label7.Location = new System.Drawing.Point(47, 266);
+            this.label7.Location = new System.Drawing.Point(31, 266);
             this.label7.Margin = new System.Windows.Forms.Padding(0, 3, 0, 20);
             this.label7.Name = "label7";
             this.label7.Padding = new System.Windows.Forms.Padding(2, 2, 3, 3);
@@ -148,7 +148,7 @@
             "Cascade",
             "SetNull",
             "SetDefault"});
-            this.deleteAction.Location = new System.Drawing.Point(54, 319);
+            this.deleteAction.Location = new System.Drawing.Point(31, 319);
             this.deleteAction.Margin = new System.Windows.Forms.Padding(7, 0, 0, 20);
             this.deleteAction.Name = "deleteAction";
             this.deleteAction.Size = new System.Drawing.Size(275, 32);
@@ -163,7 +163,7 @@
             this.label3.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.label3.Font = new System.Drawing.Font("Tahoma", 13.8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
             this.label3.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(17)))), ((int)(((byte)(45)))), ((int)(((byte)(78)))));
-            this.label3.Location = new System.Drawing.Point(54, 374);
+            this.label3.Location = new System.Drawing.Point(24, 374);
             this.label3.Margin = new System.Windows.Forms.Padding(0, 3, 0, 10);
             this.label3.Name = "label3";
             this.label3.Padding = new System.Windows.Forms.Padding(2, 2, 3, 3);
@@ -177,7 +177,7 @@
             this.flowLayoutPanel1.Controls.Add(this.TblNameLbl);
             this.flowLayoutPanel1.Controls.Add(this.TableName);
             this.flowLayoutPanel1.FlowDirection = System.Windows.Forms.FlowDirection.TopDown;
-            this.flowLayoutPanel1.Location = new System.Drawing.Point(47, 420);
+            this.flowLayoutPanel1.Location = new System.Drawing.Point(24, 420);
             this.flowLayoutPanel1.Name = "flowLayoutPanel1";
             this.flowLayoutPanel1.Size = new System.Drawing.Size(289, 352);
             this.flowLayoutPanel1.TabIndex = 78;
