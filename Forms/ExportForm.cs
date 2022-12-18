@@ -2,15 +2,6 @@
 using DoQL.Interfaces;
 using DoQL.Models;
 using DoQL.Utilities;
-using System;
-using System.Collections.Generic;
-using System.ComponentModel;
-using System.Data;
-using System.Drawing;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using System.Windows.Forms;
 
 namespace DoQL.Forms
 {
@@ -49,7 +40,7 @@ namespace DoQL.Forms
                 DatabaseProvider databaseProvider = DatabaseProvidersFactory.GetDatabaseProvider(Database.Type);
                 if (databaseProvider is ISQLExporter exporter)
                 {
-                    Database.SyncErdToTables();
+                    Database.SyncErdWithTables();
                     string commands = exporter.Export(Database);
                     saveFileDialog1.FileName = Database.Name;
                     saveFileDialog1.DefaultExt = "sql";
