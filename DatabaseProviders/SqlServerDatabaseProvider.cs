@@ -61,12 +61,12 @@ namespace DoQL.DatabaseProviders
 
             return true;
         }
-        public override bool ValideteAttributeName(string attributeName)
+        public override bool ValidateAttributeName(string attributeName)
         {
             return ValidateTableName(attributeName);
         }
 
-        public override bool ValideteDataType(string dataType)
+        public override bool ValidateDataType(string dataType)
         {
             return GetDataTypes().Contains(dataType);
         }
@@ -74,6 +74,10 @@ namespace DoQL.DatabaseProviders
         public string Export(Database db)
         {
             StringBuilder sqlCommands = new StringBuilder();
+            sqlCommands.AppendLine($"CREATE DATABASE {db.Name};");
+            sqlCommands.AppendLine("");
+            sqlCommands.AppendLine($"USE {db.Name};");
+            sqlCommands.AppendLine("");
             foreach (Table t in db.Tables)
             {
                 sqlCommands.AppendLine($"CREATE TABLE {t.Name}(");

@@ -30,11 +30,11 @@
         {
             this.listView1 = new System.Windows.Forms.ListView();
             this.label1 = new System.Windows.Forms.Label();
-            this.textBox1 = new System.Windows.Forms.TextBox();
+            this.relationshipName = new System.Windows.Forms.TextBox();
             this.label6 = new System.Windows.Forms.Label();
-            this.comboBox3 = new System.Windows.Forms.ComboBox();
+            this.updateAction = new System.Windows.Forms.ComboBox();
             this.label7 = new System.Windows.Forms.Label();
-            this.comboBox4 = new System.Windows.Forms.ComboBox();
+            this.deleteAction = new System.Windows.Forms.ComboBox();
             this.label3 = new System.Windows.Forms.Label();
             this.flowLayoutPanel1 = new System.Windows.Forms.FlowLayoutPanel();
             this.attachedAttribute1 = new DoQL.Controls.AttachedAttribute();
@@ -71,14 +71,15 @@
             this.label1.TabIndex = 62;
             this.label1.Text = "Relationship name:";
             // 
-            // textBox1
+            // relationshipName
             // 
-            this.textBox1.Font = new System.Drawing.Font("Tahoma", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
-            this.textBox1.Location = new System.Drawing.Point(54, 103);
-            this.textBox1.Margin = new System.Windows.Forms.Padding(7, 0, 0, 20);
-            this.textBox1.Name = "textBox1";
-            this.textBox1.Size = new System.Drawing.Size(275, 32);
-            this.textBox1.TabIndex = 63;
+            this.relationshipName.Font = new System.Drawing.Font("Tahoma", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
+            this.relationshipName.Location = new System.Drawing.Point(54, 103);
+            this.relationshipName.Margin = new System.Windows.Forms.Padding(7, 0, 0, 20);
+            this.relationshipName.Name = "relationshipName";
+            this.relationshipName.Size = new System.Drawing.Size(275, 32);
+            this.relationshipName.TabIndex = 63;
+            this.relationshipName.TextChanged += new System.EventHandler(this.relationshipName_TextChanged);
             // 
             // label6
             // 
@@ -96,26 +97,27 @@
             this.label6.TabIndex = 72;
             this.label6.Text = "Update action:";
             // 
-            // comboBox3
+            // updateAction
             // 
-            this.comboBox3.AutoCompleteMode = System.Windows.Forms.AutoCompleteMode.SuggestAppend;
-            this.comboBox3.AutoCompleteSource = System.Windows.Forms.AutoCompleteSource.ListItems;
-            this.comboBox3.BackColor = System.Drawing.Color.WhiteSmoke;
-            this.comboBox3.Cursor = System.Windows.Forms.Cursors.Hand;
-            this.comboBox3.DisplayMember = "MySQL";
-            this.comboBox3.Font = new System.Drawing.Font("Tahoma", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
-            this.comboBox3.FormattingEnabled = true;
-            this.comboBox3.Items.AddRange(new object[] {
+            this.updateAction.AutoCompleteMode = System.Windows.Forms.AutoCompleteMode.SuggestAppend;
+            this.updateAction.AutoCompleteSource = System.Windows.Forms.AutoCompleteSource.ListItems;
+            this.updateAction.BackColor = System.Drawing.Color.WhiteSmoke;
+            this.updateAction.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.updateAction.DisplayMember = "MySQL";
+            this.updateAction.Font = new System.Drawing.Font("Tahoma", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
+            this.updateAction.FormattingEnabled = true;
+            this.updateAction.Items.AddRange(new object[] {
             "NoAction",
             "Restrict",
             "Cascade",
             "SetNull",
             "SetDefault"});
-            this.comboBox3.Location = new System.Drawing.Point(54, 211);
-            this.comboBox3.Margin = new System.Windows.Forms.Padding(7, 0, 0, 20);
-            this.comboBox3.Name = "comboBox3";
-            this.comboBox3.Size = new System.Drawing.Size(275, 32);
-            this.comboBox3.TabIndex = 70;
+            this.updateAction.Location = new System.Drawing.Point(54, 211);
+            this.updateAction.Margin = new System.Windows.Forms.Padding(7, 0, 0, 20);
+            this.updateAction.Name = "updateAction";
+            this.updateAction.Size = new System.Drawing.Size(275, 32);
+            this.updateAction.TabIndex = 70;
+            this.updateAction.SelectedIndexChanged += new System.EventHandler(this.updateAction_SelectedIndexChanged);
             // 
             // label7
             // 
@@ -133,26 +135,27 @@
             this.label7.TabIndex = 76;
             this.label7.Text = "Delete action:";
             // 
-            // comboBox4
+            // deleteAction
             // 
-            this.comboBox4.AutoCompleteMode = System.Windows.Forms.AutoCompleteMode.SuggestAppend;
-            this.comboBox4.AutoCompleteSource = System.Windows.Forms.AutoCompleteSource.ListItems;
-            this.comboBox4.BackColor = System.Drawing.Color.WhiteSmoke;
-            this.comboBox4.Cursor = System.Windows.Forms.Cursors.Hand;
-            this.comboBox4.DisplayMember = "MySQL";
-            this.comboBox4.Font = new System.Drawing.Font("Tahoma", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
-            this.comboBox4.FormattingEnabled = true;
-            this.comboBox4.Items.AddRange(new object[] {
+            this.deleteAction.AutoCompleteMode = System.Windows.Forms.AutoCompleteMode.SuggestAppend;
+            this.deleteAction.AutoCompleteSource = System.Windows.Forms.AutoCompleteSource.ListItems;
+            this.deleteAction.BackColor = System.Drawing.Color.WhiteSmoke;
+            this.deleteAction.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.deleteAction.DisplayMember = "MySQL";
+            this.deleteAction.Font = new System.Drawing.Font("Tahoma", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
+            this.deleteAction.FormattingEnabled = true;
+            this.deleteAction.Items.AddRange(new object[] {
             "NoAction",
             "Restrict",
             "Cascade",
             "SetNull",
             "SetDefault"});
-            this.comboBox4.Location = new System.Drawing.Point(54, 319);
-            this.comboBox4.Margin = new System.Windows.Forms.Padding(7, 0, 0, 20);
-            this.comboBox4.Name = "comboBox4";
-            this.comboBox4.Size = new System.Drawing.Size(275, 32);
-            this.comboBox4.TabIndex = 75;
+            this.deleteAction.Location = new System.Drawing.Point(54, 319);
+            this.deleteAction.Margin = new System.Windows.Forms.Padding(7, 0, 0, 20);
+            this.deleteAction.Name = "deleteAction";
+            this.deleteAction.Size = new System.Drawing.Size(275, 32);
+            this.deleteAction.TabIndex = 75;
+            this.deleteAction.SelectedIndexChanged += new System.EventHandler(this.deleteAction_SelectedIndexChanged);
             // 
             // label3
             // 
@@ -226,6 +229,7 @@
             this.TableName.Size = new System.Drawing.Size(275, 32);
             this.TableName.TabIndex = 81;
             this.TableName.Visible = false;
+            this.TableName.TextChanged += new System.EventHandler(this.TableName_TextChanged);
             // 
             // RelationshipPanel
             // 
@@ -234,11 +238,11 @@
             this.Controls.Add(this.flowLayoutPanel1);
             this.Controls.Add(this.label3);
             this.Controls.Add(this.label1);
-            this.Controls.Add(this.textBox1);
+            this.Controls.Add(this.relationshipName);
             this.Controls.Add(this.label6);
-            this.Controls.Add(this.comboBox3);
+            this.Controls.Add(this.updateAction);
             this.Controls.Add(this.label7);
-            this.Controls.Add(this.comboBox4);
+            this.Controls.Add(this.deleteAction);
             this.Controls.Add(this.listView1);
             this.Name = "RelationshipPanel";
             this.Size = new System.Drawing.Size(348, 793);
@@ -253,11 +257,11 @@
 
         private ListView listView1;
         private Label label1;
-        private TextBox textBox1;
+        private TextBox relationshipName;
         private Label label6;
-        private ComboBox comboBox3;
+        private ComboBox updateAction;
         private Label label7;
-        private ComboBox comboBox4;
+        private ComboBox deleteAction;
         private Label label3;
         private FlowLayoutPanel flowLayoutPanel1;
         private AttachedAttribute attachedAttribute1;

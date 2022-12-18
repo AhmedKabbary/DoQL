@@ -1,4 +1,5 @@
-﻿using DoQL.Forms;
+﻿using DoQL.DatabaseProviders;
+using DoQL.Forms;
 using DoQL.Interfaces;
 using DoQL.Models;
 using DoQL.Utilities;
@@ -19,7 +20,12 @@ namespace DoQL.Controls.Panels
             databaseName.Text = Database.Name;
             databaseType.SelectedText = DatabaseTypeFactory.GetDatabaseTypeString(Database.Type);
             if (Database.IsPasswordProtected == false)
+            {
                 passwordButton.Text = "Set password";
+                passwordButton.Visible = false;
+                passwordLable.Visible = false;
+                databasePassword.Visible = false;
+            }
             else
                 passwordButton.Text = "Change password";
             base.OnLoad(e);
@@ -45,7 +51,9 @@ namespace DoQL.Controls.Panels
                     Database.Type = (DatabaseType)databaseType.SelectedIndex;
                     break;
             }
-            if (databaseType.Text != "MySQL" && databaseType.Text != "SQLite" && databaseType.Text != "SQ LServer")
+            (ParentForm as DiagramForm).DatabaseProvider = DatabaseProvidersFactory.GetDatabaseProvider(Database.Type);
+
+            if (databaseType.Text != "MySQL" && databaseType.Text != "SQLite" && databaseType.Text != "SQL Server")
                 databaseType.SelectedIndex = 0;
         }
 

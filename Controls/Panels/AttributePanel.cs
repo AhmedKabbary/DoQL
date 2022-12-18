@@ -1,14 +1,4 @@
 ﻿using DoQL.Forms;
-using DoQL.Models.ERD;
-using System;
-using System.Collections.Generic;
-using System.ComponentModel;
-using System.Data;
-using System.Drawing;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using System.Windows.Forms;
 using Attribute = DoQL.Models.ERD.Attribute;
 
 namespace DoQL.Controls.Panels
@@ -28,15 +18,74 @@ namespace DoQL.Controls.Panels
             var diagramForm = (ParentForm as DiagramForm);
             _attribute = diagramForm.Database.Erd.Attributes.Find(e => e.Id == Id);
 
-            comboBox1.Items.AddRange(diagramForm.DatabaseProvider.GetDataTypes().ToArray());
-            comboBox1.SelectedIndex = 0;
+            attributeDatatype.Items.AddRange(diagramForm.DatabaseProvider.GetDataTypes().ToArray());
+            attributeName.Text = _attribute.DisplayName;
+            columnName.Text = _attribute.ColumnName;
 
+            if(_attribute.DataType == "")
+                attributeDatatype.SelectedIndex = 0;
+            else
+                attributeDatatype.SelectedItem = _attribute.DataType;
+
+            primaryChechBox.Checked = _attribute.Primary;
+            notNullCheckBox.Checked = _attribute.NotNull;
+            uniqueCheckBox.Checked = _attribute.Unique;
+            autoincreamentCheckBox.Checked = _attribute.AutoIncrement;
             base.OnLoad(e);
         }
 
         private void ChangeAttributeName(object sender, EventArgs e)
         {
             _attribute.DisplayName = attributeName.Text;
+        }
+
+        private void columnName_TextChanged(object sender, EventArgs e)
+        {
+            _attribute.ColumnName = columnName.Text;
+        }
+
+        private void attributeDatatype_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            if((ParentForm as DiagramForm).DatabaseProvider.ValidateDataType(attributeDatatype.Text))
+                _attribute.DataType = attributeDatatype.Text;
+            else
+                MessageBox.Show("Incorrect datatype");
+        }
+
+        private void primaryChechBox_CheckedChanged(object sender, EventArgs e)
+        {
+            _attribute.Primary = primaryChechBox.Checked;
+            _attribute.NotNull = primaryChechBox.Checked;
+            _attribute.Unique = primaryChechBox.Checked;
+            if (primaryChechBox.Checked)
+            {
+                notNullCheckBox.Checked = true;
+                notNullCheckBox.Enabled = false;
+                uniqueCheckBox.Enabled = false;
+                uniqueCheckBox.Checked = true;
+            }
+            else
+            {
+                notNullCheckBox.Checked = false;
+                notNullCheckBox.Enabled = true;
+                uniqueCheckBox.Enabled = true;
+                uniqueCheckBox.Checked = false;
+            }
+        }
+
+        private void notNullCheckBox_CheckedChanged(object sender, EventArgs e)
+        {
+            _attribute.NotNull = notNullCheckBox.Checked;
+        }
+
+        private void uniqueCheckBox_CheckedChanged(object sender, EventArgs e)
+        {
+            _attribute.Unique = uniqueCheckBox.Checked;
+        }
+
+        private void autoincreamentCheckBox_CheckedChanged(object sender, EventArgs e)
+        {
+            _attribute.AutoIncrement = autoincreamentCheckBox.Checked;
         }
     }
 }

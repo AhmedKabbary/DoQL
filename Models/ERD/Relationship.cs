@@ -6,6 +6,8 @@
         public string DisplayName { get; set; }
         public string TableName { get; set; }
         public Point Position { get; set; }
+        public Action UpdateAction { get; set; }
+        public Action DeleteAction { get; set; }
         public List<EntityReference> Entities { get; set; }
         public List<Attribute.Reference> Attributes { get; set; }
 
