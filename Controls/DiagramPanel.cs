@@ -1,4 +1,5 @@
-﻿using System.Drawing.Drawing2D;
+﻿using System.Collections.ObjectModel;
+using System.Drawing.Drawing2D;
 using DoQL.Controls.ERD;
 using DoQL.Forms;
 using DoQL.Interfaces;
@@ -13,7 +14,7 @@ namespace DoQL.Controls
         {
             InitializeComponent();
             DoubleBuffered = true;
-            Connections = new List<Connection>();
+            Connections = new ObservableCollection<Connection>();
         }
 
         protected override void OnLoad(EventArgs e)
@@ -137,7 +138,7 @@ namespace DoQL.Controls
 
         #region connections drawing
 
-        public List<Connection> Connections { get; set; }
+        public ObservableCollection<Connection> Connections { get; set; }
 
         public void RedrawCardinalities() => Invalidate();
 

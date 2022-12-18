@@ -1,4 +1,4 @@
-﻿using Action = DoQL.Models.Table.Action;
+﻿using Action = DoQL.Models.Action;
 
 namespace DoQL.Utilities
 {
