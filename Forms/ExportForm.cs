@@ -21,6 +21,7 @@ namespace DoQL.Forms
                 var result = folderBrowserDialog1.ShowDialog();
                 if (result == DialogResult.OK)
                 {
+                    DatabasesManager.GetInstance().SaveDatabase(Database);
                     DatabasesManager.GetInstance().ExportDatabase(Database.Id, folderBrowserDialog1.SelectedPath);
                     this.Close();
                 }
