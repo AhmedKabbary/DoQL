@@ -4,6 +4,7 @@ using DoQL.Controls.Panels;
 using DoQL.DatabaseProviders;
 using DoQL.Models;
 using DoQL.Models.ERD;
+using System.ComponentModel;
 using Attribute = DoQL.Models.ERD.Attribute;
 
 namespace DoQL.Forms
@@ -46,6 +47,12 @@ namespace DoQL.Forms
         protected override void OnLoad(EventArgs e)
         {
             base.OnLoad(e);
+        }
+
+        protected override void OnClosing(CancelEventArgs e)
+        {
+            DatabasesManager.GetInstance().SaveDatabase(Database);
+            base.OnClosing(e);
         }
 
         #region context menu
@@ -112,10 +119,7 @@ namespace DoQL.Forms
 
         #endregion
 
-        private void button1_Click(object sender, EventArgs e)
-        {
-            DatabasesManager.GetInstance().SaveDatabase(Database);
-        }
+        #region side panel
 
         public Panel SidePanel
         {
@@ -134,5 +138,7 @@ namespace DoQL.Forms
             sidePanel.Controls.Add(databasePanel);
 
         }
+
+        #endregion
     }
 }

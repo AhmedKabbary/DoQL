@@ -38,7 +38,6 @@ namespace DoQL.Forms
             this.newAttributeToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.newRelationshipToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.sidePanel = new System.Windows.Forms.Panel();
-            this.button1 = new System.Windows.Forms.Button();
             this.contextMenuStrip1.SuspendLayout();
             this.SuspendLayout();
             // 
@@ -92,23 +91,11 @@ namespace DoQL.Forms
             this.sidePanel.Size = new System.Drawing.Size(345, 753);
             this.sidePanel.TabIndex = 1;
             // 
-            // button1
-            // 
-            this.button1.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
-            this.button1.Location = new System.Drawing.Point(1065, 689);
-            this.button1.Name = "button1";
-            this.button1.Size = new System.Drawing.Size(94, 29);
-            this.button1.TabIndex = 0;
-            this.button1.Text = "save";
-            this.button1.UseVisualStyleBackColor = true;
-            this.button1.Click += new System.EventHandler(this.button1_Click);
-            // 
             // DiagramForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 20F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(1182, 753);
-            this.Controls.Add(this.button1);
             this.Controls.Add(this.sidePanel);
             this.Controls.Add(this.diagramPanel);
             this.Name = "DiagramForm";
@@ -129,6 +116,5 @@ namespace DoQL.Forms
         private ToolStripMenuItem newEntityToolStripMenuItem;
         private ToolStripMenuItem newAttributeToolStripMenuItem;
         private ToolStripMenuItem newRelationshipToolStripMenuItem;
-        private Button button1;
     }
 }

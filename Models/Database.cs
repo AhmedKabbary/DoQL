@@ -70,7 +70,7 @@ namespace DoQL.Models
 
                         var firstTable = Tables.Find(e => e.Id == firstEntityId);
                         firstTable.Columns.AddRange(columns);
-                        firstTable.ForiegnReferences.Add(new Table.ForiegnReference
+                        firstTable.ForiegnReferences.Add(new ForiegnReference
                         {
                             TableId = secondEntityId,
                         });
@@ -101,10 +101,10 @@ namespace DoQL.Models
                             Id = relationship.Id,
                             Name = relationship.TableName,
                             Columns = columns,
-                            ForiegnReferences = new List<Table.ForiegnReference>
+                            ForiegnReferences = new List<ForiegnReference>
                             {
-                                new Table.ForiegnReference {TableId = firstEntityId},
-                                new Table.ForiegnReference {TableId = secondEntityId},
+                                new ForiegnReference {TableId = firstEntityId},
+                                new ForiegnReference {TableId = secondEntityId},
                             }
                         });
                     }
@@ -131,7 +131,7 @@ namespace DoQL.Models
 
                         var firstTable = Tables.Find(e => e.Id == firstEntityId);
                         firstTable.Columns.AddRange(columns);
-                        firstTable.ForiegnReferences.Add(new Table.ForiegnReference
+                        firstTable.ForiegnReferences.Add(new ForiegnReference
                         {
                             TableId = secondEntityId,
                         });

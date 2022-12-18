@@ -17,16 +17,21 @@ namespace DoQL.Controls.ERD
             Text = "Entity";
         }
 
+        private Size strSize;
+
         protected override void OnLoad(EventArgs e)
         {
+            using (Graphics graphics = CreateGraphics())
+            {
+                var padding = new Size(48, 48);
+                strSize = graphics.MeasureString(Text, Font).ToSize();
+                Size = strSize + padding;
+            }
             base.OnLoad(e);
         }
 
         protected override void OnPaint(PaintEventArgs e)
         {
-            var padding = new Size(48, 48);
-            Size strSize = e.Graphics.MeasureString(Text, Font).ToSize();
-            Size = strSize + padding;
             var centerPoint = new Point(Width / 2 - strSize.Width / 2, Height / 2 - strSize.Height / 2);
             e.Graphics.DrawString(Text, Font, new SolidBrush(ForeColor), centerPoint);
             base.OnPaint(e);

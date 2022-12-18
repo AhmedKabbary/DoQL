@@ -12,7 +12,6 @@
         public bool Primary { get; set; }
         public bool Unique { get; set; }
         public bool AutoIncrement { get; set; }
-        public ForiegnReference ForiegnReference { get; set; }
 
 
 
