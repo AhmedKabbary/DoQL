@@ -1,4 +1,5 @@
-﻿using DoQL.Interfaces;
+﻿using DoQL.Controls.Panels;
+using DoQL.Interfaces;
 
 namespace DoQL.Controls.ERD
 {

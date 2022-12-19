@@ -24,12 +24,7 @@ namespace DoQL.Controls.Panels
             attributeDatatype.Items.AddRange(diagramForm.DatabaseProvider.GetDataTypes().ToArray());
             attributeName.Text = _attribute.DisplayName;
             columnName.Text = _attribute.ColumnName;
-
-            if(_attribute.DataType == "")
-                attributeDatatype.SelectedIndex = 0;
-            else
-                attributeDatatype.SelectedItem = _attribute.DataType;
-
+            attributeDatatype.SelectedItem = _attribute.DataType;
             primaryChechBox.Checked = _attribute.Primary;
             notNullCheckBox.Checked = _attribute.NotNull;
             uniqueCheckBox.Checked = _attribute.Unique;

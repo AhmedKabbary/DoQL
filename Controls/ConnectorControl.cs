@@ -1,5 +1,6 @@
 ﻿using System.Drawing.Drawing2D;
 using DoQL.Controls.ERD;
+using DoQL.Controls.Panels;
 using DoQL.Forms;
 using DoQL.Interfaces;
 using DoQL.Models.ERD;

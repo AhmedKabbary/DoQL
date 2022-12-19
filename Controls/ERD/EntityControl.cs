@@ -131,7 +131,6 @@ namespace DoQL.Controls.ERD
             entityPanel.AutoScroll = true;
             entityPanel.Dock = DockStyle.Fill;
             entityPanel.Margin = new Padding(0);
-            entityPanel.Size = new Size(345, 518);
             entityPanel.TabIndex = 1;
             (ParentForm as DiagramForm).SidePanel.Controls.Add(entityPanel);
         }

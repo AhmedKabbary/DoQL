@@ -1,4 +1,4 @@
-﻿namespace DoQL.Controls
+﻿namespace DoQL.Controls.Panels
 {
     partial class DiagramPanel
     {

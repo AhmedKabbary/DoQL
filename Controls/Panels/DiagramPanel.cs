@@ -6,7 +6,7 @@ using DoQL.Interfaces;
 using DoQL.Models.ERD;
 using DoQL.Utilities;
 
-namespace DoQL.Controls
+namespace DoQL.Controls.Panels
 {
     public partial class DiagramPanel : UserControl
     {

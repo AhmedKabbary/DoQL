@@ -1,4 +1,4 @@
-﻿using DoQL.Controls;
+﻿using DoQL.Controls.Panels;
 
 namespace DoQL.Forms
 {
@@ -32,7 +32,7 @@ namespace DoQL.Forms
         {
             this.components = new System.ComponentModel.Container();
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(DiagramForm));
-            this.diagramPanel = new DoQL.Controls.DiagramPanel();
+            this.diagramPanel = new DoQL.Controls.Panels.DiagramPanel();
             this.contextMenuStrip1 = new System.Windows.Forms.ContextMenuStrip(this.components);
             this.newEntityToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.newAttributeToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();

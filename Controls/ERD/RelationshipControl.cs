@@ -155,7 +155,6 @@ namespace DoQL.Controls.ERD
             relationshipPanel.AutoScroll = true;
             relationshipPanel.Dock = DockStyle.Fill;
             relationshipPanel.Margin = new Padding(0);
-            relationshipPanel.Size = new Size(345, 518);
             relationshipPanel.TabIndex = 1;
             (ParentForm as DiagramForm).SidePanel.Controls.Add(relationshipPanel);
         }

@@ -139,7 +139,6 @@ namespace DoQL.Controls.ERD
             attributePanel.AutoScroll = true;
             attributePanel.Dock = DockStyle.Fill;
             attributePanel.Margin = new Padding(0);
-            attributePanel.Size = new Size(345, 518);
             attributePanel.TabIndex = 1;
             (ParentForm as DiagramForm).SidePanel.Controls.Add(attributePanel);
         }
