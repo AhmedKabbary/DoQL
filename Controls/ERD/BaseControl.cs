@@ -120,7 +120,7 @@ namespace DoQL.Controls.ERD
 
         protected override void OnSizeChanged(EventArgs e)
         {
-            (Parent as DiagramPanel).RedrawConnections();
+            (Parent as DiagramPanel)?.RedrawConnections();
             base.OnSizeChanged(e);
         }
     }
